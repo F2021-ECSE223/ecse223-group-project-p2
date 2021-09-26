@@ -1,0 +1,104 @@
+class ClimbSafe{
+  
+ 
+1<@>-* Person;
+ 1<@>-1 NMCprogram;
+
+ 
+
+ 
+
+}
+association {
+1 Administrator -- 1 NMCprogram;
+1 NMCprogram <@>- * EquipmentAssignment;// compostiton(mostly) or assoication
+1 NMCprogram <@>- * EquipmentBundleAssignment;
+1 NMCprogram <@>- * GuideAssignment;
+1 NMCprogram <@>- * HotelAssignment;
+1 Equipment  -- * EquipmentAssignment;
+1 Member -- * EquipmentAssignment;
+1 EquipmentBundle  -- * EquipmentBundleAssignment;
+2..* Equipment -- 1 EquipmentBundle;
+1 Guide -- * GuideAssignment; // think
+1 Hotel -- * HotelAssignment;
+1 Member -- 0..1 GuideAssignment;// think
+1 Member -- * EquipmentBundleAssignment;
+1 Member -- * HotelAssignment;
+1 SpecificClimbingSeason <@>- 1 NMCprogram;
+
+}
+
+class Person{
+  abstract;
+}
+class NMCprogram{
+}
+
+class Administrator{
+  isA Person;
+ String password; // Check f
+ String userAccount = “admin@nmc.nt”;
+  
+  
+}
+
+class Member{
+  isA Person;
+unique immutable String email;
+String name;
+Integer emergencyContact;
+Integer climbingWeek;
+
+}
+
+class Equipment{
+ Integer weight;
+String nameOfTool;
+Integer cost;
+
+}
+
+class EquipmentBundle{
+ Integer price;
+String nameOfBundle;
+
+}
+
+class Guide{
+unique immutable String emailAddress;
+String name;
+Integer emergencyContact;
+Integer cost;
+
+ 
+}
+
+class GuideAssignment{
+}
+
+class EquipmentBundleAssignment{
+}
+
+
+class SpecificClimbingSeason{
+Date startDate;
+Date endDate;
+
+}
+
+class Hotel{
+String name;
+String address;
+ enum Rating {one, two , three, four, five }
+  Rating rating;
+
+} 
+                      
+class EquipmentBundleAssignment{
+}
+
+class EquipmentAssignment{
+}
+
+class HotelAssignment{
+}
