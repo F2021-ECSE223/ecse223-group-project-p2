@@ -24,20 +24,21 @@ association {
 1 Member -- 0..1 GuideAssignment;// think
 1 Member -- * EquipmentBundleAssignment;
 1 Member -- * HotelAssignment;
-1 SpecificClimbingSeason <@>- 1 NMCprogram;
+1 SpecificClimbingSeason <@>- 0..1 NMCprogram;
 
 }
 
 class Person{
   abstract;
 }
+
 class NMCprogram{
 }
 
 class Administrator{
   isA Person;
- String password; // Check f
- String userAccount = “admin@nmc.nt”;
+ defaulted String password = "admin"; // Check f
+ String userAccount = "admin@nmc.nt";
   
   
 }
@@ -47,14 +48,14 @@ class Member{
 unique immutable String email;
 String name;
 Integer emergencyContact;
-Integer climbingWeek;
-
+ Integer totalPrice;
+  Integer climbingWeekNumber;
 }
 
 class Equipment{
  Integer weight;
 String nameOfTool;
-Integer cost;
+Integer price;
 
 }
 
@@ -65,6 +66,7 @@ String nameOfBundle;
 }
 
 class Guide{
+  isA Person;
 unique immutable String emailAddress;
 String name;
 Integer emergencyContact;
@@ -74,15 +76,18 @@ Integer cost;
 }
 
 class GuideAssignment{
+  Date date;
 }
 
 class EquipmentBundleAssignment{
+  Date date;
 }
 
 
-class SpecificClimbingSeason{
-Date startDate;
-Date endDate;
+ class SpecificClimbingSeason{
+   singleton;
+lazy Date startDate;
+lazy Date endDate;
 
 }
 
@@ -98,7 +103,9 @@ class EquipmentBundleAssignment{
 }
 
 class EquipmentAssignment{
+  Date date;
 }
 
 class HotelAssignment{
+  Date date;
 }
