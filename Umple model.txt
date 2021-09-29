@@ -1,8 +1,11 @@
 class ClimbSafe{
   
  
+Date startDate;
+Date endDate;
 1<@>-* Person;
  1<@>-1 NMCprogram;
+ 
 
  
 
@@ -11,25 +14,22 @@ class ClimbSafe{
 }
 association {
 1 Administrator -- 1 NMCprogram;
-1 NMCprogram <@>- * EquipmentAssignment;// compostiton(mostly) or assoication
-1 NMCprogram <@>- * EquipmentBundleAssignment;
-1 NMCprogram <@>- * GuideAssignment;
-1 NMCprogram <@>- * HotelAssignment;
-1 Equipment  -- * EquipmentAssignment;
-1 Member -- * EquipmentAssignment;
-1 EquipmentBundle  -- * EquipmentBundleAssignment;
+1 NMCprogram <@>- * Assignment;// compostiton(mostly) or assoication
+1 Equipment  -- * Assignment;
+1 EquipmentBundle  -- *Assignment;// check
 2..* Equipment -- 1 EquipmentBundle;
-1 Guide -- * GuideAssignment; // think
-1 Hotel -- * HotelAssignment;
-1 Member -- 0..1 GuideAssignment;// think
-1 Member -- * EquipmentBundleAssignment;
-1 Member -- * HotelAssignment;
-1 SpecificClimbingSeason <@>- 0..1 NMCprogram;
+0..1 Guide -- * Assignment; // think
+0..1 Hotel -- * Assignment;
+1 Member -- * Assignment;// think
+  
 
 }
 
 class Person{
   abstract;
+  password;
+  unique immutable email;
+  name;
 }
 
 class NMCprogram{
@@ -38,18 +38,19 @@ class NMCprogram{
 class Administrator{
   isA Person;
  defaulted String password = "admin"; // Check f
- String userAccount = "admin@nmc.nt";
+  // not sure bout userACCOUNT/EMAIL for administrator being
+ 
   
   
 }
 
 class Member{
-  isA Person;
+ isA Person;
 unique immutable String email;
-String name;
 Integer emergencyContact;
  Integer totalPrice;
   Integer climbingWeekNumber;
+ 
 }
 
 class Equipment{
@@ -66,30 +67,15 @@ String nameOfBundle;
 }
 
 class Guide{
-  isA Person;
+isA Person;
 unique immutable String emailAddress;
-String name;
 Integer emergencyContact;
 Integer cost;
 
  
 }
 
-class GuideAssignment{
-  Date date;
-}
 
-class EquipmentBundleAssignment{
-  Date date;
-}
-
-
- class SpecificClimbingSeason{
-   singleton;
-lazy Date startDate;
-lazy Date endDate;
-
-}
 
 class Hotel{
 String name;
@@ -98,14 +84,10 @@ String address;
   Rating rating;
 
 } 
-                      
-class EquipmentBundleAssignment{
-}
+                
 
-class EquipmentAssignment{
-  Date date;
-}
 
-class HotelAssignment{
-  Date date;
+
+class Assignment{
+Date date;
 }
