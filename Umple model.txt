@@ -29,7 +29,6 @@ class Person{
   abstract;
   password;
   unique immutable email;
-  name;
 }
 
 class NMCprogram{
@@ -37,7 +36,7 @@ class NMCprogram{
 
 class Administrator{
   isA Person;
- defaulted String password = "admin"; // Check f
+  // Check f
   // not sure bout userACCOUNT/EMAIL for administrator being
  
   
@@ -45,12 +44,16 @@ class Administrator{
 }
 
 class Member{
- isA Person;
+ isA User;
 unique immutable String email;
 Integer emergencyContact;
- Integer totalPrice;
-  Integer climbingWeekNumber;
- 
+Integer totalPrice;
+String climbingWeekNumber;
+boolean hasGuide;
+boolean stayBeforeClimb;
+boolean stayAfterClimb;
+Integer numberOfClimbingWeeks;
+
 }
 
 class Equipment{
@@ -61,18 +64,16 @@ Integer price;
 }
 
 class EquipmentBundle{
- Integer price;
+Integer price;
 String nameOfBundle;
+Integer discount;
 
 }
 
 class Guide{
-isA Person;
-unique immutable String emailAddress;
+isA User;
 Integer emergencyContact;
 Integer cost;
-
- 
 }
 
 
@@ -84,6 +85,13 @@ String address;
   Rating rating;
 
 } 
+
+class User{
+abstract;
+isA Person;
+Integer emergencyContact;
+name;
+}
                 
 
 
