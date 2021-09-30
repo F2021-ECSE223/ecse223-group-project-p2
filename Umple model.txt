@@ -1,0 +1,101 @@
+class ClimbSafe{
+  
+ 
+Date startDate;
+Date endDate;
+1<@>-* Person;
+ 1<@>-1 NMCprogram;
+ 
+
+ 
+
+ 
+
+}
+association {
+1 Administrator -- 1 NMCprogram;
+1 NMCprogram <@>- * Assignment;// compostiton(mostly) or assoication
+1 Equipment  -- * Assignment;
+1 EquipmentBundle  -- *Assignment;// check
+2..* Equipment -- 1 EquipmentBundle;
+0..1 Guide -- * Assignment; // think
+0..1 Hotel -- * Assignment;
+1 Member -- * Assignment;// think
+  
+
+}
+
+class Person{
+  abstract;
+  password;
+  unique immutable email;
+}
+
+class NMCprogram{
+}
+
+class Administrator{
+  isA Person;
+  // Check f
+  // not sure bout userACCOUNT/EMAIL for administrator being
+ 
+  
+  
+}
+
+class Member{
+ isA User;
+unique immutable String email;
+Integer emergencyContact;
+Integer totalPrice;
+String climbingWeekNumber;
+boolean hasGuide;
+boolean stayBeforeClimb;
+boolean stayAfterClimb;
+Integer numberOfClimbingWeeks;
+
+}
+
+class Equipment{
+ Integer weight;
+String nameOfTool;
+Integer price;
+
+}
+
+class EquipmentBundle{
+Integer price;
+String nameOfBundle;
+Integer discount;
+
+}
+
+class Guide{
+isA User;
+Integer emergencyContact;
+Integer cost;
+}
+
+
+
+class Hotel{
+String name;
+String address;
+ enum Rating {one, two , three, four, five }
+  Rating rating;
+
+} 
+
+class User{
+abstract;
+isA Person;
+Integer emergencyContact;
+name;
+}
+                
+
+
+
+class Assignment{
+Date date;
+}
