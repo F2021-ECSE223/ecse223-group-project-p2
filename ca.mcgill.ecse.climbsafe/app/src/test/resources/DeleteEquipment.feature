@@ -15,6 +15,9 @@ Feature: Delete Equipment (p7)
       | name         | discount | items                       | quantity |
       | small bundle |       10 | rope,pickaxe                |      2,1 |
       | large bundle |       25 | rope,pickaxe,portable stove |    2,1,1 |
+    Given the following members exist in the system: (p7)
+      | email             | password | name  | emergencyContact | nrWeeks | guideRequired | hotelRequired | bookedItems  | quantity |
+      | member1@email.com | pass1    | Peter | (666)555-5555    |       1 | true          | true          | pickaxe,rope |      1,2 |
 
   Scenario: Successfully delete a piece of equipment
     When the administator attempts to delete the piece of equipment in the system with name "crampons" (p7)
@@ -27,17 +30,14 @@ Feature: Delete Equipment (p7)
       | portable stove |     85 |           17 |
 
   Scenario: Delete equipment that has been requested by a member
-    Given the following members exist in the system: (p7)
-      | email             | password | name  | emergencyContact | nrWeeks | guideRequired | hotelRequired | bookedItems   | quantity |
-      | member1@email.com | pass1    | Peter | (666)555-5555    |       1 | true          | true          | crampons,rope |      1,2 |
-    When the administator attempts to delete the piece of equipment in the system with name "crampons" (p7)
+    When the administator attempts to delete the piece of equipment in the system with name "pickaxe" (p7)
     Then the number of booked items for the member with email "member1@email.com" shall be "1" (p7)
     Then the member with email "member1@email.com" shall have a bookable item with name "rope" and quantity "2" (p7)
     Then the number of pieces of equipment in the system shall be "3" (p7)
-    Then the piece of equipment with name "crampons", weight "900", and price per week "11" shall not exist in the system (p7)
+    Then the piece of equipment with name "pickaxe", weight "430", and price per week "25" shall not exist in the system (p7)
     Then the following pieces of equipment shall exist in the system: (p7)
       | name           | weight | pricePerWeek |
-      | pickaxe        |    430 |           25 |
+      | crampons       |    900 |           11 |
       | rope           |     57 |            8 |
       | portable stove |     85 |           17 |
 
