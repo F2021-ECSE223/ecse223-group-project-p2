@@ -1,11 +1,8 @@
 package ca.mcgill.ecse.climbsafe.features;
 
 import io.cucumber.java.en.Given;
-
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-//TEST 12344556
 
 public class P2StepDefinitions {
   @Given("the following ClimbSafe system exists: \\(p2)")
