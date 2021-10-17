@@ -4,10 +4,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-
-
-//test for commmit github
-
 public class P2StepDefinitions {
   @Given("the following ClimbSafe system exists: \\(p2)")
   public void the_following_climb_safe_system_exists_p2(io.cucumber.datatable.DataTable dataTable) {
