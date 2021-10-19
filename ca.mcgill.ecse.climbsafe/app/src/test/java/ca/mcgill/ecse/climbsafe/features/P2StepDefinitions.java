@@ -88,8 +88,9 @@ public class P2StepDefinitions {
     	  throw new Exception("Equipment bundle name cannot be empty");
       }
       for(String item: string3.split(",")){  //converting string3 (itemNames) into a list of Strings
-    	   if ( item == "coat") {
-    		   throw new Exception("Equipment coat does not exist");
+    	   if ( item != "rope" || item != "pickaxe" || item != "portable stove") {
+    		   String error = "Equipment" + item + "does not exist";
+    		   throw new Exception(error);
     	   }
            itemList.add(item);
         }
