@@ -4,6 +4,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+<<<<<<< HEAD
+=======
+
+
+//test for commmit github
+
+>>>>>>> parent of 60a067c (Update P2StepDefinitions.java)
 public class P2StepDefinitions {
   @Given("the following ClimbSafe system exists: \\(p2)")
   public void the_following_climb_safe_system_exists_p2(io.cucumber.datatable.DataTable dataTable) {
@@ -16,7 +23,8 @@ public class P2StepDefinitions {
     // For other transformations you can register a DataTableType.
     throw new io.cucumber.java.PendingException();
   }
-
+  
+  //@author Danny
   @Given("the following equipment exists in the system: \\(p2)")
   public void the_following_equipment_exists_in_the_system_p2(
       io.cucumber.datatable.DataTable dataTable) {
@@ -26,6 +34,22 @@ public class P2StepDefinitions {
     // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
     // Double, Byte, Short, Long, BigInteger or BigDecimal.
     //
+	  
+	  
+	  List<Map<String, String>> rows = dataTable.asMaps(); //not sure to understand here
+		 
+		 for (var row : rows) {
+			 
+			 String name = row.get("name");
+			 int weight = Integer.parseInt(row.get("weight"));
+			 int pricePerWeek = Interger.parseInt(row.get("pricePerWeek"));
+			 
+			 climbsafe.addEquipement(row.get("weight")), climbsafe.addEquipement(row.get("pricePerWeek"))
+			 
+			 	
+			
+		 }
+		 
     // For other transformations you can register a DataTableType.
     throw new io.cucumber.java.PendingException();
   }
