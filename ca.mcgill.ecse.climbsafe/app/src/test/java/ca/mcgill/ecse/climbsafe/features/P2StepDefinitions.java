@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet5Controller;
+import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.Administrator;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.BookableItem;
@@ -65,11 +67,48 @@ public class P2StepDefinitions {
     // For other transformations you can register a DataTableType.
     throw new io.cucumber.java.PendingException();
   }
-
+  //salim 
   @When("the administrator attempts to add an equipment bundle with name {string}, discount {string}, items {string}, and quantities {string} \\(p2)")
   public void the_administrator_attempts_to_add_an_equipment_bundle_with_name_discount_items_and_quantities_p2(
-      String string, String string2, String string3, String string4) {
-    // Write code here that turns the phrase above into concrete actions
+      String string, String string2, String string3, String string4) throws Exception {
+    // Write code here that turns the phrase above into concrete actions  
+	  
+	  try{   
+      String name = string;    
+      int discount = Integer.parseInt(string2); //converting string2 (discount) from string to int
+      if ( discount < 0 ) {
+    	  throw new Exception("Discount must be at least 0");
+      }
+      if ( discount > 100) {
+    	  throw new Exception("Discount must be no more than 100");
+      }
+      ArrayList<String> itemList = new ArrayList<String>();
+      ArrayList<Integer> quantityList = new ArrayList<Integer>();
+      if ( string3 == null ) {
+    	  throw new Exception("Equipment bundle name cannot be empty");
+      }
+      for(String item: string3.split(",")){  //converting string3 (itemNames) into a list of Strings
+    	   if ( item == "coat") {
+    		   throw new Exception("Equipment coat does not exist");
+    	   }
+           itemList.add(item);
+        }
+      for(String quantity: string4.split(",")){//converting string4 (quantities) into a list of int
+    	   if ( Integer.parseInt(quantity) <= 0 ) { 
+    		   throw new Exception("Each bundle item must have quantity greater than or equal to 1");
+    	   }
+           quantityList.add(Integer.parseInt(quantity));
+        }
+      
+      ClimbSafeFeatureSet5Controller.addEquipmentBundle(name, discount,itemList,quantityList );
+      if( itemList.size() <= 1) {
+    	  throw new Exception("Equipment bundle must contain at least two distinct types of equipment");
+      }
+      
+      }
+	  catch(InvalidInputException e) {
+          error=e.getMessage();
+      }
     throw new io.cucumber.java.PendingException();
   }
 
