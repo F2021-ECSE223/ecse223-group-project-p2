@@ -24,7 +24,7 @@ public class ClimbSafeFeatureSet1Controller {
 	  } catch (IllegalArgumentException e) {
 		  throw new InvalidInputException("Invalid date");
 	  }
-	  ClimbSafeApplication new_instance = new ClimbSafeApplication();
+	  //ClimbSafeApplication new_instance = new ClimbSafeApplication();
 	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
 	  inst.setStartDate(startDate);
 	  inst.setNrWeeks(nrWeeks);
