@@ -47,6 +47,7 @@ public class ClimbSafeFeatureSet1Controller {
 			  inst.removeMember(inst.getMember(i));
 			  return;
 		  }
+		  i++;
 	  }
   }
   /**
