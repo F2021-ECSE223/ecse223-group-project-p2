@@ -7,7 +7,8 @@ import java.util.List;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Guide;
-import ca.mcgill.ecse.climbsafe.model.User;
+import ca.mcgill.ecse.climbsafe.model.Member;
+
 
 public class ClimbSafeFeatureSet3Controller {
 
@@ -30,7 +31,7 @@ public class ClimbSafeFeatureSet3Controller {
     		  
     		  throws InvalidInputException {
 	  	 
-	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
+
 	  
 	  var error ="";
 	  
@@ -51,6 +52,19 @@ public class ClimbSafeFeatureSet3Controller {
 		  
 		  
 	  }
+	  
+	  List<Member> members = climbSafe.getMembers();
+	  for(Member m : members) {
+		  if(email.equals(m.getEmail())) {
+			  error ="Email cannot be the same for another member";
+			  throw new InvalidInputException(error);
+			  
+		  }
+		  
+		  
+	  }
+	  
+	  
 	  
 	  
 	  if(email.contains(" ")) {
@@ -94,7 +108,7 @@ public class ClimbSafeFeatureSet3Controller {
 	  
 	  try {
 		  
-		  inst.addGuide(email,password, name, emergencyContact);
+		  climbSafe.addGuide(email,password, name, emergencyContact);
 		  
 	  } catch(RuntimeException e) {
 		  
@@ -129,8 +143,8 @@ public class ClimbSafeFeatureSet3Controller {
       String newEmergencyContact) throws InvalidInputException {
 	  
 	  //guide's email cannot be changed
-	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
-      inst.addGuide(email, newPassword, newName, newEmergencyContact);
+
+      
       
       var error ="";
       
@@ -160,7 +174,30 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
 	  
 	  
+	  try {
+		  
+		  List<Guide> guides = climbSafe.getGuides();
+		  for(Guide g : guides) {
+			  if(email.equals(g.getEmail())) {
+				  climbSafe.addGuide(email, newPassword, newName, newEmergencyContact);
+				  g.setName(newName);
+				  g.setEmergencyContact(newEmergencyContact);
+				  g.setPassword(newPassword);
+
+				  
+			  }
+			  
+			  
+    	  }
+		  
+		  		 
+	  }
 	  
+	  catch(RuntimeException e) {
+		  error = e.getMessage();
+		  throw new InvalidInputException(error);
+		  
+	  }
 	  
 	  
 	  
