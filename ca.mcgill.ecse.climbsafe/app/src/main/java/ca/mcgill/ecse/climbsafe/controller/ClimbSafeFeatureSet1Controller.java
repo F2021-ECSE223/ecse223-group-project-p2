@@ -62,6 +62,7 @@ public class ClimbSafeFeatureSet1Controller {
 			  inst.removeGuide(inst.getGuide(i));
 			  return;
 		  }
+		  i++;
 	  }
   }
 
