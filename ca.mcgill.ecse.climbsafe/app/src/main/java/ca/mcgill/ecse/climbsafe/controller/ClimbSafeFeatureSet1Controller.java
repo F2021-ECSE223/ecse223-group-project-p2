@@ -6,10 +6,15 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 
 public class ClimbSafeFeatureSet1Controller {
-
+	  /**
+	   * @author Salim Benchekroun
+	   * @param startDate : the starting date of the climbing season 
+	   * @param nrWeeks : number of weeks in the climbing season 
+	   * @param priceOfGuidePerWeek : the price of guide per week 
+	   * */
   public static void setup(Date startDate, int nrWeeks, int priceOfGuidePerWeek)
       throws InvalidInputException {
-	  
+
 	  //test for illegal inputs 
 	  if ( nrWeeks < 0 ) {
 		  throw new InvalidInputException("The number of climbing weeks must be greater than or equal to zero");
@@ -30,7 +35,10 @@ public class ClimbSafeFeatureSet1Controller {
 	  inst.setNrWeeks(nrWeeks);
 	  inst.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
   }
-
+  /**
+   * @author Salim Benchekroun
+   * @param email : the email of a member 
+   * */
   public static void deleteMember(String email) {
 	  int i = 0;
 	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
@@ -41,7 +49,10 @@ public class ClimbSafeFeatureSet1Controller {
 		  }
 	  }
   }
-
+  /**
+   * @author Salim Benchekroun
+   * @param email : the email of a member 
+   * */
   public static void deleteGuide(String email) {
 	  int i = 0;
 	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
