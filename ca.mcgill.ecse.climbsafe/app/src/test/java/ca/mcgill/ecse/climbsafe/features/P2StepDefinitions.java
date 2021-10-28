@@ -173,10 +173,7 @@ public class P2StepDefinitions {
 	  }
   }
   
- @After
-  public void tearDown() {
-   climbSafe.delete();
-  }
+
   
 
 }
