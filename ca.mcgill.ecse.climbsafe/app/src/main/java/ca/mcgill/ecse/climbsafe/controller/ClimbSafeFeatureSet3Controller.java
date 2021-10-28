@@ -27,8 +27,6 @@ public class ClimbSafeFeatureSet3Controller {
 	
 	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	
-	
-	
   public static void registerGuide(String email, String password, String name,
       String emergencyContact) 
     		  
@@ -64,8 +62,7 @@ public class ClimbSafeFeatureSet3Controller {
 			  throw new InvalidInputException(error);
 			  
 		  }
-		  
-		  
+		    
 	  }
 	  
 	  List<Member> members = climbSafe.getMembers();
@@ -139,8 +136,6 @@ public class ClimbSafeFeatureSet3Controller {
 		  
 	  }
 	  
-	  
-	  
 	  try {
 		  
 		  climbSafe.addGuide(email,password, name, emergencyContact);
@@ -149,7 +144,6 @@ public class ClimbSafeFeatureSet3Controller {
 		  
 		  error =e.getMessage();
 		  throw new InvalidInputException(error);
-		  
 		  
 	  }
 
@@ -164,7 +158,6 @@ public class ClimbSafeFeatureSet3Controller {
    * @throws InvalidInputException for inputs whenever errors occur
    * */
   
-
   public static void updateGuide(String email, String newPassword, String newName,
       String newEmergencyContact) throws InvalidInputException {
       var error ="";
@@ -174,7 +167,6 @@ public class ClimbSafeFeatureSet3Controller {
 		  throw new InvalidInputException(error);
       } 
       
-      
 	  if(newPassword.isEmpty() || newPassword.isBlank()) {
 		  
 		  error="Password cannot be empty";
@@ -182,7 +174,6 @@ public class ClimbSafeFeatureSet3Controller {
 		  throw new InvalidInputException(error);
 		  
 	  }
-	  
 	  
 	  if(newName.isEmpty() || newPassword.isBlank()) {
 		  
@@ -192,14 +183,12 @@ public class ClimbSafeFeatureSet3Controller {
 		  
 	  }
 	  
-	  
 	  if(newEmergencyContact.isEmpty() || newEmergencyContact.isBlank()) {
 		  
 		  error="Emergency contact cannot be empty";
 		  
 		  throw new InvalidInputException(error);
 	  }
-	  
 	  
 	  try {
 		  
@@ -209,29 +198,13 @@ public class ClimbSafeFeatureSet3Controller {
 				 
 				  g.setName(newName);
 				  g.setEmergencyContact(newEmergencyContact);
-				  g.setPassword(newPassword);
-
-				  
-			  }
-			  
-			  
-    	  }
-		  
-		  		 
+				  g.setPassword(newPassword);  
+			  } 
+    	  }  		 
 	  }
-	  
 	  catch(RuntimeException e) {
 		  error = e.getMessage();
 		  throw new InvalidInputException(error);
-		  
 	  }
-	  
-	  
-	  
-	  
-	  
-	  
-	  
   }
-
 }
