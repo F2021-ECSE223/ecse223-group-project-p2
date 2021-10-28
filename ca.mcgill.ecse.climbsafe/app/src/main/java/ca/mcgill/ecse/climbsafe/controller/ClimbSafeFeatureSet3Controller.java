@@ -24,7 +24,6 @@ public class ClimbSafeFeatureSet3Controller {
  * @throws InvalidInputException for inputs whenever errors occur
 	
 	*/
-	
   private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	
   public static void registerGuide(String email, String password, String name,
@@ -69,19 +68,15 @@ public class ClimbSafeFeatureSet3Controller {
 			  
 		  }
 		  
-		  
 	  }
 	  
 	  if(!email.contains(name.toLowerCase())) {
 		  error="Invalid email";
 		  throw new InvalidInputException(error);
-		  
-		  
+		    
 	  }
 	  
-	  
 	  if(!(email.indexOf("@") >0)) {
-		  
 		  error="Invalid email";
 		  throw new InvalidInputException(error);
 	  }
@@ -105,7 +100,6 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
 	  
 	  if(email.contains(" ")) {
-		  
 		  error="Email must not contain any spaces";
 		  throw new InvalidInputException(error);
 		  
@@ -115,9 +109,7 @@ public class ClimbSafeFeatureSet3Controller {
 		  error="Password cannot be empty";
 		  throw new InvalidInputException(error);
 		  
-		  
 	  }
-	  
 	  
 	  if(name.isEmpty() || name.isBlank()) {
 		  error="Name cannot be empty";
@@ -129,7 +121,6 @@ public class ClimbSafeFeatureSet3Controller {
 		  error="Emergency contact cannot be empty";
 		  throw new InvalidInputException(error);
 		  
-		  
 	  }
 	  
 	  try {
@@ -137,14 +128,12 @@ public class ClimbSafeFeatureSet3Controller {
 		  climbSafe.addGuide(email,password, name, emergencyContact);
 		  
 	  } catch(RuntimeException e) {
-		  
 		  error =e.getMessage();
 		  throw new InvalidInputException(error);
 		  
 	  }
 
   }
-  
   /** @author Danny Tu
    * This method updates the guide's information in the climbSafe system
    * @param email Email of the guide in which information gets updated/modified
@@ -153,36 +142,31 @@ public class ClimbSafeFeatureSet3Controller {
    * @param newEmergencyContact New Emergency Contact, which is a phone number, that gets registered into the climbSafe system
    * @throws InvalidInputException for inputs whenever errors occur
    * */
-  
   public static void updateGuide(String email, String newPassword, String newName,
       String newEmergencyContact) throws InvalidInputException {
+	  
       var error ="";
       
       if( email.equals(null) || newPassword.equals(null) || newName.equals(null)  || newEmergencyContact.equals(null)) {
 		  error= "error";  
 		  throw new InvalidInputException(error);
+		  
       } 
       
-	  if(newPassword.isEmpty() || newPassword.isBlank()) {
-		  
-		  error="Password cannot be empty";
-		  
+	  if(newPassword.isEmpty() || newPassword.isBlank()) {  
+		  error="Password cannot be empty"; 
 		  throw new InvalidInputException(error);
 		  
 	  }
 	  
 	  if(newName.isEmpty() || newPassword.isBlank()) {
-		  
 		  error="Name cannot be empty";
-		  
 		  throw new InvalidInputException(error);
 		  
 	  }
 	  
 	  if(newEmergencyContact.isEmpty() || newEmergencyContact.isBlank()) {
-		  
 		  error="Emergency contact cannot be empty";
-		  
 		  throw new InvalidInputException(error);
 	  }
 	  
