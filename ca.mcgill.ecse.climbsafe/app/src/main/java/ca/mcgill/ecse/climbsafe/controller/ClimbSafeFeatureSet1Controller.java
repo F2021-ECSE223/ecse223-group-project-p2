@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
+import ca.mcgill.ecse.climbsafe.model.Guide;
+import ca.mcgill.ecse.climbsafe.model.Member;
 
 public class ClimbSafeFeatureSet1Controller {
 	  /**
@@ -40,30 +42,28 @@ public class ClimbSafeFeatureSet1Controller {
    * @param email : the email of a member 
    * */
   public static void deleteMember(String email) {
-	  int i = 0;
+	  
 	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
-	  while (i < inst.getMembers().size() ) {
-		  if ( inst.getMember(i).getEmail() == email ) {
-			  inst.removeMember(inst.getMember(i));
-			  return;
-		  }
-		  i++;
+	  for ( Member m : inst.getMembers()) {
+		  if ( email.equals(m.getEmail()) ) {
+			  m.delete();
+		  } 
 	  }
+	  return;
   }
   /**
    * @author Salim Benchekroun
    * @param email : the email of a member 
    * */
   public static void deleteGuide(String email) {
-	  int i = 0;
+	  
 	  ClimbSafe inst = ClimbSafeApplication.getClimbSafe();
-	  while (i < inst.getGuides().size() ) {
-		  if ( inst.getGuide(i).getEmail() == email ) {
-			  inst.removeGuide(inst.getGuide(i));
-			  return;
-		  }
-		  i++;
+	  for ( Guide m :  inst.getGuides() ) {
+		  if (  email.equals(m.getEmail()) ) {
+			  m.delete();
+		  }  
 	  }
+	  return;
   }
 
   // this method needs to be implemented only by teams with seven team members
