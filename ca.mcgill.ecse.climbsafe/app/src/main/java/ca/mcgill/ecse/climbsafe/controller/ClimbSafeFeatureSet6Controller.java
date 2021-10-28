@@ -22,6 +22,7 @@ public class ClimbSafeFeatureSet6Controller {
   
   /**
    * delete a certain equipment
+   * corresponds to DeleteEquipment.feature
    * @author Peini Cheng
    * @param  name name of the equipment
    */
@@ -39,6 +40,7 @@ public class ClimbSafeFeatureSet6Controller {
 
   /**
    * delete a certain equipment bundle
+   * corresponds to DeleteEquipmentBundle.feature
    * @author Peini Cheng
    * @param  name name of the equipment bundle
    */
@@ -51,6 +53,7 @@ public class ClimbSafeFeatureSet6Controller {
 
   /**
    * create a list of TOAssignemnt for Administrator to keep track of climbers' assignments
+   * corresponds to ViewAssignment.feature
    * @author Peini Cheng
    * @return a list of TOAssignment
    */
@@ -96,6 +99,7 @@ public class ClimbSafeFeatureSet6Controller {
     }
     return assignments;
   }
+
 
 }
 
