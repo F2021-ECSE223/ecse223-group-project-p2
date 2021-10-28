@@ -38,6 +38,11 @@ public class ClimbSafeFeatureSet3Controller {
 	  
 	  var error ="";
 	  
+	  if( email.equals(null) || password.equals(null) || name.equals(null)  || emergencyContact.equals(null)) {
+		  error= "error";
+		  throw new InvalidInputException(error);
+      } 
+	  
 	  if(email.isEmpty() || email.isBlank()) {
 		  error ="Email cannot be empty";
 		  throw new InvalidInputException(error);
@@ -163,6 +168,13 @@ public class ClimbSafeFeatureSet3Controller {
   public static void updateGuide(String email, String newPassword, String newName,
       String newEmergencyContact) throws InvalidInputException {
       var error ="";
+      
+      if( email.equals(null) || newPassword.equals(null) || newName.equals(null)  || newEmergencyContact.equals(null)) {
+		  error= "error";  
+		  throw new InvalidInputException(error);
+      } 
+      
+      
 	  if(newPassword.isEmpty() || newPassword.isBlank()) {
 		  
 		  error="Password cannot be empty";
