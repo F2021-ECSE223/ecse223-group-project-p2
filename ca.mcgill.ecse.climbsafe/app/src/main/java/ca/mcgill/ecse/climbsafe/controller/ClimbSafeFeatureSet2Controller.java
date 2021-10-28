@@ -31,17 +31,12 @@ public class ClimbSafeFeatureSet2Controller {
 	  
 	  var error="";
 	  
-//	  System.out.println( "SIZEFADSASDASDADSADASDASD");
-//	  ClimbSafeApplication.getClimbSafe().getBookedItems().clear();
-//	  System.out.println(  ClimbSafeApplication.getClimbSafe().getBookedItems().size()+ "New size");
-//	  
 	  if( email.equals(null) || password.equals(null) || name.equals(null)  || emergencyContact.equals(null)) {
-		  error= "error";
-		  
+		  error= "error";  
       } 
 	  System.out.println(itemNames.size());
 	  if(itemNames.size()!= itemQuantities.size()) {
-
+		  
 		  error ="size of item names is not equal to quntity of items" ;
 	  }
 	  
@@ -75,9 +70,6 @@ public class ClimbSafeFeatureSet2Controller {
 	  }
 	  
 	  
-
-	 
-	  
  for (int i=0; i<ClimbSafeApplication.getClimbSafe().getMembers().size();i++) {
 	 //System.out.println(email +  " ------ " + ClimbSafeApplication.getClimbSafe().getMember(i).getEmail());
 	 if (email.equals(ClimbSafeApplication.getClimbSafe().getMember(i).getEmail())) {
@@ -85,8 +77,6 @@ public class ClimbSafeFeatureSet2Controller {
 			break;
 	  }
  }
- 
- 
  
  	  if (email.contains(" ")) {
 	 error="The email must not contain any spaces";
@@ -125,17 +115,13 @@ public class ClimbSafeFeatureSet2Controller {
  }
 
 	  try {
-		 //Member newMem =  ClimbSafeApplication.getClimbSafe().addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
 		 Member newMem = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, ClimbSafeApplication.getClimbSafe());
 		 for (int i=0; i<itemNames.size();i++) {
-			 //Equipment e = new Equipment(itemNames.get(i),0,0,ClimbSafeApplication.getClimbSafe());
-			 //ClimbSafeApplication.getClimbSafe().addBookedItem(itemQuantities.get(i), newMem, e);
 			 BookableItem newItem = BookableItem.getWithName(itemNames.get(i));
 			 Integer quan = itemQuantities.get(i);
 			 BookedItem item = new BookedItem (quan, ClimbSafeApplication.getClimbSafe(),newMem,newItem);	
 			 ClimbSafeApplication.getClimbSafe().addBookedItem(item);
 		 }
-		 //ClimbSafeApplication.getClimbSafe().addBoo 
 	  }
 	  catch(RuntimeException e) {
 		  error = e.getMessage();
