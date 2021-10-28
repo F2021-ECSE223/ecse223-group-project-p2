@@ -31,9 +31,7 @@ public class ClimbSafeFeatureSet3Controller {
       String emergencyContact) 
     		  
     		  throws InvalidInputException {
-	  	 
-
-	  
+	 
 	  var error ="";
 	  
 	  if( email.equals(null) || password.equals(null) || name.equals(null)  || emergencyContact.equals(null)) {
