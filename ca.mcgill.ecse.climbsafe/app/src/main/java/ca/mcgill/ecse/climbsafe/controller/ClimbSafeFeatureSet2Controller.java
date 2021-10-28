@@ -10,9 +10,21 @@ import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.Member;
 
 public class ClimbSafeFeatureSet2Controller {
-	
-	
-
+/**
+ * @author Jian Long Ye (Noah)
+ * This method registers a member into system that includes the email password, name,
+ * emergency contact, number of weeks for climbing,if guide is needed, items and item quantities
+ * @param email  The email the member registers with
+ * @param password  The password the member registers with
+ * @param name  The name the member registers with
+ * @param emergencyContact  The emergency contact the member registers with
+ * @param nrWeeks  The number of climbing weeks the member registers with
+ * @param guideRequired  If a member wants a guide
+ * @param hotelRequired  If member needs a hotel
+ * @param itemNames  The item names in a list the member chose
+ * @param itemQuantities The quantities of the item for each item in the item name list
+ * @throws InvalidInputException This gives an exception whenever user puts an invalid input 
+ */
   public static void registerMember(String email, String password, String name,
       String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
       List<String> itemNames, List<Integer> itemQuantities) throws InvalidInputException { 
@@ -76,19 +88,13 @@ public class ClimbSafeFeatureSet2Controller {
  
  
  
- if (email.contains(" ")) {
+ 	  if (email.contains(" ")) {
 	 error="The email must not contain any spaces";
- }
+ 	  }
  
- if (!email.contains(".")) {
+ 	  if (!email.contains(".")) {
 	 error= "Invalid email";
- }
- 
-//email.indexOf("@") > 0 // index starts at zero
-//email.indexOf("@") = email.lastIndexOf("@")
-//email.indexOf("@") < email.lastIndexOf(".") - 1
-//email.lastIndexOf(".") < email.length() - 1
- 
+ 	  }
 
  	  if(!(email.indexOf("@") >0)) {
  		  error="Invalid email";
@@ -111,24 +117,13 @@ public class ClimbSafeFeatureSet2Controller {
  			  error= "Requested item not found";
  			  break;
  		  }
-}
- 
- 
+ 	  }
  
 
- 
- 
-
- 
  if (error.length() > 0) {
      throw new InvalidInputException(error.trim());
  }
 
-		 
-	 
-		  
-	  
-	 
 	  try {
 		 //Member newMem =  ClimbSafeApplication.getClimbSafe().addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
 		 Member newMem = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, ClimbSafeApplication.getClimbSafe());
@@ -141,47 +136,47 @@ public class ClimbSafeFeatureSet2Controller {
 			 ClimbSafeApplication.getClimbSafe().addBookedItem(item);
 		 }
 		 //ClimbSafeApplication.getClimbSafe().addBoo 
-	  }catch(RuntimeException e) {
-		  error = e.getMessage();
-		   throw new InvalidInputException(error);
-		  
-		
 	  }
-
+	  catch(RuntimeException e) {
+		  error = e.getMessage();
+		   throw new InvalidInputException(error);  
+	  }
     }
 
- 
+ /**
+  * @author Jian Long (Noah) Ye
+  * This method updates the name, password, emergency contact, if guide is required
+  * number of climbing weeks, if hotel is required, item names in a list and item quantities in a list for 
+  * each item name
+  * @param email  This is the email of the member(unique) that is not updated
+  * @param newPassword  This is the updated password of the member
+  * @param newName  This is the name the member wants to update to
+  * @param newEmergencyContact  This is the updated emergency contact of the member
+  * @param newNrWeeks  This is the updated number of climbing weeks for the member
+  * @param newGuideRequired  This updates if a member wants a guide
+  * @param newHotelRequired  This updates if a member needs a hotel
+  * @param newItemNames  This updates the item names in the list
+  * @param newItemQuantities  This updates the item quantity for each item in the list of item names
+  * @throws InvalidInputException An exception will be thrown when an invalid input takes place
+  */
   public static void updateMember(String email, String newPassword, String newName,
       String newEmergencyContact, int newNrWeeks, boolean newGuideRequired,
       boolean newHotelRequired, List<String> newItemNames, List<Integer> newItemQuantities)
       throws InvalidInputException {
-	  
-	  
-	  
-
+	 
 	  var error ="";
 	  
 	  if( email.equals(null) || newPassword.equals(null) || newName.equals(null)  || newEmergencyContact.equals(null)) {
-		  error= "error";
-		  
+		  error= "error";  
       } 
 	  
 	
 	  if(newPassword.isEmpty()) {
-		  
-		  error="The password cannot be empty";
-		 
-		  
+		  error="The password cannot be empty";   
 	  }
 	  
-	  
-	  
-	  
-	  if(newName.isEmpty()) {
-		  
-		  error=" The name cannot be empty";
-		  
-		  
+	  if(newName.isEmpty()) { 
+		  error=" The name cannot be empty";  
 	  }
 	  
 	  for(int i=0; i<newItemNames.size();i++) {
@@ -189,10 +184,8 @@ public class ClimbSafeFeatureSet2Controller {
  			  error= "Requested item not found";
  			  break;
  		  }
-}
+	  }
  
-	  
-	  
 	  if(newEmergencyContact.isEmpty()) {
 		  
 		  error="The emergency contact cannot be empty";
@@ -208,9 +201,6 @@ public class ClimbSafeFeatureSet2Controller {
 		     throw new InvalidInputException(error.trim());
 		 }
 	  
-	  
-
-	  
 	  try {
 		
 		  Member theMem = null;
@@ -221,9 +211,6 @@ public class ClimbSafeFeatureSet2Controller {
 			  
 		  }
 		  
-		  
-
-		  
 		  theMem.setName(newName);
  		  theMem.setEmergencyContact(newEmergencyContact);
 		  theMem.setPassword(newPassword);
@@ -233,23 +220,15 @@ public class ClimbSafeFeatureSet2Controller {
 	
 		  while(true) {
 			  theMem.getBookedItem(0).delete();
-		
+	
 			  if(theMem.getBookedItems().size() == 0) {
 				  break;
-			  }
+			 }
 		  }
-		 
-		 
-
 		  for(int i=0; i<newItemNames.size();i++) {
 			BookableItem item = BookableItem.getWithName(newItemNames.get(i));
 		  	theMem.addBookedItem(newItemQuantities.get(i),ClimbSafeApplication.getClimbSafe(), item);
-		  }
-		  
-		 
-		  
-	
- 
+		  }	
 	  	}
 	  
 	  catch(RuntimeException e) {
