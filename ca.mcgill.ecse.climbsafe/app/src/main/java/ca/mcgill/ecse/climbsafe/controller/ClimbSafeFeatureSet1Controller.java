@@ -61,6 +61,7 @@ public class ClimbSafeFeatureSet1Controller {
 	  for ( Guide m :  inst.getGuides() ) {
 		  if (  email.equals(m.getEmail()) ) {
 			  m.delete();
+			  inst.removeGuide(m);
 		  }  
 	  }
 	  return;
