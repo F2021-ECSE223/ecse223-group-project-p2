@@ -25,12 +25,10 @@ public class ClimbSafeFeatureSet3Controller {
 	
 	*/
 	
-	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+  private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	
   public static void registerGuide(String email, String password, String name,
-      String emergencyContact) 
-    		  
-    		  throws InvalidInputException {
+      String emergencyContact)  throws InvalidInputException {
 	 
 	  var error ="";
 	  
