@@ -9,7 +9,7 @@ import ca.mcgill.ecse.climbsafe.model.Member;
 
 public class ClimbSafeFeatureSet1Controller {
 	  /**
-	   * @author Salim Benchekroun
+	   * @author Salim Benchekroun :  )
 	   * @param startDate : the starting date of the climbing season 
 	   * @param nrWeeks : number of weeks in the climbing season 
 	   * @param priceOfGuidePerWeek : the price of guide per week 
