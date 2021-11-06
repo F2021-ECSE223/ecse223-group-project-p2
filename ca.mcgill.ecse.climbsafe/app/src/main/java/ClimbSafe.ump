@@ -40,7 +40,7 @@ class Guide {
 class Member {
   isA NamedUser;
   Integer nrWeeks;
-  Integer refund;
+  Integer refund = 0;
   Boolean guideRequired;
   Boolean hotelRequired;
 }
