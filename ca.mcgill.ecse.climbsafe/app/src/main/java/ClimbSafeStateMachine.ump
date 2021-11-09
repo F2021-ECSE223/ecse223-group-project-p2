@@ -1,37 +1,34 @@
 class Assignment{
   Status{
+  Regular{
+  memberBanned()->Banned;
     Assigned{
       confirmPayment()->Paid;
       cancelTrip()->Cancelled;
       finishTrip()/{rejectFinishDueToNotStarted();}->Assigned;
-      memberBanned()->Banned;
     }
     Paid{
       cancelTrip()/{refund();}->Cancelled;     
       startTrip()->Started;     
       confirmPayment()/{rejectPaymentDueToPaid();} ->Paid;    
       finishTrip()/{rejectFinishDueToNotStarted();}->Paid;
-      memberBanned()->Banned;
     }
     Cancelled{
       startTrip()/{rejectStartDueToCancelled();}->Cancelled;
       finishTrip()/{rejectFinishDueToCancelled();}->Cancelled;
       confirmPayment()/{rejectPaymentDueToCancelled();}->Cancelled;
-       memberBanned()->Banned;
     }
     Started{
       finishTrip()->Finished;
       cancelTrip()/{refund();}->Cancelled;      
       confirmPayment()/{rejectPaymentDueToPaid();}->Started;
-      memberBanned()->Banned;
     }
     Finished{
       startTrip()/{rejectStartDueToFinished();}-> Finished;     
       cancelTrip()/{rejectCancelDueToFinished();} ->Finished;     
       confirmPayment()/{rejectPaymentDueToFinished();} ->Finished;
-      memberBanned()->Banned;
     }
-    
+    }
     Banned{
       startTrip()/{rejectStartDueToBanned();}->Banned;
       confirmPayment()/{rejectPaymentDueToBanned();}->Banned;
@@ -76,7 +73,7 @@ class Assignment{
     throw new RuntimeException("Cannot finish a trip which has not started");
   }
   private void refund(){
-    if(status.equals(Status.Paid)){
+    if(status.equals(StatusRegular.Paid)){
     getMember().setRefund(50); 
     }else{
     getMember().setRefund(10);
