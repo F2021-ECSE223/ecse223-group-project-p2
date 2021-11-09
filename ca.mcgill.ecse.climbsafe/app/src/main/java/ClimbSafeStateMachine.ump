@@ -86,6 +86,14 @@ class Assignment{
       confirmPayment();
       }
     }
+  public void setTestStatus(String s){ 
+    StatusRegular statusRegular[] = StatusRegular.values();
+    for(StatusRegular status: statusRegular) {
+         if (status.name().equals(s)){
+         this.statusRegular = status;
+         }
+      }
+  }
   }
 
 class Member{
