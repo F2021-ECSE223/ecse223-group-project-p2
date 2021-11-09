@@ -7,7 +7,7 @@ import ca.mcgill.ecse.climbsafe.model.Member;
 public class AssignmentController {
  //4,5 
   public static void InitiateAssignment() {
-    
+    //salim work
   }
  //6
   public static void StartTrip(int week) {
