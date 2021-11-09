@@ -35,7 +35,9 @@ public class AssignmentController {
 					isAvailable = false; //if there is already an assignment in that time period, then guide is not available 
 				}
 				k++;
-			} 
+			}
+			
+			
 			if ( isAvailable == false ) {  // if guide not available, go to next member 
 				continue; 
 			}
@@ -46,7 +48,7 @@ public class AssignmentController {
 			}
 			 
 			if ( m.getGuideRequired() == false && assignment.hasGuide() == false ) { // if member doesn't want a guide 
-				Assignment a = new Assignment(start, end, climbSafe.getMember(j), climbSafe);
+				Assignment a = new Assignment(0, m.getNrWeeks(), climbSafe.getMember(j), climbSafe);
 			}
 			 
 			 
