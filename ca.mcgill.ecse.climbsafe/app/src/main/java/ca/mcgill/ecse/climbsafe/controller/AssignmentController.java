@@ -23,26 +23,34 @@ public class AssignmentController {
 			 assignment = climbSafe.getAssignment(j);
 			 int start = assignment.getStartWeek();
 			 int end = assignment.getEndWeek();		
-			 
-			 if ( m.getGuideRequired() == true && assignment.hasGuide() == false ) { // if member needs a guide, but has no guide yet 
 				 
-				 //test if guide is available during that time 
-				 boolean isAvailable = true;
-				 int k = 0;
-				 while ( k < climbSafe.getGuide(i).getAssignments().size() ) { //iterate through all the assignments of said guide 
-					 int temp1 = climbSafe.getGuide(i).getAssignment(k).getStartWeek();
-					 int temp2 = climbSafe.getGuide(i).getAssignment(k).getEndWeek();
-					 //checking for overlap between region [temp1, temp2] and [start, end]
-					 if ( (temp1 < start && temp2 > start) || (temp1 < end && temp2 > end ) ) { 
-						 isAvailable = false; //if there is already an assignment in that time period, then guide is not available 
-					 }
-					 k++;
-				 } 
-				 if ( isAvailable == true ) {  // if guide available (doesn't have a member during that period) 
-					 new Assignment(start, end, climbSafe.getMember(j), climbSafe);
-				 }
-			 }	 
-			 j++;
+			//test if guide is available during that time 
+			boolean isAvailable = true;
+			int k = 0;
+			while ( k < climbSafe.getGuide(i).getAssignments().size() ) { //iterate through all the assignments of said guide 
+				int temp1 = climbSafe.getGuide(i).getAssignment(k).getStartWeek();
+				int temp2 = climbSafe.getGuide(i).getAssignment(k).getEndWeek();
+				//checking for overlap between region [temp1, temp2] and [start, end]
+				if ( (temp1 < start && temp2 > start) || (temp1 < end && temp2 > end ) ) { 
+					isAvailable = false; //if there is already an assignment in that time period, then guide is not available 
+				}
+				k++;
+			} 
+			if ( isAvailable == false ) {  // if guide not available, go to next member 
+				continue; 
+			}
+			
+			if ( m.getGuideRequired() == true && assignment.hasGuide() == false ) { // if member needs a guide, but has no guide yet 
+				Assignment a = new Assignment(start, end, climbSafe.getMember(j), climbSafe);
+				a.setGuide(climbSafe.getGuide(i)); //add the guide to the assignment 
+			}
+			 
+			if ( m.getGuideRequired() == false && assignment.hasGuide() == false ) { // if member doesn't want a guide 
+				Assignment a = new Assignment(start, end, climbSafe.getMember(j), climbSafe);
+			}
+			 
+			 
+			j++;
 		 }
 		 i++; 
 	  }
