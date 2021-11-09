@@ -73,7 +73,7 @@ class Assignment{
     throw new RuntimeException("Cannot finish a trip which has not started");
   }
   private void refund(){
-    if(status.equals(Status.Paid)){
+    if(statusRegular.equals(StatusRegular.Paid)){
     getMember().setRefund(50); 
     }else{
     getMember().setRefund(10);
@@ -87,7 +87,6 @@ class Assignment{
       }
     }
   }
-
 
 class Member{
   Status{
