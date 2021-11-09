@@ -18,26 +18,30 @@ public class AssignmentController {
 	  while ( i <  climbSafe.getGuides().size() ) {
 		 while ( j < climbSafe.getMembers().size() ){
 			 
-			 
 			 Member m = climbSafe.getMember(j);
-			 if ( m.getGuideRequired() == true ) { // if member needs a guide 
-				 
-			 }
 			 
 			 assignment = climbSafe.getAssignment(j);
 			 int start = assignment.getStartWeek();
-			 int end = assignment.getEndWeek();
+			 int end = assignment.getEndWeek();		
 			 
-			 
-			 if ( climbSafe.getGuide(i).hasAssignments() == false ) {  // if guide available (doesn't have a member during that period) 
-			 
-			 }
-			 
-			 
-			 if ( assignment.hasGuide() == false  ) { //if the member is unassigned and requested a guide, then assign 
-				Assignment a1 = new Assignment(start, end, climbSafe.getMember(j), climbSafe); 
-			 }
-			 
+			 if ( m.getGuideRequired() == true && assignment.hasGuide() == false ) { // if member needs a guide, but has no guide yet 
+				 
+				 //test if guide is available during that time 
+				 boolean isAvailable = true;
+				 int k = 0;
+				 while ( k < climbSafe.getGuide(i).getAssignments().size() ) { //iterate through all the assignments of said guide 
+					 int temp1 = climbSafe.getGuide(i).getAssignment(k).getStartWeek();
+					 int temp2 = climbSafe.getGuide(i).getAssignment(k).getEndWeek();
+					 //checking for overlap between region [temp1, temp2] and [start, end]
+					 if ( (temp1 < start && temp2 > start) || (temp1 < end && temp2 > end ) ) { 
+						 isAvailable = false; //if there is already an assignment in that time period, then guide is not available 
+					 }
+					 k++;
+				 } 
+				 if ( isAvailable == true ) {  // if guide available (doesn't have a member during that period) 
+					 new Assignment(start, end, climbSafe.getMember(j), climbSafe);
+				 }
+			 }	 
 			 j++;
 		 }
 		 i++; 
