@@ -151,6 +151,7 @@ public class Member extends NamedUser
     climbSafe = aClimbSafe;
     if (existingClimbSafe != null && !existingClimbSafe.equals(aClimbSafe))
     {
+   
       existingClimbSafe.removeMember(this);
     }
     climbSafe.addMember(this);

@@ -25,4 +25,6 @@ public class ClimbSafeApplication {
     
     return climbSafe;
   }
+  
+ 
 }

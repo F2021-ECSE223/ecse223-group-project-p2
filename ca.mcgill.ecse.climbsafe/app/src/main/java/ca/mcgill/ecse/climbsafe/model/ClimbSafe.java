@@ -75,6 +75,7 @@ public class ClimbSafe
     wasSet = true;
     return wasSet;
   }
+  
 
   public Date getStartDate()
   {

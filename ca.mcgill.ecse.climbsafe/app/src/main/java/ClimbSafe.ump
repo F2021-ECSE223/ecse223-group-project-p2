@@ -1,5 +1,5 @@
 namespace ca.mcgill.ecse.climbsafe.model;
-
+use ClimbSafeStateMachine.ump;
 class ClimbSafe {
   Date startDate;
   Integer nrWeeks;
@@ -34,11 +34,13 @@ class NamedUser {
 
 class Guide {
   isA NamedUser;
+
 }
 
 class Member {
   isA NamedUser;
   Integer nrWeeks;
+  Integer refund = 0;
   Boolean guideRequired;
   Boolean hotelRequired;
 }
@@ -81,6 +83,7 @@ class Hotel {
 class Assignment {
   Integer startWeek;
   Integer endWeek;
+  lazy String code;
   0..1 -- 1 Member member;
   * -- 0..1 Guide guide;
   * -- 0..1 Hotel hotel;
