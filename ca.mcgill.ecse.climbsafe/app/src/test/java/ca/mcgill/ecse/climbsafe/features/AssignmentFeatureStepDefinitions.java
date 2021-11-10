@@ -102,32 +102,36 @@ public class AssignmentFeatureStepDefinitions {
   //1
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    AssignmentController.InitiateAssignment();
   }
   //1
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+    List<Map<String, String>> cucumberData = dataTable.asMaps();
+    for (Map<String, String> assignmentData : cucumberData) {
+      var member = (Member) User.getWithEmail(assignmentData.get("memberEmail"));
+      var guide = (Guide) User.getWithEmail(assignmentData.get("guideEmail"));
+      var hotel = Hotel.getWithName(assignmentData.get("hotelName"));
+      int startWeek = Integer.valueOf(assignmentData.get("startWeek"));
+      int endWeek = Integer.valueOf(assignmentData.get("endWeek"));
+      var assignment = member.getAssignment();
+      assertNotNull(assignment);
+      assertEquals(guide, assignment.getGuide());
+      assertEquals(hotel, assignment.getHotel());
+      assertEquals(startWeek, assignment.getStartWeek());
+      assertEquals(endWeek, assignment.getEndWeek());
+    }
   }
 //1
   @Then("the assignment for {string} shall be marked as {string}")
-  public void the_assignment_for_shall_be_marked_as(String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_assignment_for_shall_be_marked_as(String email, String status) {    
+    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatusRegular().name());
   }
 //1
   @Then("the number of assignments in the system shall be {string}")
   public void the_number_of_assignments_in_the_system_shall_be(String string) {
-    // Write code here that turns the phrase above into concrete actions
+    assertEquals(Integer.parseInt(string), climbSafe.getAssignments().size());
     throw new io.cucumber.java.PendingException();
   }
 //1
@@ -157,14 +161,14 @@ public class AssignmentFeatureStepDefinitions {
   @When("the administrator attempts to confirm payment for {string} using authorization code {string}")
   public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(
       String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
+    AssignmentController.confirmPayment(string, string2);
+    throw new io.cucumber.java.PendingException();
   }
 //1
   @Then("the assignment for {string} shall record the authorization code {string}")
   public void the_assignment_for_shall_record_the_authorization_code(String string,
       String string2) {
-    // Write code here that turns the phrase above into concrete actions
+    assertEquals(string2, ((Member)Member.getWithEmail(string)).getAssignment().getCode());
     throw new io.cucumber.java.PendingException();
   }
 //2
