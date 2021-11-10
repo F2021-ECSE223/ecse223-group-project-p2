@@ -110,7 +110,14 @@ public class AssignmentFeatureStepDefinitions {
   //1
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-    AssignmentController.InitiateAssignment();
+	  
+    try {
+		AssignmentController.InitiateAssignment();
+	} catch (InvalidInputException e) {
+		// TODO Auto-generated catch block
+		//e.printStackTrace();
+		error += e.getMessage();
+	}
   }
   //1
   @Then("the following assignments shall exist in the system:")
@@ -134,7 +141,7 @@ public class AssignmentFeatureStepDefinitions {
 //1
   @Then("the assignment for {string} shall be marked as {string}")
   public void the_assignment_for_shall_be_marked_as(String email, String status) {    
-    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatus().name());
+    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatusRegular().name());
   }
 //1
   @Then("the number of assignments in the system shall be {string}")
