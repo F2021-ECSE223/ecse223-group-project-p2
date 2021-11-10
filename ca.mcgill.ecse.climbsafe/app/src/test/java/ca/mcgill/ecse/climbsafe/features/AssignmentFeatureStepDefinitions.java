@@ -158,7 +158,7 @@ public class AssignmentFeatureStepDefinitions {
   public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(
       String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    //throw new io.cucumber.java.PendingException();
   }
 //1
   @Then("the assignment for {string} shall record the authorization code {string}")
@@ -171,44 +171,72 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the member account with the email {string} does not exist")
   public void the_member_account_with_the_email_does_not_exist(String string) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      var memberAccount = Member.getWithEmail(string);
+      assertTrue(memberAccount == null || memberAccount instanceof Member);
+      
+    //throw new io.cucumber.java.PendingException();
   }
 //2
   @Then("there are {string} members in the system")
   public void there_are_members_in_the_system(String string) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      assertEquals(Integer.parseInt(string),climbSafe.numberOfMembers());
+    
+      //throw new io.cucumber.java.PendingException();
   }
 //2
   @Then("the error {string} shall be raised")
   public void the_error_shall_be_raised(String string) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      //assertTrue(error.startsWith(string));
+      assertEquals(string,error);
+    
+      //throw new io.cucumber.java.PendingException();
    }
 //2
   @When("the administrator attempts to cancel the trip for {string}")
   public void the_administrator_attempts_to_cancel_the_trip_for(String string) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      AssignmentController.cancelTrip(string);
+      
+    //throw new io.cucumber.java.PendingException();
   }
 //2
   @Given("the member with {string} has paid for their trip")
   public void the_member_with_has_paid_for_their_trip(String string) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      Member paidMember = (Member) Member.getWithEmail(string);
+      paidMember.getAssignment().confirmPayment();
+      
+    //throw new io.cucumber.java.PendingException();
   }
 //2
   @Then("the member with email address {string} shall receive a refund of {string} percent")
   public void the_member_with_email_address_shall_receive_a_refund_of_percent(String string,
       String string2) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      Member refundMember = (Member) Member.getWithEmail(string);
+      refundMember.getRefund();
+      
+      assertEquals(Integer.parseInt(string2), refundMember);
+      
+    //throw new io.cucumber.java.PendingException();
   }
 //2
   @Given("the member with {string} has started their trip")
   public void the_member_with_has_started_their_trip(String string) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+      
+      Member startMember = (Member) Member.getWithEmail(string);
+      startMember.getAssignment().startTrip();
+      
+    //throw new io.cucumber.java.PendingException();
   }
 //3
   @When("the administrator attempts to finish the trip for the member with email {string}")
