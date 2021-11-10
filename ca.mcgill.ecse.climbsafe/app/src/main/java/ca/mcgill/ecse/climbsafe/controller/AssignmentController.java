@@ -34,6 +34,7 @@ public class AssignmentController {
 			int sum = 0;
 			while ( k < g.getAssignments().size() ) {
 				sum += m.getNrWeeks();
+				k++;
 			}
 			//2. Is ( nbrWeeks_available >= nbrWeeks_member)? 
 			//  ie. (totalWeeks - sum) >= nbrWeeks? 
