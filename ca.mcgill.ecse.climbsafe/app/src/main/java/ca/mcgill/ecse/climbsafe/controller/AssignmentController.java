@@ -10,7 +10,6 @@ public class AssignmentController {
   public static void InitiateAssignment() { //initiate all assignments
 	  
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  Assignment assignment = climbSafe.getAssignment(0);
  	  
 	  int i = 0;
 	  int j = 0;
@@ -26,7 +25,7 @@ public class AssignmentController {
 			 int start = 0;
 			 int end = 0;
 			 
-			assignment = climbSafe.getAssignment(j);	
+			Assignment assignment = climbSafe.getAssignment(j);	
 				 
 			//test if guide is available during that time 
 			boolean isAvailable = true;
