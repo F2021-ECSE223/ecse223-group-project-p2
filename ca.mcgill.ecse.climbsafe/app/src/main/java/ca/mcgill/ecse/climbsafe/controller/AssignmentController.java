@@ -11,7 +11,39 @@ import ca.mcgill.ecse.climbsafe.model.Member;
 
 public class AssignmentController {
   // 4,5
-  public static void InitiateAssignment() { // initiate all assignments
+  public static void InitiateAssignment() {
+    ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+    int totalWeek = climbSafe.getNrWeeks();
+    int indexMember = 0;
+    for(Guide aGuide: climbSafe.getGuides()) {
+      while(indexMember<climbSafe.getMembers().size()) {
+        Member m = climbSafe.getMember(indexMember);
+        if (m.getGuideRequired() == false && (!m.hasAssignment())) { // if member doesn't want a
+          // guide
+          Assignment a = new Assignment(1, m.getNrWeeks(), climbSafe.getMember(indexMember), climbSafe);
+        }else if(Utility.isAviliable(totalWeek, aGuide)) {
+          int startWeek=0;
+          int endWeek = 0;
+          if(aGuide.getAssignments().size() == 0) {
+            startWeek = 1;
+            endWeek = m.getNrWeeks()-1;
+            Assignment a = new Assignment(startWeek, endWeek, climbSafe.getMember(indexMember), climbSafe);
+            a.setGuide(aGuide); // add the guide to the assignment
+          }else {
+            startWeek = aGuide.getAssignment(aGuide.getAssignments().size()).getStartWeek()+1;
+            endWeek = startWeek+m.getNrWeeks()-1;
+            Assignment a = new Assignment(startWeek, endWeek, climbSafe.getMember(indexMember), climbSafe);
+            a.setGuide(aGuide);
+          }
+        }else if(Utility.isAviliable(totalWeek, aGuide) == false) {
+          indexMember++;
+          break;
+        }
+        indexMember++;
+      }
+    }
+  }
+  public static void InitiateAssignment2() { // initiate all assignments
 
     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
