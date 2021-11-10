@@ -41,7 +41,7 @@ public class AssignmentController {
 			if ( (totalWeeks-sum) >= nbrWeeks ) {
 				isAvailable = true;
 				start = sum + 1;
-				end = totalWeeks - nbrWeeks;
+				end = start + nbrWeeks - 1;
 			}
 			
 			
@@ -57,7 +57,7 @@ public class AssignmentController {
 			}
 			 
 			if ( m.getGuideRequired() == false && assignment.hasGuide() == false ) { // if member doesn't want a guide 
-				Assignment a = new Assignment(0, m.getNrWeeks(), climbSafe.getMember(j), climbSafe);
+				Assignment a = new Assignment(1, m.getNrWeeks(), climbSafe.getMember(j), climbSafe);
 			}
 			 
 			 
