@@ -1,33 +1,36 @@
 class Assignment{
   Status{
-  Regular{
-  memberBanned()->Banned;
     Assigned{
       confirmPayment()->Paid;
       cancelTrip()->Cancelled;
       finishTrip()/{rejectFinishDueToNotStarted();}->Assigned;
+      startTrip()/{getMember().banMember();}->Banned;
+      memberBanned()->Banned;
     }
     Paid{
       cancelTrip()/{refund();}->Cancelled;     
       startTrip()->Started;     
       confirmPayment()/{rejectPaymentDueToPaid();} ->Paid;    
       finishTrip()/{rejectFinishDueToNotStarted();}->Paid;
+      memberBanned()->Banned;
     }
     Cancelled{
       startTrip()/{rejectStartDueToCancelled();}->Cancelled;
       finishTrip()/{rejectFinishDueToCancelled();}->Cancelled;
       confirmPayment()/{rejectPaymentDueToCancelled();}->Cancelled;
+      memberBanned()->Banned;
     }
     Started{
       finishTrip()->Finished;
       cancelTrip()/{refund();}->Cancelled;      
       confirmPayment()/{rejectPaymentDueToPaid();}->Started;
+      memberBanned()->Banned;
     }
     Finished{
       startTrip()/{rejectStartDueToFinished();}-> Finished;     
       cancelTrip()/{rejectCancelDueToFinished();} ->Finished;     
       confirmPayment()/{rejectPaymentDueToFinished();} ->Finished;
-    }
+      memberBanned()->Banned;
     }
     Banned{
       startTrip()/{rejectStartDueToBanned();}->Banned;
@@ -73,7 +76,7 @@ class Assignment{
     throw new RuntimeException("Cannot finish a trip which has not started");
   }
   private void refund(){
-    if(statusRegular.equals(StatusRegular.Paid)){
+    if(status.equals(Status.Paid)){
     getMember().setRefund(50); 
     }else{
     getMember().setRefund(10);
@@ -87,14 +90,14 @@ class Assignment{
       }
     }
   public void setTestStatus(String s){ 
-    StatusRegular statusRegular[] = StatusRegular.values();
-    for(StatusRegular status: statusRegular) {
-         if (status.name().equals(s)){
-         this.statusRegular = status;
+    Status status[] = Status.values();
+    for(Status state: status) {
+         if (state.name().equals(s)){
+         this.status = state;
          }
       }
   }
-  }
+}
 
 class Member{
   Status{
