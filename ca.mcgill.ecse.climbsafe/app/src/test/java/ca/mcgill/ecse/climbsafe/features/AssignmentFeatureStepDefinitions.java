@@ -134,7 +134,7 @@ public class AssignmentFeatureStepDefinitions {
 //1
   @Then("the assignment for {string} shall be marked as {string}")
   public void the_assignment_for_shall_be_marked_as(String email, String status) {    
-    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatusRegular().name());
+    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatus().name());
   }
 //1
   @Then("the number of assignments in the system shall be {string}")
@@ -294,7 +294,7 @@ public class AssignmentFeatureStepDefinitions {
   @Given("the member with {string} has cancelled their trip")
   public void the_member_with_has_cancelled_their_trip(String email) {
       Member cancelledMem = (Member) Member.getWithEmail(email);
-      cancelledMem.getAssignment().cancelTrip();
+      cancelledMem.getAssignment().setTestStatus("Cancelled");
     // Write code here that turns the phrase above into concrete actions
 
   }
@@ -303,7 +303,7 @@ public class AssignmentFeatureStepDefinitions {
   public void the_member_with_has_finished_their_trip(String email) {
       
       Member finishMem = (Member) Member.getWithEmail(email);
-      finishMem.getAssignment().setTestStatus("Finished" );
+      finishMem.getAssignment().setTestStatus("Finished");
 
     // Write code here that turns the phrase above into concrete actions
   }
