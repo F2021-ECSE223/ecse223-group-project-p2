@@ -11,8 +11,13 @@ public class AssignmentController {
   }
  //6
   public static void StartTrip(int week) {
-
-  }
+     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+     List<Member> members = climbSafe.getMembers();
+     for(Member m : members) {
+        if(m.hasAssignment() && m.getAssignment().getStartWeek()==week)
+          m.getAssignment().startTrip();
+      }
+    }
   
   public static void finishTrip(String email) {
     Member member= findMember(email);
