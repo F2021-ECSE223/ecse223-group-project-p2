@@ -1,9 +1,11 @@
 package ca.mcgill.ecse.climbsafe.controller;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
+import ca.mcgill.ecse.climbsafe.model.Guide;
 
 public class Utility {
   private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
@@ -28,4 +30,15 @@ public class Utility {
     }
     return foundBundle;
   }
+  public static boolean isAviliable(int totalweeksAguideCanHave,Guide guide) {
+    Boolean result = false;
+    int totalweeks = 0;
+    for(Assignment ele: guide.getAssignments()) {
+      totalweeks = ele.getEndWeek() - ele.getStartWeek();
+    }
+    if(totalweeks == totalweeksAguideCanHave) {
+      return true;
+    }
+    return false;
+    }
 }

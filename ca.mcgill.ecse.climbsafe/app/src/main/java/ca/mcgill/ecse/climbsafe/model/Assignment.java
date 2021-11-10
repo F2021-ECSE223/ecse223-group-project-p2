@@ -613,6 +613,16 @@ public class Assignment
       }
   }
 
+  // line 90 "../../../../../ClimbSafeStateMachine.ump"
+   public void setTestStatus(String s){
+    StatusRegular statusRegular[] = StatusRegular.values();
+    for(StatusRegular status: statusRegular) {
+         if (status.name().equals(s)){
+         this.statusRegular = status;
+         }
+      }
+  }
+
 
   public String toString()
   {
