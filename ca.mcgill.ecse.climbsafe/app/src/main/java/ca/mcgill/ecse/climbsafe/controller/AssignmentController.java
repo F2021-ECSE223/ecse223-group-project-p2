@@ -15,13 +15,12 @@ public class AssignmentController {
 
     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
-    int i = 0;
-    int j = 0;
-   while (i < climbSafe.getGuides().size()) {
+   int memberIndex = 0;
+   for (int i = 0; i < climbSafe.getGuides().size();i++) {
       System.out.println(climbSafe.getGuides().size());
-      while (j < climbSafe.getMembers().size()) {
-        Member m = climbSafe.getMember(j); // for convenience
-        Guide g = climbSafe.getGuide(i); // for convenience
+      Guide g = climbSafe.getGuide(i);
+      while (memberIndex < climbSafe.getMembers().size()) {
+        Member m = climbSafe.getMember(memberIndex); // for convenience
         int nbrWeeks = m.getNrWeeks(); // number of weeks member wants to climb
         int totalWeeks = climbSafe.getNrWeeks(); // number of weeks in climbing season
         int start = 0;
@@ -39,18 +38,20 @@ public class AssignmentController {
         // ie. (totalWeeks - sum) >= nbrWeeks?
         if (m.getGuideRequired() == false && (!m.hasAssignment())) { // if member doesn't want a
                                                                      // guide
-          Assignment a = new Assignment(0, m.getNrWeeks(), climbSafe.getMember(j), climbSafe);
-        } else if ((totalWeeks - sum) >= nbrWeeks) {
+          Assignment a = new Assignment(0, m.getNrWeeks(), climbSafe.getMember(memberIndex), climbSafe);
+        }
+        if ((totalWeeks - sum) >= nbrWeeks) {
           start = sum + 1;
           end = start + nbrWeeks - 1;
           if (m.getGuideRequired() == true && (!m.hasAssignment())) { // if member needs a guide,                                                                     // but has no guide yet
-            Assignment a = new Assignment(start, end, climbSafe.getMember(j), climbSafe);
-            a.setGuide(climbSafe.getGuide(i)); // add the guide to the assignment
+                Assignment a = new Assignment(start, end, climbSafe.getMember(memberIndex), climbSafe);
+                a.setGuide(climbSafe.getGuide(i)); // add the guide to the assignment
           }
+          memberIndex ++;
+          break;
         }
-        j++;
+        memberIndex ++;
       }
-      i++;
     }
   }
 
