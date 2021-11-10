@@ -18,30 +18,39 @@ public class AssignmentController {
 	  while ( i <  climbSafe.getGuides().size() ) {
 		 while ( j < climbSafe.getMembers().size() ){
 			 
-			 Member m = climbSafe.getMember(j);
+			 Member m = climbSafe.getMember(j); //for convenience 
+			 Guide g = climbSafe.getGuide(i); //for convenience 
 			 
-			 assignment = climbSafe.getAssignment(j);
-			 int start = assignment.getStartWeek();
-			 int end = assignment.getEndWeek();		
+			 int nbrWeeks = m.getNrWeeks(); //number of weeks member wants to climb
+			 int totalWeeks = climbSafe.getNrWeeks(); //number of weeks in climbing season 
+			 int start = 0;
+			 int end = 0;
+			 
+			assignment = climbSafe.getAssignment(j);	
 				 
 			//test if guide is available during that time 
 			boolean isAvailable = true;
+			//1.calculate number of weeks guide is busy
 			int k = 0;
-			while ( k < climbSafe.getGuide(i).getAssignments().size() ) { //iterate through all the assignments of said guide 
-				int temp1 = climbSafe.getGuide(i).getAssignment(k).getStartWeek();
-				int temp2 = climbSafe.getGuide(i).getAssignment(k).getEndWeek();
-				//checking for overlap between region [temp1, temp2] and [start, end]
-				if ( (temp1 < start && temp2 > start) || (temp1 < end && temp2 > end ) ) { 
-					isAvailable = false; //if there is already an assignment in that time period, then guide is not available 
-				}
-				k++;
+			int sum = 0;
+			while ( k < g.getAssignments().size() ) {
+				sum += m.getNrWeeks();
+			}
+			//2. Is ( nbrWeeks_available >= nbrWeeks_member)? 
+			//  ie. (totalWeeks - sum) >= nbrWeeks? 
+			if ( (totalWeeks-sum) >= nbrWeeks ) {
+				isAvailable = true;
+				start = sum + 1;
+				end = totalWeeks - nbrWeeks;
 			}
 			
 			
-			if ( isAvailable == false ) {  // if guide not available, go to next member 
+			// if guide not available 
+			if ( isAvailable == false ) {  //go to next member
 				continue; 
 			}
 			
+			//if guide available 
 			if ( m.getGuideRequired() == true && assignment.hasGuide() == false ) { // if member needs a guide, but has no guide yet 
 				Assignment a = new Assignment(start, end, climbSafe.getMember(j), climbSafe);
 				a.setGuide(climbSafe.getGuide(i)); //add the guide to the assignment 
