@@ -3,11 +3,15 @@ package ca.mcgill.ecse.climbsafe.features;
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.controller.AssignmentController;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
@@ -209,38 +213,53 @@ public class AssignmentFeatureStepDefinitions {
 //3
   @When("the administrator attempts to finish the trip for the member with email {string}")
   public void the_administrator_attempts_to_finish_the_trip_for_the_member_with_email(
-      String string) {
+      String email) {
+	  
+	 AssignmentController.finishTrip(email);
+
+	  
+	  
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+
   }
 //3
   @Given("the member with {string} is banned")
-  public void the_member_with_is_banned(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_member_with_is_banned(String email) {
+	  
+	 Member bannedMem = (Member) Member.getWithEmail(email);
+	 bannedMem.banMember();
+   
   }
 //3
   @Then("the member with email {string} shall be {string}")
-  public void the_member_with_email_shall_be(String string, String string2) {
+  public void the_member_with_email_shall_be(String email, String status) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+ Member theMem = (Member) Member.getWithEmail(email);
+  assertEquals(theMem.getStatus(),status);
   }
 //3
   @When("the administrator attempts to start the trips for week {string}")
-  public void the_administrator_attempts_to_start_the_trips_for_week(String string) {
+  public void the_administrator_attempts_to_start_the_trips_for_week(String weekNum) {
+	  
+AssignmentController.StartTrip(Integer.parseInt(weekNum));
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+
   }
 //3
   @Given("the member with {string} has cancelled their trip")
-  public void the_member_with_has_cancelled_their_trip(String string) {
+  public void the_member_with_has_cancelled_their_trip(String email) {
+	  Member cancelledMem = (Member) Member.getWithEmail(email);
+	  cancelledMem.getAssignment().cancelTrip();
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+
   }
 //3
   @Given("the member with {string} has finished their trip")
-  public void the_member_with_has_finished_their_trip(String string) {
+  public void the_member_with_has_finished_their_trip(String email) {
+	  
+	  Member finishMem = (Member) Member.getWithEmail(email);
+	  finishMem.getAssignment().setTestStatus("Finished" );
+
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
   }
 }
