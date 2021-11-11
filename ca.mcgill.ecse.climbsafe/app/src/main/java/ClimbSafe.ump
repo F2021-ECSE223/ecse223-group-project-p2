@@ -1,5 +1,6 @@
 namespace ca.mcgill.ecse.climbsafe.model;
 use ClimbSafeStateMachine.ump;
+use ClimbSafePersistence.ump;
 class ClimbSafe {
   Date startDate;
   Integer nrWeeks;
@@ -49,6 +50,9 @@ associationClass BookedItem {
   Integer quantity;
   * Member member;
   * BookableItem item;
+  depend java.io.Serializable;
+  isA Serializable;
+  private static final long serialVersionUID = -3900912597282882073L; 
 }
 
 class BookableItem {
@@ -71,6 +75,9 @@ associationClass BundleItem {
   Integer quantity;
   * EquipmentBundle bundle;
   * Equipment equipment;
+  depend java.io.Serializable;
+  isA Serializable;
+  private static final long serialVersionUID = 2045406856025012133L;
 }
 
 class Hotel {
