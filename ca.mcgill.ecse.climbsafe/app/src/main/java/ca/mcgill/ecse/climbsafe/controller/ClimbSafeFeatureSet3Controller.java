@@ -8,6 +8,7 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 
 
@@ -126,6 +127,7 @@ public class ClimbSafeFeatureSet3Controller {
 	  try {
 		  
 		  climbSafe.addGuide(email,password, name, emergencyContact);
+		  ClimbSafePersistence.save();
 		  
 	  } catch(RuntimeException e) {
 		  error =e.getMessage();
@@ -180,7 +182,8 @@ public class ClimbSafeFeatureSet3Controller {
 				  g.setEmergencyContact(newEmergencyContact);
 				  g.setPassword(newPassword);  
 			  } 
-    	  }  		 
+    	  }
+		  ClimbSafePersistence.save();
 	  }
 	  catch(RuntimeException e) {
 		  error = e.getMessage();
