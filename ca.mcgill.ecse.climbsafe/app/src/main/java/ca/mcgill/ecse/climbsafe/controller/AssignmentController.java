@@ -9,9 +9,14 @@ import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class AssignmentController {
-  // 4,5
+  /**
+   * used bt Administrator to initiate the assignment for all members
+   * @author Salim Benchekroun, Danny Tu
+   * @throws InvalidInputException
+   */
   public static void initiateAssignment() throws InvalidInputException { // initiate all assignments
 
     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
@@ -32,6 +37,7 @@ public class AssignmentController {
                 climbSafe.addAssignment(a);
                 allAss.add(a);
                 currentMember.getAssignment().setTestStatus("Assigned");
+                ClimbSafePersistence.save();
                 memberIndex ++;
                 continue;
             }
@@ -40,25 +46,20 @@ public class AssignmentController {
             int totalWeeks = climbSafe.getNrWeeks(); // number of weeks in climbing season
             int start = 0;
             int end = 0;
-            // Assignment assignment = climbSafe.getAssignment(j);
-            // test if guide is available during that time
-            // 1.calculate number of weeks guide is busy
     
             int busyWeeks = 0;
             for (int k = 0; k < currentGuide.getAssignments().size(); k++) {
               busyWeeks += currentGuide.getAssignments().get(k).getMember().getNrWeeks();
             }
-            // 2. Is ( nbrWeeks_available >= nbrWeeks_member)?
-            // ie. (totalWeeks - sum) >= nbrWeeks?
             if ((totalWeeks - busyWeeks) >= memberWeeks) {
               start = busyWeeks + 1;
-              end = start + memberWeeks - 1;
-              // if member needs a guide,                                                                     // but has no guide yet
+              end = start + memberWeeks - 1;                                                                   // but has no guide yet
                 Assignment a = new Assignment(start, end, currentMember, climbSafe);
-                a.setGuide(climbSafe.getGuide(i)); // add the guide to the assignment
+                a.setGuide(climbSafe.getGuide(i));
                 climbSafe.addAssignment(a);
                 currentMember.getAssignment().setTestStatus("Assigned");
                 allAss.add(a);
+                ClimbSafePersistence.save();
                 memberIndex ++;
                 continue;
     
@@ -87,6 +88,7 @@ public class AssignmentController {
       if (m.hasAssignment() && m.getAssignment().getStartWeek() == week)
         try {
           m.getAssignment().startTrip();
+          ClimbSafePersistence.save();
         } catch (RuntimeException e) {
           error = e.getMessage();
           throw new InvalidInputException(error);
@@ -103,6 +105,7 @@ public class AssignmentController {
     try {
       Member member = findMember(email);
       member.getAssignment().finishTrip();
+      ClimbSafePersistence.save();
     } catch (RuntimeException e) {
       error = e.getMessage();
       throw new InvalidInputException(error);
@@ -118,6 +121,7 @@ public class AssignmentController {
     try {
       Member member = findMember(email);
       member.getAssignment().cancelTrip();
+      ClimbSafePersistence.save();
     } catch (RuntimeException e) {
       error = e.getMessage();
       throw new InvalidInputException(error);
@@ -134,6 +138,7 @@ public class AssignmentController {
     try {
       Member member = findMember(email);
       member.getAssignment().authorization(code);
+      ClimbSafePersistence.save();
     } catch (RuntimeException e) {
       error = e.getMessage();
       throw new InvalidInputException(error);
