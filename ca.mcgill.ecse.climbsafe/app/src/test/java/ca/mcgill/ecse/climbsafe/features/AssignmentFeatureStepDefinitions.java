@@ -1,4 +1,5 @@
 package ca.mcgill.ecse.climbsafe.features;
+
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static org.junit.Assert.assertTrue;
@@ -29,10 +30,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class AssignmentFeatureStepDefinitions {
-  
+
   private ClimbSafe climbSafe;
-  String error="";
-  
+  String error = "";
+
+  /**
+   * @author taken from previous step definitions
+   */
   @Given("the following ClimbSafe system exists:")
   public void the_following_climb_safe_system_exists(io.cucumber.datatable.DataTable dataTable) {
     climbSafe = ClimbSafeApplication.getClimbSafe();
@@ -45,6 +49,9 @@ public class AssignmentFeatureStepDefinitions {
     }
   }
 
+  /**
+   * @author taken from previous step definitions
+   */
   @Given("the following pieces of equipment exist in the system:")
   public void the_following_pieces_of_equipment_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -57,33 +64,41 @@ public class AssignmentFeatureStepDefinitions {
     }
   }
 
+  /**
+   * @author taken from previous step definitions
+   */
   @Given("the following equipment bundles exist in the system:")
   public void the_following_equipment_bundles_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> rows = dataTable.asMaps();
     for (var row : rows) {
-    EquipmentBundle bundle = climbSafe.addBundle(row.get("name"), Integer.parseInt(row.get("discount")));
-    String items = row.get("items");
-    ArrayList<String> itemList = new ArrayList<String>();
-    String quantities = row.get("quantity");
-    ArrayList<String> quantityList = new ArrayList<String>();
-    for(String item: items.split(",")){
-         itemList.add(item);
+      EquipmentBundle bundle =
+          climbSafe.addBundle(row.get("name"), Integer.parseInt(row.get("discount")));
+      String items = row.get("items");
+      ArrayList<String> itemList = new ArrayList<String>();
+      String quantities = row.get("quantity");
+      ArrayList<String> quantityList = new ArrayList<String>();
+      for (String item : items.split(",")) {
+        itemList.add(item);
       }
-    for(String quantity: quantities.split(",")){
-         quantityList.add(quantity);
+      for (String quantity : quantities.split(",")) {
+        quantityList.add(quantity);
       }
-    for (int i=0;i<itemList.size();i++) {
-        if(Equipment.hasWithName(itemList.get(i))) {
-            BundleItem bundleItem = bundle.addBundleItem(Integer.parseInt(quantityList.get(i)), climbSafe, (Equipment)Equipment.getWithName(itemList.get(i)));  
-            bundle.addBundleItem(bundleItem);
+      for (int i = 0; i < itemList.size(); i++) {
+        if (Equipment.hasWithName(itemList.get(i))) {
+          BundleItem bundleItem = bundle.addBundleItem(Integer.parseInt(quantityList.get(i)),
+              climbSafe, (Equipment) Equipment.getWithName(itemList.get(i)));
+          bundle.addBundleItem(bundleItem);
         }
+      }
+
+      climbSafe.addBundle(bundle);
     }
-    
-    climbSafe.addBundle(bundle);
-    }
-}
-//p3
+  }
+
+  /**
+   * @author taken from previous step definitions
+   */
   @Given("the following guides exist in the system:")
   public void the_following_guides_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> guideList = dataTable.asMaps();
@@ -95,7 +110,10 @@ public class AssignmentFeatureStepDefinitions {
       climbSafe.addGuide(guideEmail, guidePassword, guideName, guideEmergencyContact);
     }
   }
-//p3
+
+  /**
+   * @author taken from previous step definitions
+   */
   @Given("the following members exist in the system:")
   public void the_following_members_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> memberList = dataTable.asMaps();
@@ -107,12 +125,22 @@ public class AssignmentFeatureStepDefinitions {
           parseBoolean(memberList.get(i).get("hotelRequired")));
     }
   }
-  //1
+
+  /**
+   * @author Peini Cheng
+   */
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-    AssignmentController.InitiateAssignment();
+    try {
+      AssignmentController.InitiateAssignment();
+    } catch (InvalidInputException e) {
+      error = e.getMessage();
+    }
   }
-  //1
+
+  /**
+   * @author Peini Cheng
+   */
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -131,22 +159,34 @@ public class AssignmentFeatureStepDefinitions {
       assertEquals(endWeek, assignment.getEndWeek());
     }
   }
-//1
+
+  /**
+   * @author Peini Cheng
+   */
   @Then("the assignment for {string} shall be marked as {string}")
-  public void the_assignment_for_shall_be_marked_as(String email, String status) {    
+  public void the_assignment_for_shall_be_marked_as(String email, String status) {
     assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatus().name());
   }
-//1
+
+  /**
+   * @author Peini Cheng
+   */
   @Then("the number of assignments in the system shall be {string}")
   public void the_number_of_assignments_in_the_system_shall_be(String string) {
     assertEquals(Integer.parseInt(string), climbSafe.getAssignments().size());
   }
-//1
+
+  /**
+   * @author Peini Cheng
+   */
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
     assertTrue(error.startsWith(string));
   }
 
+  /**
+   * @author taken from previous step definitions
+   */
   @Given("the following assignments exist in the system:")
   public void the_following_assignments_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -164,147 +204,176 @@ public class AssignmentFeatureStepDefinitions {
       newAssignment.setHotel(assignmentHotel);
     }
   }
-//1
+
+  /**
+   * @author Peini Cheng
+   */
   @When("the administrator attempts to confirm payment for {string} using authorization code {string}")
   public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(
       String string, String string2) {
-    try{
+    try {
       AssignmentController.confirmPayment(string, string2);
     } catch (InvalidInputException e) {
       error = e.getMessage();
     }
   }
-//1
+
+  /**
+   * @author Peini Cheng
+   */
   @Then("the assignment for {string} shall record the authorization code {string}")
   public void the_assignment_for_shall_record_the_authorization_code(String string,
       String string2) {
-    assertEquals(string2, ((Member)Member.getWithEmail(string)).getAssignment().getCode());
+    assertEquals(string2, ((Member) Member.getWithEmail(string)).getAssignment().getCode());
   }
-//2
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @Then("the member account with the email {string} does not exist")
   public void the_member_account_with_the_email_does_not_exist(String string) {
-    // Write code here that turns the phrase above into concrete actions
-      
-      var memberAccount = Member.getWithEmail(string);
-      assertTrue(memberAccount == null || memberAccount instanceof Member);
-      
+
+    var memberAccount = Member.getWithEmail(string);
+    assertTrue(memberAccount == null || memberAccount instanceof Member);
+
   }
-//2
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @Then("there are {string} members in the system")
   public void there_are_members_in_the_system(String string) {
-    // Write code here that turns the phrase above into concrete actions
-      
-      assertEquals(Integer.parseInt(string),climbSafe.numberOfMembers());
-    
+
+    assertEquals(Integer.parseInt(string), climbSafe.numberOfMembers());
+
   }
-//2
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @Then("the error {string} shall be raised")
   public void the_error_shall_be_raised(String string) {
-    // Write code here that turns the phrase above into concrete actions
-      
-      //assertTrue(error.startsWith(string));
-      assertEquals(string,error);
-    
-   }
-//2
+
+    assertEquals(string, error);
+
+  }
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @When("the administrator attempts to cancel the trip for {string}")
   public void the_administrator_attempts_to_cancel_the_trip_for(String string) {
-    // Write code here that turns the phrase above into concrete actions
-      
+
     try {
       AssignmentController.cancelTrip(string);
     } catch (InvalidInputException e) {
       error = e.getMessage();
     }
-      
+
   }
-//2
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @Given("the member with {string} has paid for their trip")
   public void the_member_with_has_paid_for_their_trip(String string) {
-    // Write code here that turns the phrase above into concrete actions
-      
-      Member paidMember = (Member) Member.getWithEmail(string);
-      paidMember.getAssignment().confirmPayment();
-      
+
+    Member paidMember = (Member) Member.getWithEmail(string);
+    paidMember.getAssignment().confirmPayment();
+
   }
-//2
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @Then("the member with email address {string} shall receive a refund of {string} percent")
   public void the_member_with_email_address_shall_receive_a_refund_of_percent(String string,
       String string2) {
-    // Write code here that turns the phrase above into concrete actions
-      
-      Member refundMember = (Member) Member.getWithEmail(string);
-      
-      assertEquals(Integer.parseInt(string2), refundMember.getRefund());
-      
+
+    Member refundMember = (Member) Member.getWithEmail(string);
+
+    assertEquals(Integer.parseInt(string2), refundMember.getRefund());
+
   }
-//2
+
+  /**
+   * @author Arturo Mory Ramirez
+   */
   @Given("the member with {string} has started their trip")
   public void the_member_with_has_started_their_trip(String string) {
-    // Write code here that turns the phrase above into concrete actions
-      
-      Member startMember = (Member) Member.getWithEmail(string);
-      startMember.getAssignment().setTestStatus("Started");
-      
+
+    Member startMember = (Member) Member.getWithEmail(string);
+    startMember.getAssignment().setTestStatus("Started");
+
   }
-//3
+
+  /**
+   * @author Jian Long (Noah) Ye
+   */
   @When("the administrator attempts to finish the trip for the member with email {string}")
   public void the_administrator_attempts_to_finish_the_trip_for_the_member_with_email(
       String email) {
-      
-     try {
+
+    try {
       AssignmentController.finishTrip(email);
     } catch (InvalidInputException e) {
       error = e.getMessage();
     }
 
-      
-      
-    // Write code here that turns the phrase above into concrete actions
 
   }
-//3
+
+  /**
+   * @author Jian Long (Noah) Ye
+   */
   @Given("the member with {string} is banned")
   public void the_member_with_is_banned(String email) {
-      
-     Member bannedMem = (Member) Member.getWithEmail(email);
-     bannedMem.banMember();
-   
+
+    Member bannedMem = (Member) Member.getWithEmail(email);
+    bannedMem.banMember();
+
   }
-//3
+
+  /**
+   * @author Jian Long (Noah) Ye
+   */
   @Then("the member with email {string} shall be {string}")
   public void the_member_with_email_shall_be(String email, String status) {
-    // Write code here that turns the phrase above into concrete actions
- Member theMem = (Member) Member.getWithEmail(email);
-  assertEquals(theMem.getStatus().name(),status);
+    Member theMem = (Member) Member.getWithEmail(email);
+    assertEquals(theMem.getStatus().name(), status);
   }
-//3
+
+  /**
+   * @author Jian Long (Noah) Ye
+   */
   @When("the administrator attempts to start the trips for week {string}")
   public void the_administrator_attempts_to_start_the_trips_for_week(String weekNum) {
-      
+
     try {
       AssignmentController.StartTrip(Integer.parseInt(weekNum));
-     }catch (InvalidInputException e) {
-        error = e.getMessage();
-      }
-    // Write code here that turns the phrase above into concrete actions
+    } catch (InvalidInputException e) {
+      error = e.getMessage();
+    }
 
   }
-//3
+
+  /**
+   * @author Jian Long (Noah) Ye
+   */
   @Given("the member with {string} has cancelled their trip")
   public void the_member_with_has_cancelled_their_trip(String email) {
-      Member cancelledMem = (Member) Member.getWithEmail(email);
-      cancelledMem.getAssignment().setTestStatus("Cancelled");
-    // Write code here that turns the phrase above into concrete actions
-
+    Member cancelledMem = (Member) Member.getWithEmail(email);
+    cancelledMem.getAssignment().setTestStatus("Cancelled");
   }
-//3
+
+  /**
+   * @author Jian Long (Noah) Ye
+   */
   @Given("the member with {string} has finished their trip")
   public void the_member_with_has_finished_their_trip(String email) {
-      
-      Member finishMem = (Member) Member.getWithEmail(email);
-      finishMem.getAssignment().setTestStatus("Finished");
 
-    // Write code here that turns the phrase above into concrete actions
+    Member finishMem = (Member) Member.getWithEmail(email);
+    finishMem.getAssignment().setTestStatus("Finished");
+
   }
 }
