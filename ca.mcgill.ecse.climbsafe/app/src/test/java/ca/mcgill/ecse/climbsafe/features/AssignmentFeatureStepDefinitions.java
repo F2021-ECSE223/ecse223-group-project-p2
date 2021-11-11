@@ -141,7 +141,7 @@ public class AssignmentFeatureStepDefinitions {
 //1
   @Then("the assignment for {string} shall be marked as {string}")
   public void the_assignment_for_shall_be_marked_as(String email, String status) {    
-    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatusRegular().name());
+    assertEquals(status, ((Member) Member.getWithEmail(email)).getAssignment().getStatus().name());
   }
 //1
   @Then("the number of assignments in the system shall be {string}")

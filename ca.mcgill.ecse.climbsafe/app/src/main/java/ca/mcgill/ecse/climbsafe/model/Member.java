@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.climbsafe.model;
 import java.util.*;
 
-// line 99 "../../../../../ClimbSafeStateMachine.ump"
+// line 102 "../../../../../ClimbSafeStateMachine.ump"
 // line 40 "../../../../../ClimbSafe.ump"
 public class Member extends NamedUser
 {
@@ -133,7 +133,7 @@ public class Member extends NamedUser
     switch (aStatus)
     {
       case Regular:
-        // line 102 "../../../../../ClimbSafeStateMachine.ump"
+        // line 105 "../../../../../ClimbSafeStateMachine.ump"
         getAssignment().memberBanned();
         setStatus(Status.Banned);
         wasEventProcessed = true;

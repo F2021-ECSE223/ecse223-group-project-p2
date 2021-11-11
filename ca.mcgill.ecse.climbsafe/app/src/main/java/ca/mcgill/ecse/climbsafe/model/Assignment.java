@@ -18,10 +18,8 @@ public class Assignment
   private String code;
 
   //Assignment State Machines
-  public enum Status { Regular, Banned }
-  public enum StatusRegular { Null, Assigned, Paid, Cancelled, Started, Finished }
+  public enum Status { Assigned, Paid, Cancelled, Started, Finished, Banned }
   private Status status;
-  private StatusRegular statusRegular;
 
   //Assignment Associations
   private Member member;
@@ -48,8 +46,7 @@ public class Assignment
     {
       throw new RuntimeException("Unable to create assignment due to climbSafe. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    setStatusRegular(StatusRegular.Null);
-    setStatus(Status.Regular);
+    setStatus(Status.Assigned);
   }
 
   //------------------------
@@ -98,7 +95,6 @@ public class Assignment
   public String getStatusFullName()
   {
     String answer = status.toString();
-    if (statusRegular != StatusRegular.Null) { answer += "." + statusRegular.toString(); }
     return answer;
   }
 
@@ -107,20 +103,128 @@ public class Assignment
     return status;
   }
 
-  public StatusRegular getStatusRegular()
-  {
-    return statusRegular;
-  }
-
-  public boolean memberBanned()
+  public boolean confirmPayment()
   {
     boolean wasEventProcessed = false;
     
     Status aStatus = status;
     switch (aStatus)
     {
-      case Regular:
-        exitStatus();
+      case Assigned:
+        setStatus(Status.Paid);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        // line 13 "../../../../../ClimbSafeStateMachine.ump"
+        rejectPaymentDueToPaid();
+        setStatus(Status.Paid);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 20 "../../../../../ClimbSafeStateMachine.ump"
+        rejectPaymentDueToCancelled();
+        setStatus(Status.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        // line 26 "../../../../../ClimbSafeStateMachine.ump"
+        rejectPaymentDueToPaid();
+        setStatus(Status.Started);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 32 "../../../../../ClimbSafeStateMachine.ump"
+        rejectPaymentDueToFinished();
+        setStatus(Status.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 37 "../../../../../ClimbSafeStateMachine.ump"
+        rejectPaymentDueToBanned();
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean cancelTrip()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Assigned:
+        setStatus(Status.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        // line 11 "../../../../../ClimbSafeStateMachine.ump"
+        refund();
+        setStatus(Status.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        // line 25 "../../../../../ClimbSafeStateMachine.ump"
+        refund();
+        setStatus(Status.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 31 "../../../../../ClimbSafeStateMachine.ump"
+        rejectCancelDueToFinished();
+        setStatus(Status.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 38 "../../../../../ClimbSafeStateMachine.ump"
+        rejectCancelDueToBanned();
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean finishTrip()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Assigned:
+        // line 6 "../../../../../ClimbSafeStateMachine.ump"
+        rejectFinishDueToNotStarted();
+        setStatus(Status.Assigned);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        // line 14 "../../../../../ClimbSafeStateMachine.ump"
+        rejectFinishDueToNotStarted();
+        setStatus(Status.Paid);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 19 "../../../../../ClimbSafeStateMachine.ump"
+        rejectFinishDueToCancelled();
+        setStatus(Status.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        setStatus(Status.Finished);
+        wasEventProcessed = true;
+        break;
+      case Banned:
+        // line 39 "../../../../../ClimbSafeStateMachine.ump"
+        rejectFinishDueToBanned();
         setStatus(Status.Banned);
         wasEventProcessed = true;
         break;
@@ -136,11 +240,32 @@ public class Assignment
     boolean wasEventProcessed = false;
     
     Status aStatus = status;
-    StatusRegular aStatusRegular = statusRegular;
     switch (aStatus)
     {
+      case Assigned:
+        // line 7 "../../../../../ClimbSafeStateMachine.ump"
+        getMember().banMember();
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        setStatus(Status.Started);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        // line 18 "../../../../../ClimbSafeStateMachine.ump"
+        rejectStartDueToCancelled();
+        setStatus(Status.Cancelled);
+        wasEventProcessed = true;
+        break;
+      case Finished:
+        // line 30 "../../../../../ClimbSafeStateMachine.ump"
+        rejectStartDueToFinished();
+        setStatus(Status.Finished);
+        wasEventProcessed = true;
+        break;
       case Banned:
-        // line 33 "../../../../../ClimbSafeStateMachine.ump"
+        // line 36 "../../../../../ClimbSafeStateMachine.ump"
         rejectStartDueToBanned();
         setStatus(Status.Banned);
         wasEventProcessed = true;
@@ -149,45 +274,33 @@ public class Assignment
         // Other states do respond to this event
     }
 
-    switch (aStatusRegular)
-    {
-      case Paid:
-        exitStatusRegular();
-        setStatusRegular(StatusRegular.Started);
-        wasEventProcessed = true;
-        break;
-      case Cancelled:
-        exitStatusRegular();
-        // line 17 "../../../../../ClimbSafeStateMachine.ump"
-        rejectStartDueToCancelled();
-        setStatusRegular(StatusRegular.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Finished:
-        exitStatusRegular();
-        // line 27 "../../../../../ClimbSafeStateMachine.ump"
-        rejectStartDueToFinished();
-        setStatusRegular(StatusRegular.Finished);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
     return wasEventProcessed;
   }
 
-  public boolean confirmPayment()
+  public boolean memberBanned()
   {
     boolean wasEventProcessed = false;
     
     Status aStatus = status;
-    StatusRegular aStatusRegular = statusRegular;
     switch (aStatus)
     {
-      case Banned:
-        // line 34 "../../../../../ClimbSafeStateMachine.ump"
-        rejectPaymentDueToBanned();
+      case Assigned:
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      case Paid:
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      case Cancelled:
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      case Started:
+        setStatus(Status.Banned);
+        wasEventProcessed = true;
+        break;
+      case Finished:
         setStatus(Status.Banned);
         wasEventProcessed = true;
         break;
@@ -195,203 +308,12 @@ public class Assignment
         // Other states do respond to this event
     }
 
-    switch (aStatusRegular)
-    {
-      case Assigned:
-        exitStatusRegular();
-        setStatusRegular(StatusRegular.Paid);
-        wasEventProcessed = true;
-        break;
-      case Paid:
-        exitStatusRegular();
-        // line 13 "../../../../../ClimbSafeStateMachine.ump"
-        rejectPaymentDueToPaid();
-        setStatusRegular(StatusRegular.Paid);
-        wasEventProcessed = true;
-        break;
-      case Cancelled:
-        exitStatusRegular();
-        // line 19 "../../../../../ClimbSafeStateMachine.ump"
-        rejectPaymentDueToCancelled();
-        setStatusRegular(StatusRegular.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Started:
-        exitStatusRegular();
-        // line 24 "../../../../../ClimbSafeStateMachine.ump"
-        rejectPaymentDueToPaid();
-        setStatusRegular(StatusRegular.Started);
-        wasEventProcessed = true;
-        break;
-      case Finished:
-        exitStatusRegular();
-        // line 29 "../../../../../ClimbSafeStateMachine.ump"
-        rejectPaymentDueToFinished();
-        setStatusRegular(StatusRegular.Finished);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
     return wasEventProcessed;
-  }
-
-  public boolean cancelTrip()
-  {
-    boolean wasEventProcessed = false;
-    
-    Status aStatus = status;
-    StatusRegular aStatusRegular = statusRegular;
-    switch (aStatus)
-    {
-      case Banned:
-        // line 35 "../../../../../ClimbSafeStateMachine.ump"
-        rejectCancelDueToBanned();
-        setStatus(Status.Banned);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    switch (aStatusRegular)
-    {
-      case Assigned:
-        exitStatusRegular();
-        setStatusRegular(StatusRegular.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Paid:
-        exitStatusRegular();
-        // line 11 "../../../../../ClimbSafeStateMachine.ump"
-        refund();
-        setStatusRegular(StatusRegular.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Started:
-        exitStatusRegular();
-        // line 23 "../../../../../ClimbSafeStateMachine.ump"
-        refund();
-        setStatusRegular(StatusRegular.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Finished:
-        exitStatusRegular();
-        // line 28 "../../../../../ClimbSafeStateMachine.ump"
-        rejectCancelDueToFinished();
-        setStatusRegular(StatusRegular.Finished);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  public boolean finishTrip()
-  {
-    boolean wasEventProcessed = false;
-    
-    Status aStatus = status;
-    StatusRegular aStatusRegular = statusRegular;
-    switch (aStatus)
-    {
-      case Banned:
-        // line 36 "../../../../../ClimbSafeStateMachine.ump"
-        rejectFinishDueToBanned();
-        setStatus(Status.Banned);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    switch (aStatusRegular)
-    {
-      case Assigned:
-        exitStatusRegular();
-        // line 8 "../../../../../ClimbSafeStateMachine.ump"
-        rejectFinishDueToNotStarted();
-        setStatusRegular(StatusRegular.Assigned);
-        wasEventProcessed = true;
-        break;
-      case Paid:
-        exitStatusRegular();
-        // line 14 "../../../../../ClimbSafeStateMachine.ump"
-        rejectFinishDueToNotStarted();
-        setStatusRegular(StatusRegular.Paid);
-        wasEventProcessed = true;
-        break;
-      case Cancelled:
-        exitStatusRegular();
-        // line 18 "../../../../../ClimbSafeStateMachine.ump"
-        rejectFinishDueToCancelled();
-        setStatusRegular(StatusRegular.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Started:
-        exitStatusRegular();
-        setStatusRegular(StatusRegular.Finished);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  private void exitStatus()
-  {
-    switch(status)
-    {
-      case Regular:
-        exitStatusRegular();
-        break;
-    }
   }
 
   private void setStatus(Status aStatus)
   {
     status = aStatus;
-
-    // entry actions and do activities
-    switch(status)
-    {
-      case Regular:
-        if (statusRegular == StatusRegular.Null) { setStatusRegular(StatusRegular.Assigned); }
-        break;
-    }
-  }
-
-  private void exitStatusRegular()
-  {
-    switch(statusRegular)
-    {
-      case Assigned:
-        setStatusRegular(StatusRegular.Null);
-        break;
-      case Paid:
-        setStatusRegular(StatusRegular.Null);
-        break;
-      case Cancelled:
-        setStatusRegular(StatusRegular.Null);
-        break;
-      case Started:
-        setStatusRegular(StatusRegular.Null);
-        break;
-      case Finished:
-        setStatusRegular(StatusRegular.Null);
-        break;
-    }
-  }
-
-  private void setStatusRegular(StatusRegular aStatusRegular)
-  {
-    statusRegular = aStatusRegular;
-    if (status != Status.Regular && aStatusRegular != StatusRegular.Null) { setStatus(Status.Regular); }
   }
   /* Code from template association_GetOne */
   public Member getMember()
@@ -535,76 +457,76 @@ public class Assignment
     }
   }
 
-  // line 40 "../../../../../ClimbSafeStateMachine.ump"
+  // line 43 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectStartDueToBanned(){
     throw new RuntimeException("Cannot start the trip due to a ban");
   }
 
-  // line 43 "../../../../../ClimbSafeStateMachine.ump"
+  // line 46 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectPaymentDueToBanned(){
     throw new RuntimeException("Cannot pay for the trip due to a ban");
   }
 
-  // line 46 "../../../../../ClimbSafeStateMachine.ump"
+  // line 49 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectCancelDueToBanned(){
     throw new RuntimeException("Cannot cancel the trip due to a ban");
   }
 
-  // line 49 "../../../../../ClimbSafeStateMachine.ump"
+  // line 52 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectFinishDueToBanned(){
     throw new RuntimeException("Cannot finish the trip due to a ban");
   }
 
-  // line 52 "../../../../../ClimbSafeStateMachine.ump"
+  // line 55 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectPaymentDueToPaid(){
     throw new RuntimeException("Trip has already been paid for");
   }
 
-  // line 55 "../../../../../ClimbSafeStateMachine.ump"
+  // line 58 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectPaymentDueToFinished(){
     throw new RuntimeException("Cannot pay for a trip which has finished");
   }
 
-  // line 58 "../../../../../ClimbSafeStateMachine.ump"
+  // line 61 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectCancelDueToFinished(){
     throw new RuntimeException("Cannot cancel a trip which has finished");
   }
 
-  // line 61 "../../../../../ClimbSafeStateMachine.ump"
+  // line 64 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectStartDueToFinished(){
     throw new RuntimeException("Cannot start a trip which has finished");
   }
 
-  // line 64 "../../../../../ClimbSafeStateMachine.ump"
+  // line 67 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectStartDueToCancelled(){
     throw new RuntimeException("Cannot start a trip which has been cancelled");
   }
 
-  // line 67 "../../../../../ClimbSafeStateMachine.ump"
+  // line 70 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectPaymentDueToCancelled(){
     throw new RuntimeException("Cannot pay for a trip which has been cancelled");
   }
 
-  // line 70 "../../../../../ClimbSafeStateMachine.ump"
+  // line 73 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectFinishDueToCancelled(){
     throw new RuntimeException("Cannot finish a trip which has been cancelled");
   }
 
-  // line 73 "../../../../../ClimbSafeStateMachine.ump"
+  // line 76 "../../../../../ClimbSafeStateMachine.ump"
    private void rejectFinishDueToNotStarted(){
     throw new RuntimeException("Cannot finish a trip which has not started");
   }
 
-  // line 76 "../../../../../ClimbSafeStateMachine.ump"
+  // line 79 "../../../../../ClimbSafeStateMachine.ump"
    private void refund(){
-    if(statusRegular.equals(StatusRegular.Paid)){
+    if(status.equals(Status.Paid)){
     getMember().setRefund(50); 
     }else{
     getMember().setRefund(10);
     }
   }
 
-  // line 83 "../../../../../ClimbSafeStateMachine.ump"
+  // line 86 "../../../../../ClimbSafeStateMachine.ump"
    public void authorization(String s){
     if(s.isEmpty()){
       throw new RuntimeException("Invalid authorization code");}else{
@@ -613,12 +535,12 @@ public class Assignment
       }
   }
 
-  // line 90 "../../../../../ClimbSafeStateMachine.ump"
+  // line 93 "../../../../../ClimbSafeStateMachine.ump"
    public void setTestStatus(String s){
-    StatusRegular statusRegular[] = StatusRegular.values();
-    for(StatusRegular status: statusRegular) {
-         if (status.name().equals(s)){
-         this.statusRegular = status;
+    Status status[] = Status.values();
+    for(Status state: status) {
+         if (state.name().equals(s)){
+         this.status = state;
          }
       }
   }
