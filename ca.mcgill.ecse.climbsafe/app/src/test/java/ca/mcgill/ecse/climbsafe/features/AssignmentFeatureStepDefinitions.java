@@ -132,7 +132,7 @@ public class AssignmentFeatureStepDefinitions {
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
     try {
-      AssignmentController.InitiateAssignment();
+      AssignmentController.initiateAssignment();
     } catch (InvalidInputException e) {
       error = e.getMessage();
     }
