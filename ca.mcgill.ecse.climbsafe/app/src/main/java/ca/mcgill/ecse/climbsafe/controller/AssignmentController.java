@@ -12,6 +12,13 @@ import ca.mcgill.ecse.climbsafe.model.Member;
 
 public class AssignmentController {
   // 4,5
+  /**
+   * @author Salim Benchekroun, Danny Tu 
+   * @throws InvalidInputException
+   * This method initializes the Assignment state diagram from the Assignment object.
+   * It also decides the start date for each member based on guide availability. 
+   */
+
   public static void InitiateAssignment() throws InvalidInputException { // initiate all assignments
 
     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
