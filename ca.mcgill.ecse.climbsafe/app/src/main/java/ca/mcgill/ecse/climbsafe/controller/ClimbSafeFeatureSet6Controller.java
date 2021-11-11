@@ -16,6 +16,7 @@ import ca.mcgill.ecse.climbsafe.model.Hotel;
 import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.model.NamedUser;
 import ca.mcgill.ecse.climbsafe.model.User;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet6Controller {
   private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
@@ -34,6 +35,7 @@ public class ClimbSafeFeatureSet6Controller {
             "The piece of equipment is in a bundle and cannot be deleted");
       } else {
         e.delete();
+        ClimbSafePersistence.save();
       }
     }
   }
@@ -48,6 +50,7 @@ public class ClimbSafeFeatureSet6Controller {
     EquipmentBundle b = Utility.findBundle(name);
     if (b != null) {
       b.delete();
+      ClimbSafePersistence.save();
     }
   }
 
