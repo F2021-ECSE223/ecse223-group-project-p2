@@ -8,6 +8,7 @@ import ca.mcgill.ecse.climbsafe.model.BookableItem;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet2Controller {
 /**
@@ -122,6 +123,7 @@ public class ClimbSafeFeatureSet2Controller {
 			 BookedItem item = new BookedItem (quan, ClimbSafeApplication.getClimbSafe(),newMem,newItem);	
 			 ClimbSafeApplication.getClimbSafe().addBookedItem(item);
 		 }
+		 ClimbSafePersistence.save();
 	  }
 	  catch(RuntimeException e) {
 		  error = e.getMessage();
@@ -215,6 +217,7 @@ public class ClimbSafeFeatureSet2Controller {
 			BookableItem item = BookableItem.getWithName(newItemNames.get(i));
 		  	theMem.addBookedItem(newItemQuantities.get(i),ClimbSafeApplication.getClimbSafe(), item);
 		  }	
+		  ClimbSafePersistence.save();
 	  	}
 	  
 	  catch(RuntimeException e) {
