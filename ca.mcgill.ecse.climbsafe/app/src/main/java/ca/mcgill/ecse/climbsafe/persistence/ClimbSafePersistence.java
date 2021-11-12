@@ -25,7 +25,6 @@ public class ClimbSafePersistence {
       public static ClimbSafe load() {
         PersistenceObjectStream.setFilename(filename);
         var climbsafe = (ClimbSafe) PersistenceObjectStream.deserialize();
-        // model cannot be loaded - create empty BTMS
         if (climbsafe == null) {
           climbsafe = new ClimbSafe(new Date(0), 0, 0);
         } else {
