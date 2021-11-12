@@ -1,6 +1,5 @@
+
 package ca.mcgill.ecse.climbsafe.controller;
-
-
 
 import java.util.List;
 
@@ -191,3 +190,4 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
   }
 }
+

@@ -102,7 +102,4 @@ public class ClimbSafeFeatureSet6Controller {
     }
     return assignments;
   }
-
-
 }
-

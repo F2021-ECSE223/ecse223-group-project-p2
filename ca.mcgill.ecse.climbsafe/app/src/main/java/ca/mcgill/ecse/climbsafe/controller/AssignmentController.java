@@ -12,7 +12,11 @@ import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class AssignmentController {
-  //Salim Danny JavaDoc
+  /**
+   * used bt Administrator to initiate the assignment for all members
+   * @author Salim Benchekroun, Danny Tu
+   * @throws InvalidInputException
+   */
   public static void initiateAssignment() throws InvalidInputException { // initiate all assignments
 
     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
@@ -42,22 +46,16 @@ public class AssignmentController {
             int totalWeeks = climbSafe.getNrWeeks(); // number of weeks in climbing season
             int start = 0;
             int end = 0;
-            // Assignment assignment = climbSafe.getAssignment(j);
-            // test if guide is available during that time
-            // 1.calculate number of weeks guide is busy
     
             int busyWeeks = 0;
             for (int k = 0; k < currentGuide.getAssignments().size(); k++) {
               busyWeeks += currentGuide.getAssignments().get(k).getMember().getNrWeeks();
             }
-            // 2. Is ( nbrWeeks_available >= nbrWeeks_member)?
-            // ie. (totalWeeks - sum) >= nbrWeeks?
             if ((totalWeeks - busyWeeks) >= memberWeeks) {
               start = busyWeeks + 1;
-              end = start + memberWeeks - 1;
-              // if member needs a guide,                                                                     // but has no guide yet
+              end = start + memberWeeks - 1;                                                                   // but has no guide yet
                 Assignment a = new Assignment(start, end, currentMember, climbSafe);
-                a.setGuide(climbSafe.getGuide(i)); // add the guide to the assignment
+                a.setGuide(climbSafe.getGuide(i));
                 climbSafe.addAssignment(a);
                 currentMember.getAssignment().setTestStatus("Assigned");
                 allAss.add(a);
@@ -162,3 +160,4 @@ public class AssignmentController {
     return foundMember;
   }
 }
+

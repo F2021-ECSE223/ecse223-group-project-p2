@@ -1,4 +1,3 @@
-
 package ca.mcgill.ecse.climbsafe.controller;
 
 import java.util.List;
