@@ -1,0 +1,109 @@
+class Assignment{
+  Status{
+    Assigned{
+      confirmPayment()->Paid;
+      cancelTrip()->Cancelled;
+      finishTrip()/{rejectFinishDueToNotStarted();}->Assigned;
+      startTrip()/{getMember().banMember();}->Banned;
+      memberBanned()->Banned;
+    }
+    Paid{
+      cancelTrip()/{refund();}->Cancelled;     
+      startTrip()->Started;     
+      confirmPayment()/{rejectPaymentDueToPaid();} ->Paid;    
+      finishTrip()/{rejectFinishDueToNotStarted();}->Paid;
+      memberBanned()->Banned;
+    }
+    Cancelled{
+      startTrip()/{rejectStartDueToCancelled();}->Cancelled;
+      finishTrip()/{rejectFinishDueToCancelled();}->Cancelled;
+      confirmPayment()/{rejectPaymentDueToCancelled();}->Cancelled;
+      memberBanned()->Banned;
+    }
+    Started{
+      finishTrip()->Finished;
+      cancelTrip()/{refund();}->Cancelled;      
+      confirmPayment()/{rejectPaymentDueToPaid();}->Started;
+      memberBanned()->Banned;
+    }
+    Finished{
+      startTrip()/{rejectStartDueToFinished();}-> Finished;     
+      cancelTrip()/{rejectCancelDueToFinished();} ->Finished;     
+      confirmPayment()/{rejectPaymentDueToFinished();} ->Finished;
+      memberBanned()->Banned;
+    }
+    Banned{
+      startTrip()/{rejectStartDueToBanned();}->Banned;
+      confirmPayment()/{rejectPaymentDueToBanned();}->Banned;
+      cancelTrip()/{rejectCancelDueToBanned();}->Banned;
+      finishTrip()/{rejectFinishDueToBanned();}->Banned;
+    }
+  }
+  private void rejectStartDueToBanned(){
+    throw new RuntimeException("Cannot start the trip due to a ban");
+  }
+  private void rejectPaymentDueToBanned(){
+    throw new RuntimeException("Cannot pay for the trip due to a ban");
+  }   
+  private void rejectCancelDueToBanned(){
+    throw new RuntimeException("Cannot cancel the trip due to a ban");
+  }
+  private void rejectFinishDueToBanned(){
+    throw new RuntimeException("Cannot finish the trip due to a ban");
+  } 
+  private void rejectPaymentDueToPaid(){
+    throw new RuntimeException("Trip has already been paid for");
+  }
+  private void rejectPaymentDueToFinished(){
+    throw new RuntimeException("Cannot pay for a trip which has finished");
+  }
+  private void rejectCancelDueToFinished(){
+    throw new RuntimeException("Cannot cancel a trip which has finished");
+  }
+  private void rejectStartDueToFinished(){
+    throw new RuntimeException("Cannot start a trip which has finished");
+  }
+  private void rejectStartDueToCancelled(){
+    throw new RuntimeException("Cannot start a trip which has been cancelled");
+  }
+  private void rejectPaymentDueToCancelled(){
+    throw new RuntimeException("Cannot pay for a trip which has been cancelled");
+  }
+  private void rejectFinishDueToCancelled(){
+    throw new RuntimeException("Cannot finish a trip which has been cancelled");
+  }
+  private void rejectFinishDueToNotStarted(){
+    throw new RuntimeException("Cannot finish a trip which has not started");
+  }
+  private void refund(){
+    if(status.equals(Status.Paid)){
+    getMember().setRefund(50); 
+    }else{
+    getMember().setRefund(10);
+    }
+  }
+  public void authorization(String s){
+    if(s.isEmpty()){
+      throw new RuntimeException("Invalid authorization code");}else{
+      code=s;
+      confirmPayment();
+      }
+    }
+  public void setTestStatus(String s){ 
+    Status status[] = Status.values();
+    for(Status state: status) {
+         if (state.name().equals(s)){
+         this.status = state;
+         }
+      }
+  }
+}
+
+class Member{
+  Status{
+    Regular{
+      banMember()/{getAssignment().memberBanned();}->Banned;
+    }
+    Banned{}
+  }
+}
