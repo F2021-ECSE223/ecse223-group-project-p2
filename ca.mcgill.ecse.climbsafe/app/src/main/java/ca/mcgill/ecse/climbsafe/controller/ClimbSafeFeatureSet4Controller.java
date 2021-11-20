@@ -6,6 +6,7 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 /**@author Arturo Mory Ramirez
  * 
@@ -48,6 +49,7 @@ public class ClimbSafeFeatureSet4Controller {
       
       try {
           instanceapp.addEquipment(name, weight, pricePerWeek);
+          ClimbSafePersistence.save();
       } catch(RuntimeException e) {
           throw new InvalidInputException(e.getMessage());
       }
@@ -113,7 +115,7 @@ public class ClimbSafeFeatureSet4Controller {
                   e.setPricePerWeek(newPricePerWeek);
               }
           }
-          
+          ClimbSafePersistence.save(); 
       }catch(RuntimeException e){
          throw new InvalidInputException(e.getMessage());
           
@@ -122,3 +124,4 @@ public class ClimbSafeFeatureSet4Controller {
  }
 
 }
+

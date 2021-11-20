@@ -97,8 +97,6 @@ class Assignment{
          }
       }
   }
-  
-  
 }
 
 class Member{

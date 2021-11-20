@@ -6,6 +6,7 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet1Controller {
       /**
@@ -36,7 +37,7 @@ public class ClimbSafeFeatureSet1Controller {
       inst.setStartDate(startDate);
       inst.setNrWeeks(nrWeeks);
       inst.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
-  
+      ClimbSafePersistence.save();
   }
   /**
    * @author Salim Benchekroun
@@ -51,6 +52,7 @@ public class ClimbSafeFeatureSet1Controller {
           } 
       }
       if (member!=null) member.delete();
+      ClimbSafePersistence.save();
       return;
   }
   /**
@@ -66,6 +68,7 @@ public class ClimbSafeFeatureSet1Controller {
           }  
       }
       if (guide!=null) guide.delete();
+      ClimbSafePersistence.save();
       return;
   }
 
@@ -73,3 +76,4 @@ public class ClimbSafeFeatureSet1Controller {
   public static void deleteHotel(String name) {}
 
 }
+

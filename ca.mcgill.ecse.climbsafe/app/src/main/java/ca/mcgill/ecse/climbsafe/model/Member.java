@@ -2,11 +2,13 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.climbsafe.model;
+import java.io.Serializable;
 import java.util.*;
 
-// line 104 "../../../../../ClimbSafeStateMachine.ump"
-// line 40 "../../../../../ClimbSafe.ump"
-public class Member extends NamedUser
+// line 102 "../../../../../ClimbSafeStateMachine.ump"
+// line 79 "../../../../../ClimbSafePersistence.ump"
+// line 41 "../../../../../ClimbSafe.ump"
+public class Member extends NamedUser implements Serializable
 {
 
   //------------------------
@@ -133,7 +135,7 @@ public class Member extends NamedUser
     switch (aStatus)
     {
       case Regular:
-        // line 107 "../../../../../ClimbSafeStateMachine.ump"
+        // line 105 "../../../../../ClimbSafeStateMachine.ump"
         getAssignment().memberBanned();
         setStatus(Status.Banned);
         wasEventProcessed = true;
@@ -346,5 +348,13 @@ public class Member extends NamedUser
             "hotelRequired" + ":" + getHotelRequired()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "climbSafe = "+(getClimbSafe()!=null?Integer.toHexString(System.identityHashCode(getClimbSafe())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assignment = "+(getAssignment()!=null?Integer.toHexString(System.identityHashCode(getAssignment())):"null");
-  }
+  }  
+  //------------------------
+  // DEVELOPER CODE - PROVIDED AS-IS
+  //------------------------
+  
+  // line 82 "../../../../../ClimbSafePersistence.ump"
+  private static final long serialVersionUID = 7270285103088362701L ;
+
+  
 }

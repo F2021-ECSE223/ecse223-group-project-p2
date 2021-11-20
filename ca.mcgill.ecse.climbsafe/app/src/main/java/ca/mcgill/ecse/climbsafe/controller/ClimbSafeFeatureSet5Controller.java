@@ -1,8 +1,8 @@
-
 package ca.mcgill.ecse.climbsafe.controller;
 
 import java.util.List;
 import ca.mcgill.ecse.climbsafe.model.*;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 
 public class ClimbSafeFeatureSet5Controller {
@@ -73,6 +73,7 @@ public class ClimbSafeFeatureSet5Controller {
      bundle.addBundleItem(bundleItem);
       climbSafe.addBundle(bundle);
      }
+     ClimbSafePersistence.save();
      } 
    catch (RuntimeException e) {
      error=e.getMessage();
@@ -168,7 +169,7 @@ public class ClimbSafeFeatureSet5Controller {
           Integer equiQuan = newEquipmentQuantities.get(i);
           foundBundle.addBundleItem(equiQuan, climbSafe, theEquip);
           }
-       
+        ClimbSafePersistence.save();
         }
     catch (RuntimeException e) {
       error = e.getMessage();
