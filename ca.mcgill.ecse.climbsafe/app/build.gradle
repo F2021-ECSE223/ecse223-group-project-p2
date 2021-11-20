@@ -11,6 +11,12 @@ plugins {
     id 'application'
 }
 
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+
 repositories {
     // Use mavenCentral for resolving dependencies.
      mavenCentral() 
