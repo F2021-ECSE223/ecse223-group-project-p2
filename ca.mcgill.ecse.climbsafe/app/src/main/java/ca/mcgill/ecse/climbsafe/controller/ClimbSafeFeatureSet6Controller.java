@@ -70,6 +70,9 @@ public class ClimbSafeFeatureSet6Controller {
       String guideName = null;
       String hotelName = null;
       int guideCost = 0;
+      String status = assignment.getStatusFullName();
+      String code = assignment.getCode();
+      int refund = assignment.getMember().getRefund();
       if (assignment.getMember().isGuideRequired()) {
         guideEmail = assignment.getGuide().getEmail();
         guideName = assignment.getGuide().getName();
@@ -98,7 +101,7 @@ public class ClimbSafeFeatureSet6Controller {
       assignments
           .add(new TOAssignment(assignment.getMember().getEmail(), assignment.getMember().getName(),
               guideEmail, guideName, hotelName, assignment.getStartWeek(), assignment.getEndWeek(),
-              guideCost * week, totalCostForEquipmentPerWeek * week));
+              guideCost * week, totalCostForEquipmentPerWeek * week,status,code,refund));
     }
     return assignments;
   }
