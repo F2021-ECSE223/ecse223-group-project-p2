@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" />
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Pay">
+               <content>
+                  <fx:include source="pages/PayPage.fxml" />
+               </content></Tab>
+          <Tab text="InitiateAssignment">
+               <content>
+                  <fx:include source="pages/InitiateAssignment.fxml" />
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Separator prefWidth="200.0" />
+      <fx:include source="pages/ViewAssignmentPage.fxml" />
+   </children>
+</VBox>
