@@ -11,7 +11,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
-    <Tab text="Admin Setup">
+    <Tab fx:id="AdminTab" onSelectionChanged="#clickedAdminTab" text="Admin Setup">
          <content>
             <GridPane>
               <columnConstraints>
@@ -40,18 +40,18 @@
                   <Label text="start of climbing season" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Label text="end of climbing season" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Label text="guide price" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Button mnemonicParsing="false" text="update" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Button fx:id="updateButton1" mnemonicParsing="false" onAction="#updateClicked1" text="update" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Member Week Assignment" GridPane.rowIndex="7" />
                   <Label text="member email" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                   <Label text="assigned weeks" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                  <Button mnemonicParsing="false" text="update" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Button fx:id="updateButton2" mnemonicParsing="false" onAction="#clickedupdateButton2" text="update" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <TextField fx:id="AdminEmail" onAction="#enterAdminEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="AdminPassword" onAction="#enterAdminPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="SeasonStart" onAction="#enterSeasonStart" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="SeasonEnd" onAction="#enterSeasonEnd" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="GuidePrice" onAction="#enterGuidePrice" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="MemberEmail" onAction="#enterMemberEmail" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="MemberAssignedWeeks" onAction="#enterMemberAssignedWeeks" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
          </content></Tab>
