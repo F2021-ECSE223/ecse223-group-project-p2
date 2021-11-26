@@ -25,6 +25,7 @@ public class PayPageController {
     } else {
       if (successful(() -> AssignmentController.confirmPayment(email,code))) {
         emailTextField.setText("");
+        codeTextField.setText("");
       } 
     }
 	} catch (RuntimeException e) {
