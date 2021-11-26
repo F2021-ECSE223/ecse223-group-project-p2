@@ -12,6 +12,7 @@ import javafx.application.Application;
 
 public class ClimbSafeApplication {
   private static ClimbSafe climbSafe;
+  private static Date currentDate;
   public String getGreeting() {
     return "Hello World!";
   }
@@ -29,5 +30,15 @@ public class ClimbSafeApplication {
     
     return climbSafe;
   }
- 
+  public static Date getCurrentDate() {
+    if (currentDate == null) {
+      return Date.valueOf(LocalDate.now());
+    }
+
+    return currentDate;
+  }
+
+  public static void setCurrentDate(Date date) {
+    currentDate = date;
+  }
 }
