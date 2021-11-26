@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="910.0" prefWidth="723.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Register Member">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="787.0" prefWidth="690.0">
+               <children>
+                  <GridPane layoutX="192.0" layoutY="75.0" prefHeight="339.0" prefWidth="329.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Full Name" />
+                        <TextField fx:id="memberName" onAction="#enterMemberName" prefHeight="26.0" prefWidth="204.0" GridPane.rowIndex="1" />
+                        <Label text="Email" GridPane.rowIndex="2" />
+                        <TextField fx:id="memberEmail" onAction="#enterMemberEmail" GridPane.rowIndex="3" />
+                        <Label text="Password" GridPane.rowIndex="4" />
+                        <Label text="Emergency Contact Number" GridPane.rowIndex="6" />
+                        <Label text="Number Of Climbing Weeks" GridPane.rowIndex="8" />
+                        <TextField fx:id="memberPasswrod" onAction="#enterMemberPassword" GridPane.rowIndex="5" />
+                        <TextField fx:id="memberEmergencyContact" onAction="#enterMemberEmergencyContact" GridPane.rowIndex="7" />
+                        <TextField fx:id="NumberOfClimbingWeek" onAction="#enterNumberOfClimbingWeek" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="296.0" layoutY="47.0" text="Register Member">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="registerMember" layoutX="223.0" layoutY="782.0" mnemonicParsing="false" onAction="#clickRegisterMember" prefHeight="39.0" prefWidth="293.0" text="Register" textFill="#0d0d0d" />
+                  <ScrollPane fx:id="listOfItems" layoutX="189.0" layoutY="615.0" prefHeight="152.0" prefWidth="330.0">
+                     <content>
+                        <AnchorPane fx:id="showItem" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="146.0" />
+                     </content>
+                  </ScrollPane>
+                  <GridPane layoutX="194.0" layoutY="423.0" prefHeight="145.0" prefWidth="339.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.08648681640625" minWidth="10.0" prefWidth="60.884735107421875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.11526489257812" minWidth="10.0" prefWidth="218.11526489257812" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="20.581146240234375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <CheckBox fx:id="checkGuide" mnemonicParsing="false" onAction="#guideRequired" text="Guide" />
+                        <CheckBox fx:id="checkHotel" mnemonicParsing="false" onAction="#hotelRequired" text="Hotel" GridPane.columnIndex="1" />
+                        <Label text="Item" GridPane.rowIndex="2" />
+                        <TextField fx:id="registerItem" onAction="#enterItem" prefHeight="43.0" prefWidth="236.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Quantity" GridPane.rowIndex="3" />
+                        <TextField fx:id="registerQuantity" onAction="#registerQuantity" prefHeight="41.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="addItem" layoutX="468.0" layoutY="570.0" mnemonicParsing="false" onAction="#registerAddItem" prefHeight="26.0" prefWidth="61.0" text="Add" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab fx:id="updateItemList" text="Update Member">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="295.0" layoutY="51.0" text="Update Member">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="198.0" layoutY="98.0" prefHeight="339.0" prefWidth="329.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Full Name" />
+                        <TextField fx:id="updateMemberName" onAction="#clickUpdateMemberName" prefHeight="26.0" prefWidth="204.0" GridPane.rowIndex="1" />
+                        <Label text="Email" GridPane.rowIndex="2" />
+                        <TextField fx:id="fixedEmail" onAction="#clickFixedEmail" GridPane.rowIndex="3" />
+                        <Label text="Password" GridPane.rowIndex="4" />
+                        <Label text="Emergency Contact Number" GridPane.rowIndex="6" />
+                        <Label text="Number Of Climbing Weeks" GridPane.rowIndex="8" />
+                        <TextField fx:id="updateMemberEmail" onAction="#clickUpdateMemberPassword" GridPane.rowIndex="5" />
+                        <TextField fx:id="updateEmergencyContact" onAction="#clickUpdateEmergencyConctact" GridPane.rowIndex="7" />
+                        <TextField fx:id="updateNumberOfClimbingWeek" onAction="#clickUpdateClimbingWeek" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="196.0" layoutY="459.0" prefHeight="145.0" prefWidth="339.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.08648681640625" minWidth="10.0" prefWidth="60.884735107421875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.11526489257812" minWidth="10.0" prefWidth="218.11526489257812" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="20.581146240234375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <CheckBox fx:id="updateGuideCheck" mnemonicParsing="false" onAction="#clickUpdateGuideCheck" text="Guide" />
+                        <CheckBox fx:id="updateHotelCheck" mnemonicParsing="false" onAction="#clickUpdateHotelCheck" text="Hotel" GridPane.columnIndex="1" />
+                        <Label text="Item" GridPane.rowIndex="2" />
+                        <TextField fx:id="updateItem" onAction="#clickUpdateItem" prefHeight="43.0" prefWidth="236.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Quantity" GridPane.rowIndex="3" />
+                        <TextField fx:id="updateQuantity" onAction="#clickUpdateQuantity" prefHeight="40.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="updateMember" layoutX="216.0" layoutY="807.0" mnemonicParsing="false" onAction="#clickUpdateMember" prefHeight="39.0" prefWidth="293.0" text="Update" />
+                  <ScrollPane fx:id="updatedListOfItems" layoutX="190.0" layoutY="628.0" prefHeight="152.0" prefWidth="330.0">
+                    <content>
+                      <AnchorPane fx:id="updateShowItem" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="146.0" />
+                    </content>
+                  </ScrollPane>
+                  <Button fx:id="updateAddItems" layoutX="466.0" layoutY="591.0" mnemonicParsing="false" onAction="#clickUpdateAddItems" prefHeight="26.0" prefWidth="61.0" text="Add" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Delete Member">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="295.0" layoutY="63.0" text="Delete Member" textFill="#0d0d0d">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="170.0" layoutY="271.0" prefHeight="127.0" prefWidth="329.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="241.578857421875" minHeight="10.0" prefHeight="149.6680908203125" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="203.41293334960938" minHeight="10.0" prefHeight="167.8319091796875" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Email" />
+                        <TextField fx:id="emailToDeleteMember" onAction="#cllickEmailToDeleteMember" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="deleteMember" layoutX="204.0" layoutY="501.0" mnemonicParsing="false" onAction="#clickDeleteMember" prefHeight="39.0" prefWidth="293.0" text="Delete" textFill="#030303" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
