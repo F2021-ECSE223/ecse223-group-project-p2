@@ -18,7 +18,7 @@ public class ClimbSafeApplication {
   }
 
   public static void main(String[] args) {
-    System.out.println(new ClimbSafeApplication().getGreeting());
+    //System.out.println(new ClimbSafeApplication().getGreeting());
     Application.launch(ClimbSafeFxmlView.class, args);
   }
 
@@ -41,5 +41,4 @@ public class ClimbSafeApplication {
   public static void setCurrentDate(Date date) {
     currentDate = date;
   }
- 
 }
