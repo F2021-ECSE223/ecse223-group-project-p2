@@ -51,6 +51,8 @@ public class EquipmentPageController {
 		    } else {
 		    	if (successful(() -> ClimbSafeFeatureSet4Controller.addEquipment(addEquipmentName, addWeight, addCost))) {
 		    		addEquipmentNameTextField.setText("");
+		    		addWeightTextField.setText("");
+		    		addCostTextField.setText("");
 		    	}
 		    }
 		} catch(RuntimeException e){
@@ -78,6 +80,8 @@ public class EquipmentPageController {
 				if(successful(() -> ClimbSafeFeatureSet4Controller.updateEquipment(updateEquipmentName, updateNewEquipmentName, updateWeight, updateCost))) {
 					updateEquipmentNameTextField.setText("");
 					updateNewEquipmentNameTextField.setText("");
+					updateWeightTextField.setText("");
+					updateCostTextField.setText("");
 				}
 			}
 		} catch(RuntimeException e) {
