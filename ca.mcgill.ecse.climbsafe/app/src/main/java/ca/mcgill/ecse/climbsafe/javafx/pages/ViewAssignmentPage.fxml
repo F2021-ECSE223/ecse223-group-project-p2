@@ -21,6 +21,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="viewButton" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="23.0" prefWidth="84.0" text="View" />
+      <Button fx:id="viewButton" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="23.0" prefWidth="161.0" text="View" />
    </children>
 </GridPane>
