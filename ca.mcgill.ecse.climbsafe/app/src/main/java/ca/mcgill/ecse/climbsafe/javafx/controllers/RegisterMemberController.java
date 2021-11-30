@@ -28,7 +28,7 @@ import javafx.scene.control.TextField;
 import static ca.mcgill.ecse.climbsafe.javafx.controllers.ViewUtils.successful;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-public class registerMemberController {
+public class RegisterMemberController {
 	@FXML
 	private TextField registerFullName;
 	@FXML
@@ -122,11 +122,8 @@ public class registerMemberController {
             String password = registerPassword.getText();
             String contact = registerContact.getText();
             int numOfClimbingWeek = Integer.parseInt(registerClimbingWeeks.getText());
-            boolean guide = checkGuide.isPressed();
-            boolean hotel = checkHotel.isPressed();
-            amountRegister.clear();
-            itemRegister.clear();
-            listForRegister.clear();
+            boolean guide = checkGuide.isSelected();
+            boolean hotel = checkHotel.isSelected();
             registerTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> registerTable.setItems(getOverviewItems()));
             ClimbSafeFxmlView.getInstance().registerRefreshEvent(registerTable);
 
@@ -139,8 +136,13 @@ public class registerMemberController {
                   registerClimbingWeeks.setText("");
                   checkGuide.setSelected(false);
                   checkHotel.setSelected(false);
-   
+                  amountRegister.clear();
+                  itemRegister.clear();
+                  listForRegister.clear();
                   }
+              amountRegister.clear();
+              itemRegister.clear();
+              listForRegister.clear();
         }
 
         catch (RuntimeException e) {
@@ -194,13 +196,14 @@ public class registerMemberController {
 	                  updateClimbingWeeks.setText("");
 	                  updateGuideCheck.setSelected(false);
 	                  updateHotelCheck.setSelected(false);
-	                  amountUpdate.clear();
-	  	              itemUpdate.clear();
-	  	              listForUpdate.clear();
+	             
 	  	            updateTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> updateTable.setItems(getOverviewUpdateItems()));
 	  	            ClimbSafeFxmlView.getInstance().registerRefreshEvent(updateTable);
 	   
 	                  }
+	              amountUpdate.clear();
+                  itemUpdate.clear();
+                  listForUpdate.clear();
 	        }
 
 	        catch (RuntimeException e) {
