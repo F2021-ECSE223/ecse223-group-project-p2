@@ -19,38 +19,34 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="842.0" prefWidth="723.0">
                <children>
-                  <GridPane layoutX="235.0" layoutY="75.0" prefHeight="195.0" prefWidth="251.0">
+                  <GridPane layoutX="126.0" layoutY="74.0" prefHeight="200.0" prefWidth="369.0">
                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Full Name" />
-                        <TextField fx:id="registerFullName" prefHeight="26.0" prefWidth="204.0" GridPane.rowIndex="1" />
-                        <Label text="Email" GridPane.rowIndex="2" />
-                        <TextField fx:id="registerEmail" GridPane.rowIndex="3" />
-                        <Label text="Password" GridPane.rowIndex="4" />
-                        <Label text="Emergency Contact Number" GridPane.rowIndex="6" />
-                        <Label text="Number Of Climbing Weeks" GridPane.rowIndex="8" />
-                        <TextField fx:id="registerPassword" GridPane.rowIndex="5" />
-                        <TextField fx:id="registerContact" GridPane.rowIndex="7" />
-                        <TextField fx:id="registerClimbingWeeks" GridPane.rowIndex="9" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="171.0" text="Full Name" />
+                        <TextField fx:id="registerFullName" prefHeight="23.0" prefWidth="226.0" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="171.0" text="Email" GridPane.rowIndex="1" />
+                        <TextField fx:id="registerEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="175.0" text="Password" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="174.0" text="Emergency Contact Number" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="177.0" text="Number Of Climbing Weeks" GridPane.rowIndex="4" />
+                        <TextField fx:id="registerPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="registerContact" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="registerClimbingWeeks" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <Label layoutX="296.0" layoutY="47.0" text="Register Member">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
                   <Button fx:id="registerMember" layoutX="233.0" layoutY="592.0" mnemonicParsing="false" onAction="#clickRegisterMember" prefHeight="39.0" prefWidth="293.0" text="Register" textFill="#0d0d0d" />
@@ -85,11 +81,12 @@
                <children>
                   <Label layoutX="295.0" layoutY="51.0" text="Update Member">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="231.0" layoutY="91.0" prefHeight="184.0" prefWidth="263.0">
+                  <GridPane layoutX="126.0" layoutY="83.0" prefHeight="194.0" prefWidth="406.0">
                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
@@ -98,23 +95,18 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Full Name" />
-                        <TextField fx:id="updateFullName" prefHeight="26.0" prefWidth="204.0" GridPane.rowIndex="1" />
-                        <Label text="Email" GridPane.rowIndex="2" />
-                        <TextField fx:id="updateEmail" GridPane.rowIndex="3" />
-                        <Label text="Password" GridPane.rowIndex="4" />
-                        <Label text="Emergency Contact Number" GridPane.rowIndex="6" />
-                        <Label text="Number Of Climbing Weeks" GridPane.rowIndex="8" />
-                        <TextField fx:id="updatePassword" GridPane.rowIndex="5" />
-                        <TextField fx:id="updateContact" GridPane.rowIndex="7" />
-                        <TextField fx:id="updateClimbingWeeks" GridPane.rowIndex="9" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="182.0" text="Full Name" />
+                        <TextField fx:id="updateFullName" prefHeight="22.0" prefWidth="162.0" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="179.0" text="Email" GridPane.rowIndex="1" />
+                        <TextField fx:id="updateEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="181.0" text="Password" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="182.0" text="Emergency Contact Number" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="184.0" text="Number Of Climbing Weeks" GridPane.rowIndex="4" />
+                        <TextField fx:id="updatePassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="updateContact" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="updateClimbingWeeks" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <GridPane layoutX="238.0" layoutY="300.0" prefHeight="93.0" prefWidth="289.0">
@@ -139,7 +131,7 @@
                      </children>
                   </GridPane>
                   <Button fx:id="updateMember" layoutX="236.0" layoutY="592.0" mnemonicParsing="false" onAction="#clickUpdateMember" prefHeight="39.0" prefWidth="293.0" text="Update" />
-                  <Button fx:id="updateAddItems" layoutX="452.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickUpdateAddItems" prefHeight="26.0" prefWidth="61.0" text="Add" />
+                  <Button fx:id="updateAddItems" layoutX="451.0" layoutY="394.0" mnemonicParsing="false" onAction="#clickUpdateAddItems" prefHeight="26.0" prefWidth="61.0" text="Add" />
                   <TableView fx:id="updateTable" layoutX="265.0" layoutY="428.0" prefHeight="144.0" prefWidth="204.0" />
                </children></AnchorPane>
       </content>
@@ -150,7 +142,7 @@
                <children>
                   <Label layoutX="295.0" layoutY="63.0" text="Delete Member" textFill="#0d0d0d">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
                   <GridPane layoutX="178.0" layoutY="137.0" prefHeight="127.0" prefWidth="329.0">
@@ -162,8 +154,8 @@
                         <RowConstraints maxHeight="203.41293334960938" minHeight="10.0" prefHeight="167.8319091796875" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Email" />
-                        <TextField fx:id="emailToDeleteMember" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="328.0" text="Email" />
+                        <TextField fx:id="emailToDeleteMember" prefHeight="35.0" prefWidth="330.0" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <Button fx:id="deleteMember" layoutX="207.0" layoutY="302.0" mnemonicParsing="false" onAction="#clickDeleteMember" prefHeight="39.0" prefWidth="293.0" text="Delete" textFill="#030303" />
