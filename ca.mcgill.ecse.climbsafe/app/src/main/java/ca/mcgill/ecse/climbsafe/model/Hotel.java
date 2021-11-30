@@ -2,10 +2,16 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.climbsafe.model;
+import java.io.Serializable;
 import java.util.*;
 
-// line 74 "../../../../../ClimbSafe.ump"
-public class Hotel
+/**
+ * persistence for BundleItem needs to be specified in ClimbSafe.ump
+ * due to a bug in Umple (association classes cannot be defined in two files)
+ */
+// line 93 "../../../../../ClimbSafePersistence.ump"
+// line 89 "../../../../../ClimbSafe.ump"
+public class Hotel implements Serializable
 {
 
   //------------------------
@@ -257,6 +263,14 @@ public class Hotel
     }
   }
 
+  // line 99 "../../../../../ClimbSafePersistence.ump"
+   public static  void reinitializeUniqueName(List<Hotel> hotels){
+    hotelsByName = new HashMap<String, Hotel>();
+    for (Hotel hotel : hotels) {
+      hotelsByName.put(hotel.getName(), hotel);
+    }
+  }
+
 
   public String toString()
   {
@@ -265,5 +279,13 @@ public class Hotel
             "address" + ":" + getAddress()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "rating" + "=" + (getRating() != null ? !getRating().equals(this)  ? getRating().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "climbSafe = "+(getClimbSafe()!=null?Integer.toHexString(System.identityHashCode(getClimbSafe())):"null");
-  }
+  }  
+  //------------------------
+  // DEVELOPER CODE - PROVIDED AS-IS
+  //------------------------
+  
+  // line 96 "../../../../../ClimbSafePersistence.ump"
+  private static final long serialVersionUID = 10L ;
+
+  
 }
