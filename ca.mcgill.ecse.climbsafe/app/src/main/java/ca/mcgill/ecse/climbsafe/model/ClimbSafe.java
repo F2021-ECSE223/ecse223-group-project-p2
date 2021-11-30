@@ -2,13 +2,11 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.climbsafe.model;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.*;
 
-// line 3 "../../../../../ClimbSafePersistence.ump"
-// line 8 "../../../../../ClimbSafe.ump"
-public class ClimbSafe implements Serializable
+// line 3 "../../../../../ClimbSafe.ump"
+public class ClimbSafe
 {
 
   //------------------------
@@ -21,7 +19,7 @@ public class ClimbSafe implements Serializable
   private int priceOfGuidePerWeek;
 
   //ClimbSafe Associations
-  private Administrator administrator;
+  private Administrator adminstrator;
   private List<Guide> guides;
   private List<Member> members;
   private List<BookedItem> bookedItems;
@@ -93,14 +91,14 @@ public class ClimbSafe implements Serializable
     return priceOfGuidePerWeek;
   }
   /* Code from template association_GetOne */
-  public Administrator getAdministrator()
+  public Administrator getAdminstrator()
   {
-    return administrator;
+    return adminstrator;
   }
 
-  public boolean hasAdministrator()
+  public boolean hasAdminstrator()
   {
-    boolean has = administrator != null;
+    boolean has = adminstrator != null;
     return has;
   }
   /* Code from template association_GetMany */
@@ -344,27 +342,27 @@ public class ClimbSafe implements Serializable
     return index;
   }
   /* Code from template association_SetOptionalOneToOne */
-  public boolean setAdministrator(Administrator aNewAdministrator)
+  public boolean setAdminstrator(Administrator aNewAdminstrator)
   {
     boolean wasSet = false;
-    if (administrator != null && !administrator.equals(aNewAdministrator) && equals(administrator.getClimbSafe()))
+    if (adminstrator != null && !adminstrator.equals(aNewAdminstrator) && equals(adminstrator.getClimbSafe()))
     {
-      //Unable to setAdministrator, as existing administrator would become an orphan
+      //Unable to setAdminstrator, as existing adminstrator would become an orphan
       return wasSet;
     }
 
-    administrator = aNewAdministrator;
-    ClimbSafe anOldClimbSafe = aNewAdministrator != null ? aNewAdministrator.getClimbSafe() : null;
+    adminstrator = aNewAdminstrator;
+    ClimbSafe anOldClimbSafe = aNewAdminstrator != null ? aNewAdminstrator.getClimbSafe() : null;
 
     if (!this.equals(anOldClimbSafe))
     {
       if (anOldClimbSafe != null)
       {
-        anOldClimbSafe.administrator = null;
+        anOldClimbSafe.adminstrator = null;
       }
-      if (administrator != null)
+      if (adminstrator != null)
       {
-        administrator.setClimbSafe(this);
+        adminstrator.setClimbSafe(this);
       }
     }
     wasSet = true;
@@ -949,12 +947,12 @@ public class ClimbSafe implements Serializable
 
   public void delete()
   {
-    Administrator existingAdministrator = administrator;
-    administrator = null;
-    if (existingAdministrator != null)
+    Administrator existingAdminstrator = adminstrator;
+    adminstrator = null;
+    if (existingAdminstrator != null)
     {
-      existingAdministrator.delete();
-      existingAdministrator.setClimbSafe(null);
+      existingAdminstrator.delete();
+      existingAdminstrator.setClimbSafe(null);
     }
     while (guides.size() > 0)
     {
@@ -1014,13 +1012,6 @@ public class ClimbSafe implements Serializable
     
   }
 
-  // line 9 "../../../../../ClimbSafePersistence.ump"
-   public void reinitialize(){
-    User.reinitializeUniqueEmail(this.getAdministrator(), this.getGuides(), this.getMembers());
-    BookableItem.reinitializeUniqueName(this.getEquipment(), this.getBundles());
-    Hotel.reinitializeUniqueName(this.getHotels());
-  }
-
 
   public String toString()
   {
@@ -1028,14 +1019,6 @@ public class ClimbSafe implements Serializable
             "nrWeeks" + ":" + getNrWeeks()+ "," +
             "priceOfGuidePerWeek" + ":" + getPriceOfGuidePerWeek()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "startDate" + "=" + (getStartDate() != null ? !getStartDate().equals(this)  ? getStartDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "administrator = "+(getAdministrator()!=null?Integer.toHexString(System.identityHashCode(getAdministrator())):"null");
-  }  
-  //------------------------
-  // DEVELOPER CODE - PROVIDED AS-IS
-  //------------------------
-  
-  // line 6 "../../../../../ClimbSafePersistence.ump"
-  private static final long serialVersionUID = 1L ;
-
-  
+            "  " + "adminstrator = "+(getAdminstrator()!=null?Integer.toHexString(System.identityHashCode(getAdminstrator())):"null");
+  }
 }

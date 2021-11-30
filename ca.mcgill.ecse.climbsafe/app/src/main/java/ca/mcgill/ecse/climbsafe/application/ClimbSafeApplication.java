@@ -4,41 +4,25 @@
 package ca.mcgill.ecse.climbsafe.application;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import ca.mcgill.ecse.climbsafe.javafx.ClimbSafeFxmlView;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
-import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
-import javafx.application.Application;
 
 public class ClimbSafeApplication {
   private static ClimbSafe climbSafe;
-  private static Date currentDate;
+
   public String getGreeting() {
     return "Hello World!";
   }
 
   public static void main(String[] args) {
-    //System.out.println(new ClimbSafeApplication().getGreeting());
-    Application.launch(ClimbSafeFxmlView.class, args);
+    System.out.println(new ClimbSafeApplication().getGreeting());
   }
 
   public static ClimbSafe getClimbSafe() {
     if (climbSafe == null) {
       // these attributes are default, you should set them later with the setters
-      climbSafe = ClimbSafePersistence.load();
+      climbSafe = new ClimbSafe(new Date(0), 0, 0);
     }
     
     return climbSafe;
-  }
-  public static Date getCurrentDate() {
-    if (currentDate == null) {
-      return Date.valueOf(LocalDate.now());
-    }
-
-    return currentDate;
-  }
-
-  public static void setCurrentDate(Date date) {
-    currentDate = date;
   }
 }

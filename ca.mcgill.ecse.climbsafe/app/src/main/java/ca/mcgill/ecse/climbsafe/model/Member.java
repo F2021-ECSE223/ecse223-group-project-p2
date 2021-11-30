@@ -2,13 +2,10 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.climbsafe.model;
-import java.io.Serializable;
 import java.util.*;
 
-// line 52 "../../../../../ClimbSafePersistence.ump"
-// line 102 "../../../../../ClimbSafeStateMachine.ump"
-// line 45 "../../../../../ClimbSafe.ump"
-public class Member extends NamedUser implements Serializable
+// line 39 "../../../../../ClimbSafe.ump"
+public class Member extends NamedUser
 {
 
   //------------------------
@@ -17,13 +14,8 @@ public class Member extends NamedUser implements Serializable
 
   //Member Attributes
   private int nrWeeks;
-  private int refund;
   private boolean guideRequired;
   private boolean hotelRequired;
-
-  //Member State Machines
-  public enum Status { Regular, Banned }
-  private Status status;
 
   //Member Associations
   private ClimbSafe climbSafe;
@@ -38,7 +30,6 @@ public class Member extends NamedUser implements Serializable
   {
     super(aEmail, aPassword, aName, aEmergencyContact);
     nrWeeks = aNrWeeks;
-    refund = 0;
     guideRequired = aGuideRequired;
     hotelRequired = aHotelRequired;
     boolean didAddClimbSafe = setClimbSafe(aClimbSafe);
@@ -47,7 +38,6 @@ public class Member extends NamedUser implements Serializable
       throw new RuntimeException("Unable to create member due to climbSafe. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     bookedItems = new ArrayList<BookedItem>();
-    setStatus(Status.Regular);
   }
 
   //------------------------
@@ -58,14 +48,6 @@ public class Member extends NamedUser implements Serializable
   {
     boolean wasSet = false;
     nrWeeks = aNrWeeks;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setRefund(int aRefund)
-  {
-    boolean wasSet = false;
-    refund = aRefund;
     wasSet = true;
     return wasSet;
   }
@@ -91,11 +73,6 @@ public class Member extends NamedUser implements Serializable
     return nrWeeks;
   }
 
-  public int getRefund()
-  {
-    return refund;
-  }
-
   public boolean getGuideRequired()
   {
     return guideRequired;
@@ -114,42 +91,6 @@ public class Member extends NamedUser implements Serializable
   public boolean isHotelRequired()
   {
     return hotelRequired;
-  }
-
-  public String getStatusFullName()
-  {
-    String answer = status.toString();
-    return answer;
-  }
-
-  public Status getStatus()
-  {
-    return status;
-  }
-
-  public boolean banMember()
-  {
-    boolean wasEventProcessed = false;
-    
-    Status aStatus = status;
-    switch (aStatus)
-    {
-      case Regular:
-        // line 105 "../../../../../ClimbSafeStateMachine.ump"
-        getAssignment().memberBanned();
-        setStatus(Status.Banned);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  private void setStatus(Status aStatus)
-  {
-    status = aStatus;
   }
   /* Code from template association_GetOne */
   public ClimbSafe getClimbSafe()
@@ -343,18 +284,9 @@ public class Member extends NamedUser implements Serializable
   {
     return super.toString() + "["+
             "nrWeeks" + ":" + getNrWeeks()+ "," +
-            "refund" + ":" + getRefund()+ "," +
             "guideRequired" + ":" + getGuideRequired()+ "," +
             "hotelRequired" + ":" + getHotelRequired()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "climbSafe = "+(getClimbSafe()!=null?Integer.toHexString(System.identityHashCode(getClimbSafe())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assignment = "+(getAssignment()!=null?Integer.toHexString(System.identityHashCode(getAssignment())):"null");
-  }  
-  //------------------------
-  // DEVELOPER CODE - PROVIDED AS-IS
-  //------------------------
-  
-  // line 55 "../../../../../ClimbSafePersistence.ump"
-  private static final long serialVersionUID = 6L ;
-
-  
+  }
 }

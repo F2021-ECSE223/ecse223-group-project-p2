@@ -1,15 +1,10 @@
 namespace ca.mcgill.ecse.climbsafe.model;
 
-external interface Serializable {}
-
-use ClimbSafePersistence.ump;
-
-use ClimbSafeStateMachine.ump;
 class ClimbSafe {
   Date startDate;
   Integer nrWeeks;
   Integer priceOfGuidePerWeek;
-  1 <@>- 0..1 Administrator administrator;
+  1 <@>- 0..1 Administrator adminstrator;
   1 <@>- * Guide guides;
   1 <@>- * Member members;
   1 <@>- * BookedItem bookedItems;
@@ -39,13 +34,11 @@ class NamedUser {
 
 class Guide {
   isA NamedUser;
-
 }
 
 class Member {
   isA NamedUser;
   Integer nrWeeks;
-  Integer refund = 0;
   Boolean guideRequired;
   Boolean hotelRequired;
 }
@@ -54,10 +47,6 @@ associationClass BookedItem {
   Integer quantity;
   * Member member;
   * BookableItem item;
-
-  depend java.io.Serializable;
-  isA Serializable;
-  private static final long serialVersionUID = 12L;
 }
 
 class BookableItem {
@@ -80,10 +69,6 @@ associationClass BundleItem {
   Integer quantity;
   * EquipmentBundle bundle;
   * Equipment equipment;
-
-  depend java.io.Serializable;
-  isA Serializable;
-  private static final long serialVersionUID = 13L;
 }
 
 class Hotel {
@@ -96,7 +81,6 @@ class Hotel {
 class Assignment {
   Integer startWeek;
   Integer endWeek;
-  lazy String code;
   0..1 -- 1 Member member;
   * -- 0..1 Guide guide;
   * -- 0..1 Hotel hotel;

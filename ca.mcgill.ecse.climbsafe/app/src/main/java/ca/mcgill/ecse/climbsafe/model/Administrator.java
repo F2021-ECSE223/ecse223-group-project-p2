@@ -2,12 +2,10 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.climbsafe.model;
-import java.io.Serializable;
 import java.util.*;
 
-// line 34 "../../../../../ClimbSafePersistence.ump"
-// line 29 "../../../../../ClimbSafe.ump"
-public class Administrator extends User implements Serializable
+// line 24 "../../../../../ClimbSafe.ump"
+public class Administrator extends User
 {
 
   //------------------------
@@ -27,7 +25,7 @@ public class Administrator extends User implements Serializable
     boolean didAddClimbSafe = setClimbSafe(aClimbSafe);
     if (!didAddClimbSafe)
     {
-      throw new RuntimeException("Unable to create administrator due to climbSafe. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create adminstrator due to climbSafe. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
   }
 
@@ -45,24 +43,24 @@ public class Administrator extends User implements Serializable
     boolean wasSet = false;
     if (aNewClimbSafe == null)
     {
-      //Unable to setClimbSafe to null, as administrator must always be associated to a climbSafe
+      //Unable to setClimbSafe to null, as adminstrator must always be associated to a climbSafe
       return wasSet;
     }
     
-    Administrator existingAdministrator = aNewClimbSafe.getAdministrator();
-    if (existingAdministrator != null && !equals(existingAdministrator))
+    Administrator existingAdminstrator = aNewClimbSafe.getAdminstrator();
+    if (existingAdminstrator != null && !equals(existingAdminstrator))
     {
-      //Unable to setClimbSafe, the current climbSafe already has a administrator, which would be orphaned if it were re-assigned
+      //Unable to setClimbSafe, the current climbSafe already has a adminstrator, which would be orphaned if it were re-assigned
       return wasSet;
     }
     
     ClimbSafe anOldClimbSafe = climbSafe;
     climbSafe = aNewClimbSafe;
-    climbSafe.setAdministrator(this);
+    climbSafe.setAdminstrator(this);
 
     if (anOldClimbSafe != null)
     {
-      anOldClimbSafe.setAdministrator(null);
+      anOldClimbSafe.setAdminstrator(null);
     }
     wasSet = true;
     return wasSet;
@@ -74,17 +72,9 @@ public class Administrator extends User implements Serializable
     climbSafe = null;
     if (existingClimbSafe != null)
     {
-      existingClimbSafe.setAdministrator(null);
+      existingClimbSafe.setAdminstrator(null);
     }
     super.delete();
   }
-  
-  //------------------------
-  // DEVELOPER CODE - PROVIDED AS-IS
-  //------------------------
-  
-  // line 37 "../../../../../ClimbSafePersistence.ump"
-  private static final long serialVersionUID = 3L ;
 
-  
 }
