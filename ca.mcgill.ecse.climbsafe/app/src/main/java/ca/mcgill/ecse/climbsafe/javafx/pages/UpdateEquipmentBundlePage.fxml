@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.javafx.controllers.UpdateEquipmentBundlePageController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0799560546875" minWidth="10.0" prefWidth="272.5118103027344" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.2406921386719" minWidth="10.0" prefWidth="275.22393798828125" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.27606201171875" minWidth="10.0" prefWidth="252.27606201171875" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="100.63214111328125" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="151.83245849609375" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="151.83245849609375" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="76.06396484375" minHeight="8.16754150390625" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="234.92919921875" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="234.92919921875" minHeight="10.0" prefHeight="70.19192504882812" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="234.92919921875" minHeight="10.0" prefHeight="60.808074951171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="240.66830444335938" minHeight="10.0" prefHeight="224.92422485351562" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="207.7970428466797" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="122.3526611328125" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" mnemonicParsing="false" onAction="#UpdateBundleClicked" prefHeight="35.0" prefWidth="276.0" text="Update Bundle" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TableView fx:id="updateTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label alignment="CENTER" prefHeight="72.0" prefWidth="276.0" text="Update  Equipment  Bundle" textAlignment="CENTER" GridPane.columnIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="263.0" text="Old bundle name: " textAlignment="CENTER" GridPane.rowIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="oldBundleName" alignment="TOP_LEFT" prefHeight="15.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="263.0" text="New discount: " textAlignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="updateDiscount" alignment="TOP_LEFT" prefHeight="15.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="263.0" text="New equiment names: " textAlignment="CENTER" GridPane.rowIndex="4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newEquipName" alignment="TOP_LEFT" prefHeight="15.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="263.0" text="New equiment quantities: " textAlignment="CENTER" GridPane.rowIndex="5">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newEquipQuan" alignment="TOP_LEFT" prefHeight="15.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#AddClicked" prefHeight="34.0" prefWidth="182.0" text="Add" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="150.0" />
+         </GridPane.margin>
+      </Button>
+      <Label alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="263.0" text="New bundle name: " textAlignment="CENTER" GridPane.rowIndex="2">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newBundleName" alignment="TOP_LEFT" prefHeight="15.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   </children>
+</GridPane>

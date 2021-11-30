@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="910.0" prefWidth="723.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.javafx.controllers.RegisterMemberController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="723.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.javafx.controllers.RegisterMemberController">
   <tabs>
     <Tab text="Register Member">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="787.0" prefWidth="690.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="842.0" prefWidth="723.0">
                <children>
-                  <GridPane layoutX="192.0" layoutY="75.0" prefHeight="339.0" prefWidth="329.0">
+                  <GridPane layoutX="235.0" layoutY="75.0" prefHeight="195.0" prefWidth="251.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -53,8 +53,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="registerMember" layoutX="223.0" layoutY="782.0" mnemonicParsing="false" onAction="#clickRegisterMember" prefHeight="39.0" prefWidth="293.0" text="Register" textFill="#0d0d0d" />
-                  <GridPane layoutX="194.0" layoutY="423.0" prefHeight="145.0" prefWidth="339.0">
+                  <Button fx:id="registerMember" layoutX="233.0" layoutY="592.0" mnemonicParsing="false" onAction="#clickRegisterMember" prefHeight="39.0" prefWidth="293.0" text="Register" textFill="#0d0d0d" />
+                  <GridPane layoutX="233.0" layoutY="293.0" prefHeight="74.0" prefWidth="278.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.08648681640625" minWidth="10.0" prefWidth="60.884735107421875" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.11526489257812" minWidth="10.0" prefWidth="218.11526489257812" />
@@ -74,8 +74,8 @@
                         <TextField fx:id="registerQuantity" prefHeight="41.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Button fx:id="addItem" layoutX="468.0" layoutY="570.0" mnemonicParsing="false" onAction="#registerAddItem" prefHeight="26.0" prefWidth="61.0" text="Add" />
-                  <TableView fx:id="registerTable" layoutX="268.0" layoutY="625.0" prefHeight="144.0" prefWidth="204.0" />
+                  <Button fx:id="addItem" layoutX="440.0" layoutY="392.0" mnemonicParsing="false" onAction="#registerAddItem" prefHeight="26.0" prefWidth="61.0" text="Add" />
+                  <TableView fx:id="registerTable" layoutX="261.0" layoutY="429.0" prefHeight="144.0" prefWidth="204.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -88,7 +88,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="196.0" layoutY="70.0" prefHeight="339.0" prefWidth="329.0">
+                  <GridPane layoutX="231.0" layoutY="91.0" prefHeight="184.0" prefWidth="263.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -117,15 +117,15 @@
                         <TextField fx:id="updateClimbingWeeks" GridPane.rowIndex="9" />
                      </children>
                   </GridPane>
-                  <GridPane layoutX="196.0" layoutY="459.0" prefHeight="145.0" prefWidth="339.0">
+                  <GridPane layoutX="238.0" layoutY="300.0" prefHeight="93.0" prefWidth="289.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.08648681640625" minWidth="10.0" prefWidth="60.884735107421875" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.11526489257812" minWidth="10.0" prefWidth="218.11526489257812" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="20.581146240234375" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.13092041015625" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
@@ -133,14 +133,14 @@
                         <CheckBox fx:id="updateGuideCheck" mnemonicParsing="false" text="Guide" />
                         <CheckBox fx:id="updateHotelCheck" mnemonicParsing="false" text="Hotel" GridPane.columnIndex="1" />
                         <Label text="Item" GridPane.rowIndex="2" />
-                        <TextField fx:id="updateItem" prefHeight="43.0" prefWidth="236.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="updateItem" prefHeight="32.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Quantity" GridPane.rowIndex="3" />
                         <TextField fx:id="updateQuantity" prefHeight="40.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Button fx:id="updateMember" layoutX="216.0" layoutY="807.0" mnemonicParsing="false" onAction="#clickUpdateMember" prefHeight="39.0" prefWidth="293.0" text="Update" />
-                  <Button fx:id="updateAddItems" layoutX="466.0" layoutY="591.0" mnemonicParsing="false" onAction="#clickUpdateAddItems" prefHeight="26.0" prefWidth="61.0" text="Add" />
-                  <TableView fx:id="updateTable" layoutX="264.0" layoutY="650.0" prefHeight="144.0" prefWidth="204.0" />
+                  <Button fx:id="updateMember" layoutX="236.0" layoutY="592.0" mnemonicParsing="false" onAction="#clickUpdateMember" prefHeight="39.0" prefWidth="293.0" text="Update" />
+                  <Button fx:id="updateAddItems" layoutX="452.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickUpdateAddItems" prefHeight="26.0" prefWidth="61.0" text="Add" />
+                  <TableView fx:id="updateTable" layoutX="265.0" layoutY="428.0" prefHeight="144.0" prefWidth="204.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -153,7 +153,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="170.0" layoutY="271.0" prefHeight="127.0" prefWidth="329.0">
+                  <GridPane layoutX="178.0" layoutY="137.0" prefHeight="127.0" prefWidth="329.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -166,7 +166,7 @@
                         <TextField fx:id="emailToDeleteMember" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Button fx:id="deleteMember" layoutX="204.0" layoutY="501.0" mnemonicParsing="false" onAction="#clickDeleteMember" prefHeight="39.0" prefWidth="293.0" text="Delete" textFill="#030303" />
+                  <Button fx:id="deleteMember" layoutX="207.0" layoutY="302.0" mnemonicParsing="false" onAction="#clickDeleteMember" prefHeight="39.0" prefWidth="293.0" text="Delete" textFill="#030303" />
                </children>
             </AnchorPane>
         </content>

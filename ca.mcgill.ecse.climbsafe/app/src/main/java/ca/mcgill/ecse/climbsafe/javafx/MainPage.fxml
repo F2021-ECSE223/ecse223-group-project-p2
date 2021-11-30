@@ -37,6 +37,39 @@
                   <fx:include source="pages/EquipmentPage.fxml" />
                </content>
             </Tab>
+            <Tab text="Member">
+               <content>
+                  <fx:include source="pages/RegisterMember.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Bundle">
+               <content>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="AddBundle">
+                           <content>
+                              <fx:include source="pages/AddEquipmentBundlePage.fxml" />
+                           </content>
+                      </Tab>
+                      <Tab text="UpdateBundle">
+                           <content>
+                              <fx:include source="pages/UpdateEquipmentBundlePage.fxml" />
+                           </content>
+                      </Tab>
+                        <Tab text="DeleteBundle">
+                           <content>
+                              <fx:include source="pages/DeleteEquipmentBundlePage.fxml" />
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </content>
+            </Tab>
+            <Tab text="ProcessAssignment">
+               <content>
+                  <fx:include source="pages/ProcessAssignmentPage.fxml" />
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>
