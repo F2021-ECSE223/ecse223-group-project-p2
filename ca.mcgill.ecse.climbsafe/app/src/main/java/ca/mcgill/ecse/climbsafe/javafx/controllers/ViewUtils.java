@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.climbsafe.javafx.controllers;
 
 import java.util.List;
+
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet6Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
