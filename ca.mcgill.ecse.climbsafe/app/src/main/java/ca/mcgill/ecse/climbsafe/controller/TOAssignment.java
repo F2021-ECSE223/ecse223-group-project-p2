@@ -23,7 +23,7 @@ public class TOAssignment
   private int totalCostForEquipment;
   private String status;
   private String authorizationCode;
-  private int refundedPercentageAmount;
+private int refundedPercentageAmount;
 
   //------------------------
   // CONSTRUCTOR

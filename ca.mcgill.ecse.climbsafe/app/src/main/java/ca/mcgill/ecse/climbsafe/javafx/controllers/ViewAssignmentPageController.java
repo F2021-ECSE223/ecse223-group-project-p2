@@ -34,7 +34,7 @@ public class ViewAssignmentPageController {
 
 	 public void initialize() {
 	    // initialize the overview table by adding new columns
-	    overviewTable.getColumns().add(createTableColumn("State", "status"));
+	    overviewTable.getColumns().add(createTableColumn("Status", "status"));
 	    overviewTable.getColumns().add(createTableColumn("Start Week", "startWeek"));
 	    overviewTable.getColumns().add(createTableColumn("End Week", "endWeek"));
 	    overviewTable.getColumns().add(createTableColumn("Member", "memberName"));

@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <fx:include source="fxml/pages/EquipmentPage.fxml" />
+      <TabPane prefHeight="904.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="SetUp">
+               <content>
+                  <fx:include source="pages/Setup_NMC.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Guide">
+               <content>
+                  <fx:include source="pages/GuidePage.fxml" />
+               </content>
+            </Tab>
+          <Tab text="InitiateAssignment">
+               <content>
+                  <fx:include source="pages/InitiateAssignment.fxml" />
+               </content>
+          </Tab>
+          <Tab text="Pay">
+               <content>
+                  <fx:include source="pages/PayPage.fxml" />
+               </content></Tab>
+            <Tab text="View">
+               <content>
+                  <fx:include source="pages/ViewAssignmentPage.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Equipment">
+               <content>
+                  <fx:include source="pages/EquipmentPage.fxml" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </VBox>
