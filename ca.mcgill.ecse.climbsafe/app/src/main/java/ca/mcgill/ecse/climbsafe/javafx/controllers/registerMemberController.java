@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 import static ca.mcgill.ecse.climbsafe.javafx.controllers.ViewUtils.successful;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-public class RegisterMemberController {
+public class registerMemberController {
 	@FXML
 	private TextField registerFullName;
 	@FXML
@@ -78,187 +78,261 @@ public class RegisterMemberController {
 	private TextField emailToDeleteMember;
 	@FXML
 	private Button deleteMember;
-	
+
 	List<OverviewItems> listForRegister = new ArrayList<OverviewItems>();
 	List<OverviewUpdateItems> listForUpdate = new ArrayList<OverviewUpdateItems>();;
 	List <Integer> amountRegister = new ArrayList <Integer>();
 	List <String> itemRegister = new ArrayList <String>();
-	
+
 	List <Integer> amountUpdate = new ArrayList <Integer>();
 	List <String> itemUpdate = new ArrayList <String>();
-	
-	
+
+
 	public void initialize() {
 		registerTable.getColumns().add(createTableColumn("Item", "Items"));
-        registerTable.getColumns().add(createTableColumn("Quantity", "amount"));
-        
-        registerTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> registerTable.setItems(getOverviewItems()));
-        ClimbSafeFxmlView.getInstance().registerRefreshEvent(registerTable);
-		
+		registerTable.getColumns().add(createTableColumn("Quantity", "amount"));
+
+		registerTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> registerTable.setItems(getOverviewItems()));
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(registerTable);
+
+		updateTable.getColumns().add(createTableColumnUpdate("Item", "Items"));
+		updateTable.getColumns().add(createTableColumnUpdate("Quantity", "amount"));
+
+		updateTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> updateTable.setItems(getOverviewUpdateItems()));
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(updateTable);
+
+
 	}
-	
-    
-    public class OverviewItems{
-    	private Integer amount ;
-        private String Items;
-        public Integer getAmount() {
-          return amount;
-        }
-        public String getItems() {
-          return Items;
-        }
-    }
-    
-    class OverviewUpdateItems{
-    	private Integer amount ;
-        private String Items;
-    }
+
+
+	public class OverviewItems{
+		private Integer amount ;
+		private String Items;
+		public Integer getAmount() {
+			return amount;
+		}
+		public String getItems() {
+			return Items;
+		}
+	}
+
+	public class OverviewUpdateItems{
+		private Integer amount ;
+		private String Items;
+
+		public Integer getAmount() {
+			return amount;
+		}
+		public String getItems() {
+			return Items;
+		}
+	}
 
 	// Event Listener on Button[#registerMember].onAction
 	@FXML
 	public void clickRegisterMember(ActionEvent event) {
-        try {
-            String fullName = registerFullName.getText();
-            String email = registerEmail.getText();
-            String password = registerPassword.getText();
-            String contact = registerContact.getText();
-            int numOfClimbingWeek = Integer.parseInt(registerClimbingWeeks.getText());
-            boolean guide = checkGuide.isPressed();
-            boolean hotel = checkHotel.isPressed();
-            amountRegister.clear();
-            itemRegister.clear();
-            listForRegister.clear();
-            registerTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> registerTable.setItems(getOverviewItems()));
-            ClimbSafeFxmlView.getInstance().registerRefreshEvent(registerTable);
+		try {
+			String fullName = registerFullName.getText();
+			String email = registerEmail.getText();
+			String password = registerPassword.getText();
+			String contact = registerContact.getText();
+			int numOfClimbingWeek = Integer.parseInt(registerClimbingWeeks.getText());
+			boolean guide = checkGuide.isPressed();
+			boolean hotel = checkHotel.isPressed();
+			amountRegister.clear();
+			itemRegister.clear();
+			listForRegister.clear();
+			registerTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> registerTable.setItems(getOverviewItems()));
+			ClimbSafeFxmlView.getInstance().registerRefreshEvent(registerTable);
 
+			if (fullName == null || fullName.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid full name");
+			}
 
-              if (successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, fullName, contact, numOfClimbingWeek, guide, hotel, itemRegister, amountRegister))){
-                  registerFullName.setText("");
-                  registerEmail.setText("");
-                  registerPassword.setText("");
-                  registerContact.setText("");
-                  registerClimbingWeeks.setText("");
-                  checkGuide.setSelected(false);
-                  checkHotel.setSelected(false);
-   
-                  }
-        }
+			if (email == null || email.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid email");
+			}
+			if (password == null || password.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid password");
+			}
+			if (contact == null || contact.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid contact");
+			}
+			else {
+				if (successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, fullName, contact, numOfClimbingWeek, guide, hotel, itemRegister, amountRegister))){
+					registerFullName.setText("");
+					registerEmail.setText("");
+					registerPassword.setText("");
+					registerContact.setText("");
+					registerClimbingWeeks.setText("");
+					checkGuide.setSelected(false);
+					checkHotel.setSelected(false);
 
-        catch (RuntimeException e) {
+				}
+			}
+		}
 
-            ViewUtils.showError(e.getMessage());
-        }
-    }
+		catch (RuntimeException e) {
+
+			ViewUtils.showError(e.getMessage());
+		}
+	}
 
 	// Event Listener on Button[#addItem].onAction
 	@FXML
 	public void registerAddItem(ActionEvent event) {
-        // TODO Autogenerated
+		// TODO Autogenerated
 
-        String Item = registerItem.getText();
-        Integer quantity = Integer.valueOf(registerQuantity.getText());
-        OverviewItems aOverviewItem = new OverviewItems();
-        itemRegister.add(Item); // For system
-        amountRegister.add(quantity);// For system
-        
-        aOverviewItem.amount=quantity;
-        aOverviewItem.Items=Item;
-        listForRegister.add(aOverviewItem); // for table
-        
-        registerItem.setText("");
-        registerQuantity.setText("");
-        
-        ClimbSafeFxmlView.getInstance().refresh();
-    }
+		String item = registerItem.getText();
+		Integer quantity = Integer.valueOf(registerQuantity.getText());
+
+		if (item == null || item.trim().isEmpty()) {
+			ViewUtils.showError("Please input a valid full name");
+		}
+
+		else {
+			OverviewItems aOverviewItem = new OverviewItems();
+			itemRegister.add(item); // For system
+			amountRegister.add(quantity);// For system
+
+			aOverviewItem.amount=quantity;
+			aOverviewItem.Items=item;
+			listForRegister.add(aOverviewItem); // for table
+
+			registerItem.setText("");
+			registerQuantity.setText("");
+
+			ClimbSafeFxmlView.getInstance().refresh();
+		}
+	}
 
 	// Event Listener on Button[#updateMember].onAction
 	@FXML
 	public void clickUpdateMember(ActionEvent event) {
-		
-		 try {
+
+		try {
 
 
-	            String fullNameUpdate = updateFullName.getText();
-	            String emailUpdate = updateEmail.getText();
-	            String passwordUpdate = updatePassword.getText();
-	            String contactUpdate = updateContact.getText();
-	            int numOfClimbingWeekUpdate = Integer.parseInt(updateClimbingWeeks.getText());
-	            boolean guideUpdate = updateGuideCheck.isPressed();
-	            boolean hotelUpdate = updateHotelCheck.isPressed();
-	            
+			String fullNameUpdate = updateFullName.getText();
+			String emailUpdate = updateEmail.getText();
+			String passwordUpdate = updatePassword.getText();
+			String contactUpdate = updateContact.getText();
+			int numOfClimbingWeekUpdate = Integer.parseInt(updateClimbingWeeks.getText());
+			boolean guideUpdate = updateGuideCheck.isPressed();
+			boolean hotelUpdate = updateHotelCheck.isPressed();
+
+
+			if (fullNameUpdate == null || fullNameUpdate.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid full name");
+			}
+
+			if (emailUpdate == null || emailUpdate.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid email");
+			}
+			if (passwordUpdate == null || passwordUpdate.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid password");
+			}
+			if (contactUpdate == null || contactUpdate.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid contact");
+			}
+
+			else {
 
 
 
-	              if (successful(() -> ClimbSafeFeatureSet2Controller.updateMember(emailUpdate, passwordUpdate, fullNameUpdate, contactUpdate, numOfClimbingWeekUpdate, guideUpdate, hotelUpdate, itemUpdate, amountUpdate))){
-	                  updateFullName.setText("");
-	                  updateEmail.setText("");
-	                  updatePassword.setText("");
-	                  updateContact.setText("");
-	                  updateClimbingWeeks.setText("");
-	                  updateGuideCheck.setSelected(false);
-	                  updateHotelCheck.setSelected(false);
-	                  amountUpdate.clear();
-	  	              itemUpdate.clear();
-	  	              listForUpdate.clear();
-	  	              updateTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> updateTable.setItems(getOverviewUpdateItems()));
-	  	              ClimbSafeFxmlView.getInstance().registerRefreshEvent(updateTable);
-	   
-	                  }
-	        }
 
-	        catch (RuntimeException e) {
+				if (successful(() -> ClimbSafeFeatureSet2Controller.updateMember(emailUpdate, passwordUpdate, fullNameUpdate, contactUpdate, numOfClimbingWeekUpdate, guideUpdate, hotelUpdate, itemUpdate, amountUpdate))){
+					updateFullName.setText("");
+					updateEmail.setText("");
+					updatePassword.setText("");
+					updateContact.setText("");
+					updateClimbingWeeks.setText("");
+					updateGuideCheck.setSelected(false);
+					updateHotelCheck.setSelected(false);
+					amountUpdate.clear();
+					itemUpdate.clear();
+					listForUpdate.clear();
+					updateTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> updateTable.setItems(getOverviewUpdateItems()));
+					ClimbSafeFxmlView.getInstance().registerRefreshEvent(updateTable);
 
-	            ViewUtils.showError(e.getMessage());
-	        }
-		  
+				}
+			}
+		}
+
+		catch (RuntimeException e) {
+
+			ViewUtils.showError(e.getMessage());
+		}
+
 	}
 	// Event Listener on Button[#updateAddItems].onAction
 	@FXML
 	public void clickUpdateAddItems(ActionEvent event) {
-		 String itemForupdate = updateItem.getText();
-	        Integer quantityForUpdate = Integer.valueOf(updateQuantity.getText());
-	        OverviewUpdateItems aOverviewItem = new OverviewUpdateItems();
-	        itemUpdate.add(itemForupdate); // For system
-	        amountUpdate.add(quantityForUpdate);// For system
-	        aOverviewItem.amount=quantityForUpdate;
-	        aOverviewItem.Items=itemForupdate;
-	        listForUpdate.add(aOverviewItem); // for table
+		String itemForUpdate = updateItem.getText();
+		Integer quantityForUpdate = Integer.valueOf(updateQuantity.getText());
+
+		if (itemForUpdate == null || itemForUpdate.trim().isEmpty()) {
+			ViewUtils.showError("Please input a valid full name");
+		}
+		OverviewUpdateItems aOverviewItem = new OverviewUpdateItems();
+		itemUpdate.add(itemForUpdate); // For system
+		amountUpdate.add(quantityForUpdate);// For system
+		aOverviewItem.amount=quantityForUpdate;
+		aOverviewItem.Items=itemForUpdate;
+		listForUpdate.add(aOverviewItem); // for table
+		updateItem.setText("");
+		updateQuantity.setText("");
+
+		ClimbSafeFxmlView.getInstance().refresh();
 	}
 	// Event Listener on Button[#deleteMember].onAction
 	@FXML
 	public void clickDeleteMember(ActionEvent event) {
-		
-		 try {
-			 String deleteEmail = emailToDeleteMember.getText();
-				
 
-	              if (successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(deleteEmail))){
-	            	  emailToDeleteMember.setText("");
-	   
-	                  }
-	        }
+		try {
+			String deleteEmail = emailToDeleteMember.getText();
 
-	        catch (RuntimeException e) {
+			if (deleteEmail == null || deleteEmail.trim().isEmpty()) {
+				ViewUtils.showError("Please input a valid full name");
+			}
+			else {
 
-	            ViewUtils.showError(e.getMessage());
-	        }
-		  
-		
+
+				if (successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(deleteEmail))){
+					emailToDeleteMember.setText("");
+
+				}
+			}
+		}
+
+		catch (RuntimeException e) {
+
+			ViewUtils.showError(e.getMessage());
+		}
+
+
 	}
-	
-	
+
+
 	public static TableColumn<OverviewItems, String> createTableColumn(String header,
-	          String propertyName) {
-	        TableColumn<OverviewItems, String> column = new TableColumn<>(header);
-	        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-	        return column;
-	      }
-	
+			String propertyName) {
+		TableColumn<OverviewItems, String> column = new TableColumn<>(header);
+		column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+		return column;
+	}
+
+	public static TableColumn<OverviewUpdateItems, String> createTableColumnUpdate(String header,
+			String propertyName) {
+		TableColumn<OverviewUpdateItems, String> column = new TableColumn<>(header);
+		column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+		return column;
+	}
+
 	public ObservableList<OverviewItems> getOverviewItems() {
-        return FXCollections.observableList(listForRegister);
-      }
-	
+		return FXCollections.observableList(listForRegister);
+	}
+
 	public ObservableList<OverviewUpdateItems> getOverviewUpdateItems() {
-        return FXCollections.observableList(listForUpdate);
-      }
+		return FXCollections.observableList(listForUpdate);
+	}
 }
