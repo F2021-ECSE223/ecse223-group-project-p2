@@ -47,9 +47,7 @@ public class DemoFileCreator {
     plus.addBundleItem(4, climbSafe, rope);
     plus.addBundleItem(3, climbSafe, pickaxe);
 
-    // hotel
-    new Hotel("Climbers' Lodge", "123 Mountain View Road", HotelRating.ThreeStars, climbSafe);
-    new Hotel("High Peak", "455 Mountain View Road", HotelRating.FourStars, climbSafe);
+    // hotel deleted
 
     // guide
     new Guide("bob@gmail.com", "password", "Bob Hill", "(222) 123-4567", climbSafe);
@@ -66,7 +64,7 @@ public class DemoFileCreator {
     jane.addBookedItem(1, climbSafe, stove);
     jane.addBookedItem(1, climbSafe, pickaxe);
     Member jack = new Member("jack@hotmail.com", "1234", "Jack Black", "(222) 987-6542", 4, true,
-        true, climbSafe);
+        false, climbSafe);
     jack.addBookedItem(1, climbSafe, standard);
     jack.addBookedItem(1, climbSafe, plus);
     new Member("julie@hotmail.com", "1234", "Julie Black", "(222) 987-6543", 1, true, false,

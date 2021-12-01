@@ -83,6 +83,9 @@ public class AssignmentController {
   public static void StartTrip(int week) throws InvalidInputException {
     String error = null;
     ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+    if(week > climbSafe.getNrWeeks()) {
+      throw new InvalidInputException("Week number is invalid");
+    }
     List<Member> members = climbSafe.getMembers();
     for (Member m : members) {
       if (m.hasAssignment() && m.getAssignment().getStartWeek() == week)

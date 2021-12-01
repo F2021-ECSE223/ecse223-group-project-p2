@@ -76,16 +76,8 @@ public class GuidePageController {
 					nameGuide.setText("");
 					passwordGuide.setText("");
 					emergencyGuide.setText("");
-					
-					
-					
-				}
-				
-				
-			}
-			
-			
-			
+				}	
+			}	
 		} catch (RuntimeException e){
 			
 			ViewUtils.showError(e.getMessage());
