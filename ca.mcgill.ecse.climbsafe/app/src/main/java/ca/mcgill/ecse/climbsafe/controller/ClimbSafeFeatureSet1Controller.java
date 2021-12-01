@@ -16,7 +16,7 @@ public class ClimbSafeFeatureSet1Controller {
        * @param nrWeeks : number of weeks in the climbing season 
        * @param priceOfGuidePerWeek : the price of guide per week 
        * */
-  public static void setup(Date startDate, int nrWeeks, int priceOfGuidePerWeek, String email, String password)
+  public static void setup(Date startDate, int nrWeeks, int priceOfGuidePerWeek)
       throws InvalidInputException {
       //test for illegal inputs 
       if ( nrWeeks < 0 ) {
@@ -27,7 +27,6 @@ public class ClimbSafeFeatureSet1Controller {
       }
       //convert illegalargumentexception to invalidinputexception
       try {
-          Administrator admin = new Administrator(email,password,ClimbSafeApplication.getClimbSafe());
           String date_s = startDate.toString(); 
           java.sql.Date.valueOf(date_s); 
       } catch (IllegalArgumentException e) {

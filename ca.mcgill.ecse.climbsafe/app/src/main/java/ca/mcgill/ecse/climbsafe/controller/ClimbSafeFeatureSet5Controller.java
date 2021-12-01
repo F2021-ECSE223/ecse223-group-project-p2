@@ -112,7 +112,6 @@ public class ClimbSafeFeatureSet5Controller {
     if(newDiscount > 100) {    
       error = "Discount must be no more than 100";
     }
-   
     int typeCount = 0;
     String firstType=newEquipmentNames.get(0);
     for(String equipmentName : newEquipmentNames) {
@@ -141,34 +140,19 @@ public class ClimbSafeFeatureSet5Controller {
     if(foundBundle == null) {
       error = "Equipment bundle " +oldName+" does not exist";
     }
-    
     if (!error.isEmpty()) {
       throw new InvalidInputException(error.trim());
     }
 
-    if((!newName.equals(""))&& (!newName.equals(oldName)) && 
-        BookableItem.hasWithName(newName)&& BookableItem.getWithName(newName).getClass()==EquipmentBundle.class) {
-      error = "A bookable item called large bundle already exists";
+    if(!oldName.equals(newName) && BookableItem.hasWithName(newName)) {
+      error = "A bookable item called "+ newName+" already exists";
       throw new InvalidInputException(error.trim());
     }
 
     try {
-        foundBundle = (EquipmentBundle) BookableItem.getWithName(oldName);
-        for(int i=0;i<newEquipmentNames.size();i++) {
-          Equipment theEquip = (Equipment) BookableItem.getWithName(newEquipmentNames.get(i));
-          for(BundleItem element:foundBundle.getBundleItems()) {
-            if(element.getEquipment().getName().equals(theEquip.getName())) {
-              error = "A bookable item called " + theEquip.getName()+" already exists";
-                throw new InvalidInputException(error.trim());
-            }
-          }
-          foundBundle.setName(newName);
-          foundBundle.setClimbSafe(climbSafe);
-          foundBundle.setDiscount(newDiscount);
-          ClimbSafe climbSafe = theEquip.getClimbSafe();
-          Integer equiQuan = newEquipmentQuantities.get(i);
-          foundBundle.addBundleItem(equiQuan, climbSafe, theEquip);
-          }
+      foundBundle = (EquipmentBundle) BookableItem.getWithName(oldName);
+      foundBundle.delete();
+      addEquipmentBundle(newName, newDiscount,newEquipmentNames,newEquipmentQuantities);
         ClimbSafePersistence.save();
         }
     catch (RuntimeException e) {

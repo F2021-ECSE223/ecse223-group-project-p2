@@ -54,6 +54,9 @@ public class EquipmentPageController {
 		    		addWeightTextField.setText("");
 		    		addCostTextField.setText("");
 		    	}
+		    	addEquipmentNameTextField.setText("");
+                addWeightTextField.setText("");
+                addCostTextField.setText("");
 		    }
 		} catch(RuntimeException e){
 			ViewUtils.showError(e.getMessage());
@@ -83,6 +86,10 @@ public class EquipmentPageController {
 					updateWeightTextField.setText("");
 					updateCostTextField.setText("");
 				}
+				updateEquipmentNameTextField.setText("");
+                updateNewEquipmentNameTextField.setText("");
+                updateWeightTextField.setText("");
+                updateCostTextField.setText("");
 			}
 		} catch(RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
@@ -101,6 +108,7 @@ public class EquipmentPageController {
 				if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipment(removeEquipmentName)));
 				removeEquipmentNameTextField.setText("");
 			}
+			removeEquipmentNameTextField.setText("");
 		} catch(RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
