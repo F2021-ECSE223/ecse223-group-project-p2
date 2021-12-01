@@ -52,34 +52,40 @@ public class AddEquipmentBundlePageController {
 	// Event Listener on Button.onAction
 	@FXML
 	public void AddBundleClicked(ActionEvent event) {
-      try {
+	  
         String name = addName.getText();
         int discount = Integer.parseInt(addDiscount.getText());
         addTable.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> addTable.setItems(getOverviewItems()));
         ClimbSafeFxmlView.getInstance().registerRefreshEvent(addTable);
-
-
+        
+        if (name == null || name.trim().isEmpty()) {
+          ViewUtils.showError("Please input a valid Bundle name");
+        }
+        else {        
           if (successful(() -> ClimbSafeFeatureSet5Controller.addEquipmentBundle(name,discount,listEquipment,listQuantity))){
-              addName.setText("");
-              addDiscount.setText("");
+            addName.setText("");
+            addDiscount.setText("");
+            listForAdd.clear();
+            listEquipment.clear();
+            listQuantity.clear();
+            ClimbSafeFxmlView.getInstance().refresh();
               }
           listForAdd.clear();
           listEquipment.clear();
           listQuantity.clear();
           ClimbSafeFxmlView.getInstance().refresh();
-    }
+        }
+}
 
-    catch (RuntimeException e) {
-
-        ViewUtils.showError(e.getMessage());
-    }
-	  
-	}
+	
 	// Event Listener on Button.onAction
 	@FXML
 	public void AddClicked(ActionEvent event) {
 	  String equipment = addEquipment.getText();
       Integer quantity = Integer.valueOf(addEquipmentQuantity.getText());
+      if (equipment == null || equipment.trim().isEmpty()) {
+        ViewUtils.showError("Please input a valid equipment name");
+      }else {
       addItem aOverviewItem = new addItem();
       listEquipment.add(equipment); // For system
       listQuantity.add(quantity);// For system
@@ -92,7 +98,7 @@ public class AddEquipmentBundlePageController {
       addEquipmentQuantity.setText("");
       
       ClimbSafeFxmlView.getInstance().refresh();
-	  
+     } 
 	}
 	
 	public static TableColumn<addItem, String> createTableColumn(String header,
