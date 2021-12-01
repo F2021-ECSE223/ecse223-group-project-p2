@@ -39,7 +39,7 @@
             </Tab>
             <Tab text="Member">
                <content>
-                  <fx:include source="pages/RegisterMember.fxml" />
+                  <fx:include source="pages/MemberPage.fxml" />
                </content>
             </Tab>
             <Tab text="Bundle">
