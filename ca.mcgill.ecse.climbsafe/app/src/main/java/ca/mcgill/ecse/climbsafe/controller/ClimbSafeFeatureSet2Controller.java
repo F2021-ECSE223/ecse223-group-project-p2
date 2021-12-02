@@ -207,6 +207,7 @@ public class ClimbSafeFeatureSet2Controller {
 		  theMem.setNrWeeks(newNrWeeks);
 	
 		  while(true) {
+		
 			  theMem.getBookedItem(0).delete();
 	
 			  if(theMem.getBookedItems().size() == 0) {

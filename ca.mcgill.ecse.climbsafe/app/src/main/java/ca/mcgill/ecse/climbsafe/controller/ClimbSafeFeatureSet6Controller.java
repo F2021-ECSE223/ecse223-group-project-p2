@@ -78,9 +78,7 @@ public class ClimbSafeFeatureSet6Controller {
         guideName = assignment.getGuide().getName();
         guideCost = climbSafe.getPriceOfGuidePerWeek();
       }
-      if (assignment.getMember().isHotelRequired()) {
-        hotelName = assignment.getHotel().getName();
-      }
+   
       List<BookedItem> bookedItems = assignment.getMember().getBookedItems();
       for (BookedItem booked : bookedItems) {
         BookableItem i = booked.getItem();

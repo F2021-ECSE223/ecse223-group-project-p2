@@ -40,7 +40,7 @@ public class P10StepDefinitions {
     int nrWeeks = Integer.parseInt(weeks);
     int p = Integer.parseInt(price);
     try {
-      ClimbSafeFeatureSet1Controller.setup(d, nrWeeks, p);
+      ClimbSafeFeatureSet1Controller.setup(d, nrWeeks, p, null, null);
     } catch (InvalidInputException e) {
       error += e.getMessage();
     }
@@ -70,7 +70,7 @@ public class P10StepDefinitions {
       Date d = Date.valueOf(date);
       int nrWeeks = Integer.parseInt(weeks);
       int p = Integer.parseInt(price);
-      ClimbSafeFeatureSet1Controller.setup(d, nrWeeks, p);
+      ClimbSafeFeatureSet1Controller.setup(d, nrWeeks, p,null,null);
     } catch (InvalidInputException e1) {
       error += e1.getMessage();
     } catch (IllegalArgumentException e2) {
