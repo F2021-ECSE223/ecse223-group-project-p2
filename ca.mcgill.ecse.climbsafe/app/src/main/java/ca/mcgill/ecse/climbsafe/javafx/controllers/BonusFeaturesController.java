@@ -25,6 +25,7 @@ public class BonusFeaturesController {
 			Pie.setData(a);
 		} catch(Exception e) {
 			System.out.println("oh no!");
+			e.printStackTrace();
 		}
 	}
 }
