@@ -70,39 +70,25 @@ public class ClimbSafeBonusFeaturesController {
 		//calculate percentage
 		int percent_wG = wG/(inst.getMembers().size()) * 100;
 		int percent_nG = 100 - percent_wG;
-		
+
 		b.add(new PieChart.Data("with Guide " + percent_wG + "%", percent_wG));
 		b.add(new PieChart.Data("no Guide " + percent_nG + "%", percent_nG));
 
 		return b;
 	}
-	
-	
-	public static ObservableList<Series> DrawGraphLine() {
-		try {
 
-			ObservableList<LineChart> c = FXCollections.observableArrayList();
-			ObservableList<Series> d = FXCollections.observableArrayList();
-			//axes
-	        final NumberAxis xAxis = new NumberAxis(0, 100, 1);
-	        final NumberAxis yAxis = new NumberAxis(0, 100, 1);
-			final LineChart lineChart = new LineChart(xAxis,yAxis);
-			xAxis.setLabel("Weeks");
-			yAxis.setLabel("Number of Members");
-	        //series
-	        Series series = new XYChart.Series();
-	        //adding data to series 
-	        series.getData().add(new XYChart.Data(4, 10));
-	        series.getData().add(new XYChart.Data(8, 15));
-	        c.add(lineChart); 
-	        System.out.println("Controller Fire!");
-	        d.add(series);
-	        return d;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			}
-		return null;
+	public static Series DrawGraphLine() {
+
+		XYChart.Series c = new XYChart.Series();
+		c.setName("Members per Week");
+		
+		
+
+		
+		
+		return c;
+
 	}
 }
 

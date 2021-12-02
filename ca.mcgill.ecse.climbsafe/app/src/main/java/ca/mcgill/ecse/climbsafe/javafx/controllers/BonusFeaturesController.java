@@ -42,8 +42,10 @@ public class BonusFeaturesController {
 		try {
 			//Series a = ClimbSafeBonusFeaturesController.DrawGraphLine();
 			//ObservableList<Series> b = FXCollections.observableArrayList();
-			ObservableList<Series> b = ClimbSafeBonusFeaturesController.DrawGraphLine();
-			GraphMember.setData(b);
+			Series b = ClimbSafeBonusFeaturesController.DrawGraphLine();
+			ObservableList<Series> d = FXCollections.observableArrayList();
+			d.add(b);
+			GraphMember.setData(d);
 			System.out.println("UI Fire!");
 		} catch(Exception e) {
 			e.printStackTrace();
