@@ -6,37 +6,48 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.javafx.controllers.Setup_NMCController">
-  <tabs>
-    <Tab text="Setup">
-         <content>
-            <GridPane>
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.79998779296875" minWidth="10.0" prefWidth="217.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.20001220703125" minWidth="10.0" prefWidth="186.60000000000002" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="186.4000244140625" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="115.4000038146973" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="start of climbing season" GridPane.halignment="CENTER" />
-                  <Label text="Number of Weeks" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Label text="guide price" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button fx:id="UpdateAdmin" mnemonicParsing="false" onAction="#clickUpdateAdmin" prefHeight="23.0" prefWidth="141.0" text="update" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="NumberWeeks" prefHeight="33.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="GuidePrice" prefHeight="30.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="StartDate" prefHeight="29.0" prefWidth="187.0" GridPane.columnIndex="1" />
-               </children>
-            </GridPane>
-         </content></Tab>
-  </tabs>
-</TabPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.javafx.controllers.Setup_NMCController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0">
+         <image>
+            <Image url="@Background.png" />
+         </image>
+      </ImageView>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Setup">
+               <content>
+                  <GridPane prefHeight="608.0" prefWidth="605.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.79998779296875" minWidth="10.0" prefWidth="217.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.20001220703125" minWidth="10.0" prefWidth="186.60000000000002" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="186.4000244140625" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="start of climbing season" GridPane.halignment="CENTER" />
+                        <Label text="Number of Weeks" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="guide price" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <TextField fx:id="NumberWeeks" prefHeight="33.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="GuidePrice" prefHeight="30.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="StartDate" prefHeight="29.0" prefWidth="187.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Button fx:id="UpdateAdmin" layoutX="280.0" layoutY="645.0" mnemonicParsing="false" onAction="#clickUpdateAdmin" prefHeight="23.0" prefWidth="141.0" text="update" />
+   </children>
+</AnchorPane>

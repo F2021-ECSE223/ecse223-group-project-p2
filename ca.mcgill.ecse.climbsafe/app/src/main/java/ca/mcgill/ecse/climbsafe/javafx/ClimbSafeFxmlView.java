@@ -23,8 +23,8 @@ public class ClimbSafeFxmlView extends Application {
       var root = (Pane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
       var scene = new Scene(root);
       primaryStage.setScene(scene);
-      primaryStage.setMinWidth(800);
-      primaryStage.setMinHeight(600);
+      primaryStage.setMinWidth(700);
+      primaryStage.setMinHeight(700);
       primaryStage.setTitle("ClimbSafe");
       primaryStage.show();
       refresh();
