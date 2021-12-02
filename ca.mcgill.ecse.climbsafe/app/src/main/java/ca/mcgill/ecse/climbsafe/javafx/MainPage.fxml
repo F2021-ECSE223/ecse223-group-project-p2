@@ -75,6 +75,11 @@
                   <fx:include source="pages/HotelPage.fxml" />
                </content>
             </Tab>
+            <Tab text="Statistic">
+               <content>
+                  <fx:include source="pages/BonusFeatures.fxml" />
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>
