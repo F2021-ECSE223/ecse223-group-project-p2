@@ -32,10 +32,10 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="171.0" text="Full Name" />
-                        <TextField fx:id="registerFullName" prefHeight="23.0" prefWidth="226.0" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="171.0" text="Email" GridPane.rowIndex="1" />
-                        <TextField fx:id="registerEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="171.0" text="Full Name" GridPane.rowIndex="1" />
+                        <TextField fx:id="registerFullName" prefHeight="23.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="171.0" text="Email" />
+                        <TextField fx:id="registerEmail" GridPane.columnIndex="1" />
                         <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="175.0" text="Password" GridPane.rowIndex="2" />
                         <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="174.0" text="Emergency Contact Number" GridPane.rowIndex="3" />
                         <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="177.0" text="Number Of Climbing Weeks" GridPane.rowIndex="4" />
@@ -97,10 +97,10 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="182.0" text="Full Name" />
-                        <TextField fx:id="updateFullName" prefHeight="22.0" prefWidth="162.0" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="179.0" text="Email" GridPane.rowIndex="1" />
-                        <TextField fx:id="updateEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="182.0" text="Full Name" GridPane.rowIndex="1" />
+                        <TextField fx:id="updateFullName" prefHeight="22.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="179.0" text="Email" />
+                        <TextField fx:id="updateEmail" GridPane.columnIndex="1" />
                         <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="181.0" text="Password" GridPane.rowIndex="2" />
                         <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="182.0" text="Emergency Contact Number" GridPane.rowIndex="3" />
                         <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="184.0" text="Number Of Climbing Weeks" GridPane.rowIndex="4" />

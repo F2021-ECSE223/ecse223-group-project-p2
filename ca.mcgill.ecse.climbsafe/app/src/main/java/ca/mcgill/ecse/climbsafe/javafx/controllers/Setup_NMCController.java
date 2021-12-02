@@ -18,10 +18,6 @@ public class Setup_NMCController {
 	@FXML
 	private Button UpdateAdmin;
 	@FXML
-	private TextField AdminEmail;
-	@FXML
-	private TextField AdminPassword;
-	@FXML
 	private TextField NumberWeeks;
 	@FXML
 	private TextField GuidePrice;
@@ -47,8 +43,6 @@ public class Setup_NMCController {
 			// TODO Auto-generated catch block
 			ViewUtils.showError(e.getMessage());
 		}
-		AdminEmail.setText("");
-        AdminPassword.setText("");
         NumberWeeks.setText("");
         GuidePrice.setText("");
 	}

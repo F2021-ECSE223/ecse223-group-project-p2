@@ -195,8 +195,7 @@ public class ClimbSafeFeatureSet2Controller {
 		  theMem = (Member) Member.getWithEmail(email);
 		  
 		  if(theMem==null) {
-			  throw new InvalidInputException("Member not found");
-			  
+			  throw new InvalidInputException("Member not found");			  
 		  }
 		  
 		  theMem.setName(newName);
@@ -206,7 +205,7 @@ public class ClimbSafeFeatureSet2Controller {
 		  theMem.setHotelRequired(newHotelRequired);
 		  theMem.setNrWeeks(newNrWeeks);
 	
-		  while(true) {
+		  while(theMem.getBookedItems().size() > 0) {
 			  theMem.getBookedItem(0).delete();
 	
 			  if(theMem.getBookedItems().size() == 0) {

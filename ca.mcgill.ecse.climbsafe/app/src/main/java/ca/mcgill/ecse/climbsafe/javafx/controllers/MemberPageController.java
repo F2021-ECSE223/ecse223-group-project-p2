@@ -298,7 +298,6 @@ public class MemberPageController {
       }
       else {
 
-
         if (successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(deleteEmail))){
           emailToDeleteMember.setText("");
 

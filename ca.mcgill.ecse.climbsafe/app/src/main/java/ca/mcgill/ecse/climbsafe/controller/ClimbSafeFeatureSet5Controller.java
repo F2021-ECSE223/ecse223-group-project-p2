@@ -151,12 +151,20 @@ public class ClimbSafeFeatureSet5Controller {
 
     try {
       foundBundle = (EquipmentBundle) BookableItem.getWithName(oldName);
-      foundBundle.delete();
-      addEquipmentBundle(newName, newDiscount,newEquipmentNames,newEquipmentQuantities);
+      while(foundBundle.getBundleItems().size() > 0) {
+        foundBundle.getBundleItem(0).delete();
+    }
+      foundBundle.setName(newName);
+      foundBundle.setDiscount(newDiscount);
+      for(int i=0;i<newEquipmentNames.size();i++) {
+        Equipment theEquip = (Equipment) BookableItem.getWithName(newEquipmentNames.get(i));
+        Integer equiQuan = newEquipmentQuantities.get(i);
+        foundBundle.addBundleItem(equiQuan, climbSafe, theEquip);
+      }
         ClimbSafePersistence.save();
         }
-    catch (RuntimeException e) {
-      error = e.getMessage();
+    catch (Exception e) {
+      error = e.getMessage(); 
       throw new InvalidInputException(error);
       }   
   }

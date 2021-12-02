@@ -47,23 +47,20 @@ public class GuidePageController {
 			
 			if(email == null || email.trim().isEmpty()) {
 				ViewUtils.showError("Please input a valid email");
-				
-				
-			}
+}
 			
-			if(name ==null || name.trim().isEmpty()) {
-				
-				
+			else if(name ==null || name.trim().isEmpty()) {
+	
 				ViewUtils.showError("Please input a valid name");
 			}
 			
-			if(password == null || password.trim().isEmpty()) {
+			else if(password == null || password.trim().isEmpty()) {
 				
 				
 				ViewUtils.showError("Please input a valid password");
 			}
 			
-			if(emergency ==null || emergency.trim().isEmpty()) {
+			else if(emergency ==null || emergency.trim().isEmpty()) {
 				
 				ViewUtils.showError("Please input a valid emergency contact");
 			}
@@ -98,21 +95,16 @@ public class GuidePageController {
 		
 		try {
 			
-			if(aEmail != null) {
-				
-				ViewUtils.showError("Cannot change a guide's email");
-			}
-			
 			if(newName == null || newName.trim().isEmpty()) {
 				
 				ViewUtils.showError("Please input a valid new email");
 				
-			}
+			}else
 			
 			if(newPassword == null || newPassword.trim().isEmpty()) {
 				
 				ViewUtils.showError("Please input a valid new password");
-			}
+			}else
 			
 			if(newEmergency ==null|| newEmergency.trim().isEmpty()) {
 				

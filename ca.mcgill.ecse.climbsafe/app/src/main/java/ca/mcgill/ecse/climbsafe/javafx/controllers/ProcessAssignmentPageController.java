@@ -23,12 +23,10 @@ public class ProcessAssignmentPageController {
 	  }
 	  else {
 	  Integer week=Integer.parseInt(startTextField.getText());
-      try{callController(() -> AssignmentController.StartTrip(week));
-      }catch(RuntimeException e) {
-        ViewUtils.showError(e.getMessage());
-      }
+      if(callController(() -> AssignmentController.StartTrip(week))){
 	  }
       startTextField.clear();
+	}
 	}
 	// Event Listener on Button.onAction
 	@FXML

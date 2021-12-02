@@ -65,7 +65,6 @@ public class ClimbSafeFeatureSet6Controller {
     for (var assignment : climbSafe.getAssignments()) {
       int week = assignment.getEndWeek() - assignment.getStartWeek() + 1;
       int totalCostForEquipmentPerWeek = 0;
-      int costForBundlePerWeek = 0;
       String guideEmail = null;
       String guideName = null;
       String hotelName = null;
@@ -79,11 +78,15 @@ public class ClimbSafeFeatureSet6Controller {
         guideCost = climbSafe.getPriceOfGuidePerWeek();
       }
       if (assignment.getMember().isHotelRequired()) {
+        Hotel hotel=assignment.getHotel();
+        if(hotel != null) {
         hotelName = assignment.getHotel().getName();
+        }
       }
       List<BookedItem> bookedItems = assignment.getMember().getBookedItems();
       for (BookedItem booked : bookedItems) {
         BookableItem i = booked.getItem();
+        int costForBundlePerWeek = 0;
         if (i instanceof Equipment) {
           totalCostForEquipmentPerWeek += ((Equipment) i).getPricePerWeek() * booked.getQuantity();
         } else {

@@ -70,6 +70,11 @@
                   <fx:include source="pages/ProcessAssignmentPage.fxml" />
                </content>
             </Tab>
+            <Tab text="Hotel">
+               <content>
+                  <fx:include source="pages/HotelPage.fxml" />
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

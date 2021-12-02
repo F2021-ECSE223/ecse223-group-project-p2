@@ -39,6 +39,7 @@ public class ViewAssignmentPageController {
 	    overviewTable.getColumns().add(createTableColumn("End Week", "endWeek"));
 	    overviewTable.getColumns().add(createTableColumn("Member", "memberName"));
 	    overviewTable.getColumns().add(createTableColumn("MemberEmail", "memberEmail"));
+	    overviewTable.getColumns().add(createTableColumn("Hotel", "hotelName"));
 	    overviewTable.getColumns().add(createTableColumn("Guide", "guideName"));
 	    overviewTable.getColumns().add(createTableColumn("GuideEmail", "guideEmail"));
 	    overviewTable.getColumns().add(createTableColumn("Guide Cost", "totalCostForGuide"));
