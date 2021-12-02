@@ -47,7 +47,10 @@ public class DemoFileVerifier {
     verifyEquipmentBundle("plus", 30, new int[] {2, 4, 3},
         new String[] {"stove", "rope", "pickaxe"});
 
-    // hotel deleted
+    // hotel
+    assertEquals(2, climbSafe.getHotels().size());
+    verifyHotel("Climbers' Lodge", "123 Mountain View Road", HotelRating.ThreeStars);
+    verifyHotel("High Peak", "455 Mountain View Road", HotelRating.FourStars);
 
     // guide
     assertEquals(2, climbSafe.getGuides().size());
@@ -60,7 +63,7 @@ public class DemoFileVerifier {
         new int[] {1, 2}, new String[] {"plus", "rope"});
     verifyMember("jane@hotmail.com", "1234", "Jane Black", "(222) 987-6541", 3, false, false,
         new int[] {1, 1, 1}, new String[] {"rope", "stove", "pickaxe"});
-    verifyMember("jack@hotmail.com", "1234", "Jack Black", "(222) 987-6542", 4, true, false,
+    verifyMember("jack@hotmail.com", "1234", "Jack Black", "(222) 987-6542", 4, true, true,
         new int[] {1, 1}, new String[] {"standard", "plus"});
     verifyMember("julie@hotmail.com", "1234", "Julie Black", "(222) 987-6543", 1, true, false,
         new int[] {}, new String[] {});

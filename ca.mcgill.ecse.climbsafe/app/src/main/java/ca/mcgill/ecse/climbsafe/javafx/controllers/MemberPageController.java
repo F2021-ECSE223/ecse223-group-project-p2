@@ -170,6 +170,7 @@ public class MemberPageController {
         amountRegister.clear();
         itemRegister.clear();
         listForRegister.clear();
+        ClimbSafeFxmlView.getInstance().refresh();
       }
     }
 
@@ -255,6 +256,7 @@ public class MemberPageController {
         amountUpdate.clear();
         itemUpdate.clear();
         listForUpdate.clear();
+        ClimbSafeFxmlView.getInstance().refresh();
       }
     }
 
@@ -295,7 +297,6 @@ public class MemberPageController {
         ViewUtils.showError("Please input a valid email");
       }
       else {
-
 
         if (successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(deleteEmail))){
           emailToDeleteMember.setText("");

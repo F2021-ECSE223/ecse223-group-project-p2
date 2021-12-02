@@ -77,6 +77,10 @@ public class UpdateEquipmentBundlePageController {
               listQuantity.clear();
               ClimbSafeFxmlView.getInstance().refresh();
               }
+          listForUpdate.clear();
+          listEquipment.clear();
+          listQuantity.clear();
+          ClimbSafeFxmlView.getInstance().refresh();
         }
       }
 

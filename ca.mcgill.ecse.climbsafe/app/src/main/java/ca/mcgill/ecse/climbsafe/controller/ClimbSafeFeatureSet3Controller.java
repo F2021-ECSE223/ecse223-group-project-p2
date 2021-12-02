@@ -70,11 +70,11 @@ public class ClimbSafeFeatureSet3Controller {
 		  
 	  }
 	  
-	  if(!email.contains(name.toLowerCase())) {
-		  error="Invalid email";
-		  throw new InvalidInputException(error);
+	  //if(!email.contains(name.toLowerCase())) {
+		  //error="Invalid email";
+		  //throw new InvalidInputException(error);
 		    
-	  }
+	  //}
 	  
 	  if(!(email.indexOf("@") >0)) {
 		  error="Invalid email";
