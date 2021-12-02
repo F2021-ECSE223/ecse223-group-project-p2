@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -28,6 +30,11 @@
       <RowConstraints maxHeight="122.3526611328125" minHeight="10.0" prefHeight="87.91241455078125" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+      <ImageView fitHeight="1214.0" fitWidth="808.0">
+         <image>
+            <Image url="@Background.png" />
+         </image>
+      </ImageView>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" mnemonicParsing="false" onAction="#AddBundleClicked" prefHeight="37.0" prefWidth="274.0" text="Add Bundle" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8">
          <font>
             <Font size="18.0" />
