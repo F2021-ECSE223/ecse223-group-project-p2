@@ -80,11 +80,8 @@ public class ClimbSafeBonusFeaturesController {
 
 	public static Series DrawGraphLine() {
 
-		XYChart.Series c = new XYChart.Series();
+		XYChart.Series<Number, Number> c = new XYChart.Series();
 		c.setName("Members per Week");
-		
-		
-
 		
 		
 		return c;
