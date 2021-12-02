@@ -9,8 +9,13 @@ import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 
 public class ClimbSafeBonusFeaturesController {
 
@@ -70,6 +75,34 @@ public class ClimbSafeBonusFeaturesController {
 		b.add(new PieChart.Data("no Guide " + percent_nG + "%", percent_nG));
 
 		return b;
+	}
+	
+	
+	public static ObservableList<Series> DrawGraphLine() {
+		try {
+
+			ObservableList<LineChart> c = FXCollections.observableArrayList();
+			ObservableList<Series> d = FXCollections.observableArrayList();
+			//axes
+	        final NumberAxis xAxis = new NumberAxis(0, 100, 1);
+	        final NumberAxis yAxis = new NumberAxis(0, 100, 1);
+			final LineChart lineChart = new LineChart(xAxis,yAxis);
+			xAxis.setLabel("Weeks");
+			yAxis.setLabel("Number of Members");
+	        //series
+	        Series series = new XYChart.Series();
+	        //adding data to series 
+	        series.getData().add(new XYChart.Data(4, 10));
+	        series.getData().add(new XYChart.Data(8, 15));
+	        c.add(lineChart); 
+	        System.out.println("Controller Fire!");
+	        d.add(series);
+	        return d;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return null;
 	}
 }
 
