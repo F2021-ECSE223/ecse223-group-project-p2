@@ -35,7 +35,6 @@ public class ClimbSafeFeatureSet2Controller {
 	  if( email.equals(null) || password.equals(null) || name.equals(null)  || emergencyContact.equals(null)) {
 		  error= "error";  
       } 
-	  System.out.println(itemNames.size());
 	  if(itemNames.size()!= itemQuantities.size()) {
 		  
 		  error ="size of item names is not equal to quntity of items" ;
@@ -222,9 +221,7 @@ public class ClimbSafeFeatureSet2Controller {
 	  catch(RuntimeException e) {
 		  error = e.getMessage();
 		  throw new InvalidInputException(error);
-		  
-	  
-	  
+
 	  }
   	}
   }

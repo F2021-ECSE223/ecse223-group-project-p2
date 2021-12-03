@@ -23,6 +23,8 @@ public class GuidePageController {
 	@FXML
 	private Button registerGuide;
 	@FXML
+	private TextField updateEmail;
+	@FXML
 	private TextField newGuideName;
 	@FXML
 	private TextField newGuidePassword;
@@ -87,7 +89,7 @@ public class GuidePageController {
 	@FXML
 	public void addNewGuide(ActionEvent event) { //button updateGuide
 		
-		String aEmail = emailGuide.getText();
+		String aEmail = updateEmail.getText();
 		String newName = newGuideName.getText();
 		String newPassword = newGuidePassword.getText();
 		String newEmergency = newGuideEmergency.getText();

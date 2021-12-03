@@ -75,6 +75,7 @@ public class ClimbSafeFeatureSet6Controller {
       if (assignment.getMember().isGuideRequired()) {
         guideEmail = assignment.getGuide().getEmail();
         guideName = assignment.getGuide().getName();
+        //System.out.println(guideName);
         guideCost = climbSafe.getPriceOfGuidePerWeek();
       }
       if (assignment.getMember().isHotelRequired()) {

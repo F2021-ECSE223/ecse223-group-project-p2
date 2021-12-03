@@ -70,11 +70,6 @@ public class ClimbSafeFeatureSet3Controller {
 		  
 	  }
 	  
-	  //if(!email.contains(name.toLowerCase())) {
-		  //error="Invalid email";
-		  //throw new InvalidInputException(error);
-		    
-	  //}
 	  
 	  if(!(email.indexOf("@") >0)) {
 		  error="Invalid email";
@@ -171,18 +166,16 @@ public class ClimbSafeFeatureSet3Controller {
 		  throw new InvalidInputException(error);
 	  }
 	  
-	  try {
-		  
-		  List<Guide> guides = climbSafe.getGuides();
-		  for(Guide g : guides) {
-			  if(email.equals(g.getEmail())) {
-				 
+	  try {		  
+	      List<Guide> guides = climbSafe.getGuides();
+	      for(Guide g : guides) {
+	          if(email.equals(g.getEmail())) {
 				  g.setName(newName);
 				  g.setEmergencyContact(newEmergencyContact);
 				  g.setPassword(newPassword);  
-			  } 
-    	  }
-		  ClimbSafePersistence.save();
+	  }
+	  }
+	      ClimbSafePersistence.save();
 	  }
 	  catch(RuntimeException e) {
 		  error = e.getMessage();

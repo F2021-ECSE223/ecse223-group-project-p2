@@ -83,7 +83,7 @@
                     </rowConstraints>
                      <children>
                         <TextField fx:id="newGuideName" prefHeight="31.0" prefWidth="388.0" GridPane.rowIndex="3" />
-                        <TextField prefHeight="34.0" prefWidth="388.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="updateEmail" prefHeight="34.0" prefWidth="388.0" GridPane.rowIndex="1" />
                         <Label text="Full Name" GridPane.rowIndex="2" />
                         <Label text="Email" />
                         <Label text="New Password" GridPane.rowIndex="4" />
