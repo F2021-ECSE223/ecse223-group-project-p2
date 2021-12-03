@@ -24,21 +24,21 @@
          <tabs>
             <Tab text="Setup">
                <content>
-                  <GridPane prefHeight="608.0" prefWidth="605.0">
+                  <GridPane prefHeight="418.0" prefWidth="700.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.79998779296875" minWidth="10.0" prefWidth="217.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.20001220703125" minWidth="10.0" prefWidth="186.60000000000002" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="186.4000244140625" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="246.80000000000004" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="164.3999816894531" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="191.6000183105469" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="246.80000000000004" minHeight="10.0" prefHeight="133.99998779296874" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="start of climbing season" GridPane.halignment="CENTER" />
-                        <Label text="Number of Weeks" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="guide price" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="180.0" text="Start of climbing season" GridPane.halignment="CENTER" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="179.0" text="Number of weeks" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="174.0" text="Guide price" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <TextField fx:id="NumberWeeks" prefHeight="33.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="GuidePrice" prefHeight="30.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <DatePicker fx:id="StartDate" prefHeight="29.0" prefWidth="187.0" GridPane.columnIndex="1" />
@@ -48,6 +48,6 @@
             </Tab>
          </tabs>
       </TabPane>
-      <Button fx:id="UpdateAdmin" layoutX="280.0" layoutY="645.0" mnemonicParsing="false" onAction="#clickUpdateAdmin" prefHeight="23.0" prefWidth="141.0" text="update" />
+      <Button fx:id="UpdateAdmin" layoutX="279.0" layoutY="567.0" mnemonicParsing="false" onAction="#clickUpdateAdmin" prefHeight="23.0" prefWidth="141.0" text="update" />
    </children>
 </AnchorPane>

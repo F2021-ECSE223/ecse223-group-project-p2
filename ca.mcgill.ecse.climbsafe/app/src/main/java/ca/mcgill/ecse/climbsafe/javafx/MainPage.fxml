@@ -6,7 +6,7 @@
 
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="904.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="904.0" prefWidth="834.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab text="SetUp">
                <content>
@@ -75,7 +75,7 @@
                   <fx:include source="pages/HotelPage.fxml" />
                </content>
             </Tab>
-            <Tab text="Statistic">
+            <Tab text="Statistics">
                <content>
                   <fx:include source="pages/BonusFeatures.fxml" />
                </content>
