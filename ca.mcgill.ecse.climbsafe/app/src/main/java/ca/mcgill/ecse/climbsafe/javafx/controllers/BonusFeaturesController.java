@@ -27,8 +27,7 @@ public class BonusFeaturesController {
             ObservableList<Data> a = ClimbSafeBonusFeaturesController.getMemberStats();
             Pie.setData(a);
         } catch(Exception e) {
-            System.out.println("oh no!");
-            e.printStackTrace();
+            ViewUtils.showError("oh no!");
         }
     }
     // Event Listener on Button[#updateGraph].onAction

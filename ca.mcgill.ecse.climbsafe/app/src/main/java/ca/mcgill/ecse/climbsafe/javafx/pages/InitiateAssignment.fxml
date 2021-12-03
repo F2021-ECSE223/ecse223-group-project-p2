@@ -19,7 +19,7 @@
             <Font size="22.0" />
          </font>
       </Button>
-      <Label layoutX="272.0" layoutY="28.0" prefHeight="81.0" prefWidth="157.0" text="Intitate Assignment">
+      <Label layoutX="272.0" layoutY="28.0" prefHeight="81.0" prefWidth="195.0" text="Intitate Assignment">
          <font>
             <Font size="18.0" />
          </font>

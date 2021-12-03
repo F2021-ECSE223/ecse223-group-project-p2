@@ -36,11 +36,9 @@ public class ClimbSafeBonusFeaturesController {
 		for (Member m : inst.getMembers()) { //count the number of member in each category 
 			if ( m.isGuideRequired() == true) {
 				wG++;
-				System.out.println("wiht guide!");
 			}
 			if ( m.isGuideRequired() == false) {
 				nG++;
-				System.out.println("no guide!");
 			}
 		}
 
@@ -48,7 +46,6 @@ public class ClimbSafeBonusFeaturesController {
 		ObservableList<PieChart.Data> b = FXCollections.observableArrayList();
 		if ( inst.getMembers().size() == 0) { // if no members, return 0
 			b.add(new PieChart.Data("no member in list", 0));
-			System.out.println("no member!");
 			return b;
 		}
 		//if there are members in the list, return the percentages 
@@ -67,9 +64,7 @@ public class ClimbSafeBonusFeaturesController {
 	public static Series DrawGraphLine() {
 
 		XYChart.Series<Number, Number> c = new XYChart.Series();
-		c.setName("Members per Week");
-		
-		
+		c.setName("Members per Week");	
 		return c;
 
 	}

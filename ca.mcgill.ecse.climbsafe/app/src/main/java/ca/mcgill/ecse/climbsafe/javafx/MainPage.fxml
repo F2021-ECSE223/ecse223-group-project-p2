@@ -13,33 +13,19 @@
                   <fx:include source="pages/Setup_NMC.fxml" />
                </content>
             </Tab>
+            <Tab text="Member">
+               <content>
+                  <fx:include source="pages/MemberPage.fxml" />
+               </content>
+            </Tab>
             <Tab text="Guide">
                <content>
                   <fx:include source="pages/GuidePage.fxml" />
                </content>
             </Tab>
-          <Tab text="InitiateAssignment">
-               <content>
-                  <fx:include source="pages/InitiateAssignment.fxml" />
-               </content>
-          </Tab>
-          <Tab text="Pay">
-               <content>
-                  <fx:include source="pages/PayPage.fxml" />
-               </content></Tab>
-            <Tab text="View">
-               <content>
-                  <fx:include source="pages/ViewAssignmentPage.fxml" />
-               </content>
-            </Tab>
             <Tab text="Equipment">
                <content>
                   <fx:include source="pages/EquipmentPage.fxml" />
-               </content>
-            </Tab>
-            <Tab text="Member">
-               <content>
-                  <fx:include source="pages/MemberPage.fxml" />
                </content>
             </Tab>
             <Tab text="Bundle">
@@ -65,6 +51,20 @@
                   </TabPane>
                </content>
             </Tab>
+          <Tab text="InitiateAssignment">
+               <content>
+                  <fx:include source="pages/InitiateAssignment.fxml" />
+               </content>
+          </Tab>
+            <Tab text="View">
+               <content>
+                  <fx:include source="pages/ViewAssignmentPage.fxml" />
+               </content>
+            </Tab>
+          <Tab text="Pay">
+               <content>
+                  <fx:include source="pages/PayPage.fxml" />
+               </content></Tab>
             <Tab text="ProcessAssignment">
                <content>
                   <fx:include source="pages/ProcessAssignmentPage.fxml" />
